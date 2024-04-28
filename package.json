@@ -14,6 +14,7 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.32.0",
     "axios": "^1.6.8",
     "framer-motion": "^11.1.7",
     "next": "14.2.3",
@@ -30,6 +31,8 @@
     "@storybook/nextjs": "^8.0.9",
     "@storybook/react": "^8.0.9",
     "@storybook/test": "^8.0.9",
+    "@tanstack/eslint-plugin-query": "^5.28.11",
+    "@tanstack/react-query-devtools": "^5.32.0",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
