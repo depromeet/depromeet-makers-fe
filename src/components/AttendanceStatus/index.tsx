@@ -10,9 +10,46 @@ interface CheckedProps {
 }
 
 interface UnCheckedProps {
-  isChecked?: false;
+  week: number;
   isOffline?: boolean;
 }
+
+export function AttendanceStatus(props: UnCheckedProps) {
+  return (
+    <UncheckedStyled {...props}>
+      {props.isOffline && (
+        <p>
+          <strong>오프라인</strong>
+        </p>
+      )}
+      <p>{props.week}주차</p>
+    </UncheckedStyled>
+  );
+}
+
+const BaseStyled = styled.div`
+  ${({ theme }) => theme.typo.caption};
+
+  width: 70px;
+  height: 70px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+`;
+
+const UncheckedStyled = styled(BaseStyled)<Partial<UnCheckedProps>>`
+  color: ${({ theme }) => theme.color.gray_300};
+
+  border: 1px dashed ${({ theme }) => theme.color.gray_300};
+  background: ${({ theme }) => theme.color.gray_50};
+  strong {
+    color: ${({ theme }) => theme.color.gray_400};
+  }
+`;
 
 const FACE_ICON_MAP: Record<CheckedProps['variant'], keyof typeof IconComponentMap> = {
   default: 'face',
@@ -30,19 +67,7 @@ export function AttendanceStatusChecked(props: CheckedProps) {
   );
 }
 
-const CheckedStyled = styled.div<Partial<CheckedProps>>`
-  width: 70px;
-  height: 70px;
-  border-radius: 8px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-
-  ${({ theme }) => theme.typo.caption};
-
+const CheckedStyled = styled(BaseStyled)<Partial<CheckedProps>>`
   ${({ variant, theme }) => {
     switch (variant) {
       case 'default':
