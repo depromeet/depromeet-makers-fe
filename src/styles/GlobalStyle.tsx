@@ -14,9 +14,7 @@ const GlobalStyle = createGlobalStyle`
     line-height: 1.5;
   }
 
-  p {
-    color: pink;
-  }
+ 
 `;
 
 export default GlobalStyle;
