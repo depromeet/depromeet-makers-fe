@@ -44,6 +44,16 @@ const Grid = styled.div`
 
 const ColorItem = styled.div<{ $colorKey: keyof typeof color }>`
   cursor: pointer;
+
+  &:hover {
+    .palette {
+      border: 2px solid ${({ theme }) => theme.color.gray_400};
+    }
+    p {
+      text-decoration: underline;
+    }
+  }
+
   .palette {
     background-color: ${({ theme, $colorKey }) => theme.color[$colorKey]};
     width: 100px;
