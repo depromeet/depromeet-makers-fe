@@ -34,16 +34,25 @@ export function Default() {
   };
 
   return (
-    <IconWrapper>
-      {icons.map((key) => (
-        <IconItem key={key} onClick={() => handleCopy(key)}>
-          <div className="icon">
-            <Icon key={key} name={key as keyof typeof IconComponentMap} width={24} height={24} />
-          </div>
-          <p className="label">{key}</p>
-        </IconItem>
-      ))}
-    </IconWrapper>
+    <>
+      <h2
+        style={{
+          marginBottom: '16px',
+        }}
+      >
+        아이콘 컴포넌트입니다. 클릭하면 아이콘 이름이 복사됩니다.
+      </h2>
+      <IconWrapper>
+        {icons.map((key) => (
+          <IconItem key={key} onClick={() => handleCopy(key)}>
+            <div className="icon">
+              <Icon key={key} name={key as keyof typeof IconComponentMap} width={24} height={24} />
+            </div>
+            <p className="label">{key}</p>
+          </IconItem>
+        ))}
+      </IconWrapper>
+    </>
   );
 }
 
