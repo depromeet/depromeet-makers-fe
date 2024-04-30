@@ -2,7 +2,7 @@ import React from 'react';
 
 import type { IconComponentProps } from '.';
 
-export function FillCheckBox({ color = '#64748B', ...props }: IconComponentProps) {
+export function FillCheckBoxIcon({ color = '#64748B', ...props }: IconComponentProps) {
   return (
     <svg
       width="16"
@@ -20,7 +20,7 @@ export function FillCheckBox({ color = '#64748B', ...props }: IconComponentProps
   );
 }
 
-export function OutlineCheckBox({ color = '#CBD5E1', ...props }: IconComponentProps) {
+export function OutlineCheckBoxIcon({ color = '#CBD5E1', ...props }: IconComponentProps) {
   return (
     <svg
       width="16"

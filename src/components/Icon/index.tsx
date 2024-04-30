@@ -1,10 +1,28 @@
 import type { SVGProps } from 'react';
 
-import { FillCheckBox, OutlineCheckBox } from './CheckBox';
+import { ArrowDown, ArrowLeft, ArrowUp } from './ArrowIcon';
+import { CalendarIcon } from './CalendarIcon';
+import { FillCheckBoxIcon, OutlineCheckBoxIcon } from './CheckBoxIcon';
+import { ClipboardCheckIcon } from './ClipboardCheckIcon';
+import { AbsenceFaceIcon, BaseFaceIcon, LatenessFaceIcon } from './FaceIcon';
+import { HomeIcon } from './HomeIcon';
+import { UserIcon } from './UserIcon';
+import { XIcon } from './XIcon';
 
 export const IconComponentMap = {
-  'checkbox-fill': FillCheckBox,
-  'checkbox-outline': OutlineCheckBox,
+  'checkbox-fill': FillCheckBoxIcon,
+  'checkbox-outline': OutlineCheckBoxIcon,
+  home: HomeIcon,
+  calendar: CalendarIcon,
+  user: UserIcon,
+  face: BaseFaceIcon,
+  'face-lateness': LatenessFaceIcon,
+  'face-absence': AbsenceFaceIcon,
+  'clipboard-check': ClipboardCheckIcon,
+  'x-icon': XIcon,
+  'arrow-up': ArrowUp,
+  'arrow-down': ArrowDown,
+  'arrow-left': ArrowLeft,
 } as const;
 
 interface Props extends IconComponentProps {
