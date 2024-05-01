@@ -27,7 +27,7 @@ export const Header = ({ title, canBack, canClose, onClose }: HeaderProps) => {
       <Title>{title}</Title>
       {canClose && (
         <button type="button" onClick={onClose}>
-          {canBack && <Icon name="x-icon" color={theme.color.black} width={24} height={24} />}
+          <Icon name="x-icon" color={theme.color.black} width={24} height={24} />
         </button>
       )}
     </HeaderStyled>
