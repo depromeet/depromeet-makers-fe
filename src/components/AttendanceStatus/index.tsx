@@ -96,7 +96,7 @@ const CheckedStyled = styled(BaseStyled)<Partial<CheckedProps>>`
             color: ${theme.color.red};
 
             &::after {
-                content:'';
+                content: '';
                 position: absolute;
                 background: ${theme.color.red};
                 width: 5px;
