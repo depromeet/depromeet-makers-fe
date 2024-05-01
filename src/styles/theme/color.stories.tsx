@@ -15,13 +15,7 @@ export function Color() {
   const [_, copy] = useCopyToClipboard();
 
   const handleCopy = (text: string) => {
-    copy(text)
-      .then(() => {
-        console.log('Copied!', text);
-      })
-      .catch((error: unknown) => {
-        console.error('Failed to copy!', error);
-      });
+    copy(text);
   };
 
   return (
