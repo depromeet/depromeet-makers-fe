@@ -21,7 +21,7 @@ const FABStyled = styled.button`
   left: 50%;
   bottom: 108px;
   transform: translate(-50%, 0%);
-  z-index: 999;
+  z-index: ${({ theme }) => theme.zIndex.fab};
 
   display: flex;
   flex-direction: column;
