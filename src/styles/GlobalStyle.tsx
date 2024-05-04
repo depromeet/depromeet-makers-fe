@@ -18,6 +18,13 @@ const GlobalStyle = createGlobalStyle`
     text-decoration: none;
     color: inherit;
   }
+
+  button {
+    border: none;
+    background: none;
+    padding: 0;
+    cursor: pointer;
+  }
 `;
 
 export default GlobalStyle;
