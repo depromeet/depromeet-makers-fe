@@ -39,11 +39,9 @@ const FABStyled = styled.button`
 const Text = styled.p`
   ${({ theme }) => theme.typo.title3};
   color: ${({ theme }) => theme.color.white};
-  font-weight: 600;
 `;
 
 const SubText = styled.p`
   ${({ theme }) => theme.typo.caption};
   color: ${({ theme }) => theme.color.gray_300};
-  font-weight: 500;
 `;
