@@ -49,6 +49,5 @@ const Title = styled.h1`
 
   ${({ theme }) => theme.typo.title1};
   color: ${({ theme }) => theme.color.gray_900};
-  font-weight: 500;
   line-height: 24px;
 `;
