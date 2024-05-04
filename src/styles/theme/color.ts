@@ -13,9 +13,17 @@ const color = {
   white: '#ffffff',
   black: '#000000',
 
-  green: '#34C185',
-  red: '#FF4C4C',
-  yellow: '#F8B916',
+  green_100: '#34C18526',
+  green_200: '#34C18533',
+  green_300: '#34C185',
+
+  yellow_100: '#F8B91626',
+  yellow_200: '#F8B91633',
+  yellow_300: '#F8B916',
+
+  red_100: '#FF4C4C26',
+  red_200: '#FF4C4C33',
+  red_300: '#FF4C4C',
 };
 
 export default color;

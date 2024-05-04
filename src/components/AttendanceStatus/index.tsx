@@ -72,33 +72,33 @@ const CheckedStyled = styled(BaseStyled)<Partial<CheckedProps>>`
     switch (variant) {
       case 'default':
         return `
-            background-color: rgba(52, 193, 133, 0.15);
-            border: 1px solid rgba(52, 193, 133, 0.20);
-            color: ${theme.color.green};
+            background-color: ${theme.color.green_100};
+            border: 1px solid ${theme.color.green_200};
+            color: ${theme.color.green_300};
 
         `;
       case 'lateness':
         return `
-            border: 1px solid rgba(248, 185, 22, 0.20);
-            background: rgba(248, 185, 22, 0.15);   
-            color: ${theme.color.yellow};
+            border: 1px solid ${theme.color.yellow_100};
+            background: ${theme.color.yellow_200};
+            color: ${theme.color.yellow_300};
         `;
       case 'absent':
         return `
-            border: 1px solid rgba(255, 76, 76, 0.20);
-            background: rgba(255, 76, 76, 0.15);
-            color: ${theme.color.red};
+            border: 1px solid ${theme.color.red_100};
+            background: ${theme.color.red_200};
+            color: ${theme.color.red_300};
         `;
       case 'absent-proof':
         return `
-            border: 1px solid rgba(255, 76, 76, 0.20);
-            background: rgba(255, 76, 76, 0.15);
-            color: ${theme.color.red};
+            border: 1px solid ${theme.color.red_100};
+            background: ${theme.color.red_200};
+            color: ${theme.color.red_300};
 
             &::after {
                 content: '';
                 position: absolute;
-                background: ${theme.color.red};
+                background: ${theme.color.red_300};
                 width: 5px;
                 height: 5px;
                 border-radius: 50%;
