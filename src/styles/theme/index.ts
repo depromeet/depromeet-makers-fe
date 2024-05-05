@@ -9,6 +9,7 @@ const theme = {
   typo,
   color,
   zIndex,
+  maxWidth: '475px',
 };
 
 export default theme;

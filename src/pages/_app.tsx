@@ -4,6 +4,7 @@ import { ThemeProvider } from 'styled-components';
 
 import QueryClientProvider from '@/apis/QueryClientProvider';
 import { pretendard } from '@/assets/fonts/font';
+import Layout from '@/components/Layout';
 import { SnackBarProvider } from '@/components/SnackBar/SnackBarProvider';
 import GlobalStyle from '@/styles/GlobalStyle';
 import theme from '@/styles/theme';
@@ -15,7 +16,9 @@ export default function App({ Component, pageProps }: AppProps) {
         <GlobalStyle />
         <LazyMotion features={domAnimation}>
           <SnackBarProvider />
-          <Component {...pageProps} className={pretendard.className} />
+          <Layout>
+            <Component {...pageProps} className={pretendard.className} />
+          </Layout>
         </LazyMotion>
       </ThemeProvider>
     </QueryClientProvider>
