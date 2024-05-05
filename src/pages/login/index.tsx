@@ -1,6 +1,7 @@
 import React from 'react';
 
 import EmailStep from '@/features/login/EmailStep';
+import JoinStep from '@/features/login/JoinStep';
 import WelcomeStep from '@/features/login/WelcomStep';
 import { useFunnel } from '@/hooks/useFunnel';
 
@@ -20,7 +21,9 @@ function LoginPage() {
             onNext={(type) => (type === 'join' ? setStep(STEP[2]) : setStep(STEP[4]))}
           />
         </Step>
-        <Step name={STEP[2]}>Join</Step>
+        <Step name={STEP[2]}>
+          <JoinStep onBack={() => setStep(STEP[1])} onNext={() => setStep(STEP[3])} />
+        </Step>
         <Step name={STEP[3]}>Join Complete</Step>
         <Step name={STEP[4]}>Certify</Step>
       </Funnel>

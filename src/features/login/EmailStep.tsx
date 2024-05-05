@@ -15,7 +15,7 @@ function EmailStep(props: Props) {
   const onSubmit = () => {
     // TODO : email validation
     // 임시 valid
-    if (email.indexOf('login') === -1) {
+    if (email.indexOf('login') !== -1) {
       props.onNext('login');
     } else {
       props.onNext('join');
