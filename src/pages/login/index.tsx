@@ -1,12 +1,15 @@
 import React from 'react';
+import { useRouter } from 'next/router';
 
 import EmailStep from '@/features/login/EmailStep';
+import JoinCompleteStep from '@/features/login/JoinCompleteStep';
 import JoinStep from '@/features/login/JoinStep';
 import WelcomeStep from '@/features/login/WelcomStep';
 import { useFunnel } from '@/hooks/useFunnel';
 
 const STEP = ['welcome', 'email', 'join', 'join-complete', 'certify'];
 function LoginPage() {
+  const router = useRouter();
   const { Funnel, Step, setStep } = useFunnel(STEP[0]);
 
   return (
@@ -24,7 +27,9 @@ function LoginPage() {
         <Step name={STEP[2]}>
           <JoinStep onBack={() => setStep(STEP[1])} onNext={() => setStep(STEP[3])} />
         </Step>
-        <Step name={STEP[3]}>Join Complete</Step>
+        <Step name={STEP[3]}>
+          <JoinCompleteStep onNext={() => router.push('/')} />
+        </Step>
         <Step name={STEP[4]}>Certify</Step>
       </Funnel>
     </div>

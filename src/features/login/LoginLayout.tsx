@@ -48,7 +48,7 @@ const Header = styled.header``;
 const Hgroup = styled.hgroup`
   margin-bottom: 32px;
   margin-top: 60px;
-  max-width: 230px;
+  white-space: pre;
 `;
 
 const Heading = styled.h2`

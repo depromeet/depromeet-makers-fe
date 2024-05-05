@@ -11,7 +11,8 @@ interface Props {
 function JoinStep(props: Props) {
   const [value, setValue] = useState('');
 
-  const title = '비밀번호로 사용할 숫자 6자리를 입력해 주세요.';
+  const title = `비밀번호로 사용할 \n숫자 6자리를 입력해 주세요.`;
+
   return (
     <LoginLayout
       onBack={props.onBack}
@@ -22,12 +23,7 @@ function JoinStep(props: Props) {
         disabled: value.length !== PASSWORD_LENGTH,
       }}
     >
-      <PasswordInput
-        passwordLength={PASSWORD_LENGTH}
-        inputLength={value.length}
-        onChange={setValue}
-        error={value.length !== PASSWORD_LENGTH ? '비밀번호를 입력해 주세요.' : undefined}
-      />
+      <PasswordInput passwordLength={PASSWORD_LENGTH} inputLength={value.length} onChange={setValue} />
     </LoginLayout>
   );
 }

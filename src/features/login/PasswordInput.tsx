@@ -11,7 +11,11 @@ interface Props {
 function PasswordInput(props: Props) {
   return (
     <DotContainer>
-      <Input type="number" maxLength={props.passwordLength} onChange={(e) => props.onChange(e.target.value)} />
+      <Input
+        type="number"
+        maxLength={props.passwordLength}
+        onChange={(e) => e.target.value.length <= props.passwordLength && props.onChange(e.target.value)}
+      />
       {Array.from({ length: props.passwordLength }, (_, index) => (
         <Dot key={index} isChecked={index < props.inputLength} />
       ))}
@@ -35,8 +39,9 @@ const Input = styled.input`
   left: 0;
   position: absolute;
   width: 100%;
-  opacity: 0;
+  top: 16px;
   height: 20px;
+  opacity: 0;
 `;
 
 const Dot = styled.div<{ isChecked: boolean }>`

@@ -24,7 +24,7 @@ function EmailStep(props: Props) {
 
   return (
     <LoginLayout
-      title="디프만 지원 시 사용했던 이메일을 입력해 주세요."
+      title={`디프만 지원 시 \n사용했던 이메일을 입력해 주세요.`}
       onBack={props.onBack}
       buttonProps={{
         children: '다음',
