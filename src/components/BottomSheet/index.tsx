@@ -99,31 +99,12 @@ const Content = styled(m.div)`
 `;
 
 const ScrollableContent = styled.div`
-  width: calc(100% + 14px);
+  width: 100%;
   overflow-y: auto;
   position: relative;
-  left: 7px;
 
   &::-webkit-scrollbar {
-    width: 14px;
-    height: 14px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    outline: none;
-    border-radius: 10px;
-    border: 4px solid transparent;
-    box-shadow: inset 6px 6px 0 rgba(34, 34, 34, 0.15);
-  }
-
-  &::-webkit-scrollbar-thumb:hover {
-    border: 4px solid transparent;
-    box-shadow: inset 6px 6px 0 rgba(34, 34, 34, 0.3);
-  }
-
-  &::-webkit-scrollbar-track {
-    box-shadow: none;
-    background-color: transparent;
+    display: none;
   }
 `;
 
