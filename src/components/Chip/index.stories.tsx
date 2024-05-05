@@ -2,6 +2,7 @@ import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import styled from 'styled-components';
 
+import ChipLine from './ChipLine';
 import Chip from '.';
 
 const meta: Meta<typeof Chip> = {
@@ -26,7 +27,7 @@ export const Default: Story = {
   },
 };
 
-export const All = () => {
+export const ChipAll = () => {
   const [selected, setSelected] = useState(1);
   return (
     <ChipWrapper>
@@ -39,8 +40,27 @@ export const All = () => {
   );
 };
 
+export const LineAll = () => {
+  const [selected, setSelected] = useState(1);
+  return (
+    <ChipLineWrapper>
+      {[1, 2].map((index) => (
+        <ChipLine key={index} isSelected={selected === index} onClick={() => setSelected(index)}>
+          {index}주차
+        </ChipLine>
+      ))}
+    </ChipLineWrapper>
+  );
+};
+
 const ChipWrapper = styled.div`
   display: flex;
   gap: 16px;
   margin-bottom: 24px;
+`;
+
+const ChipLineWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 `;
