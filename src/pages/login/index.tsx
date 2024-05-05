@@ -1,6 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 
+import CertifyStep from '@/features/login/CertifyStep';
 import EmailStep from '@/features/login/EmailStep';
 import JoinCompleteStep from '@/features/login/JoinCompleteStep';
 import JoinStep from '@/features/login/JoinStep';
@@ -30,7 +31,9 @@ function LoginPage() {
         <Step name={STEP[3]}>
           <JoinCompleteStep onNext={() => router.push('/')} />
         </Step>
-        <Step name={STEP[4]}>Certify</Step>
+        <Step name={STEP[4]}>
+          <CertifyStep onNext={() => router.push('/')} onBack={() => setStep(STEP[1])} />
+        </Step>
       </Funnel>
     </div>
   );
