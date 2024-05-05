@@ -39,8 +39,8 @@ const BadgeStyled = styled.span<BadgeProps>`
         `;
       case 'error':
         return `
-          background-color: rgba(255, 76, 76, 0.15);
-          color: ${theme.color.red};
+          background-color: ${theme.color.red_100};
+          color: ${theme.color.red_300};
         `;
     }
   }}

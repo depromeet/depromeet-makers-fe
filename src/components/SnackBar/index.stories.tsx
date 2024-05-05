@@ -52,5 +52,5 @@ const SnackBarWrapper = styled.div`
 
 const SnackBarButton = styled(Button)`
   width: 200px;
-  background-color: ${({ theme }) => theme.color.green};
+  background-color: ${({ theme }) => theme.color.green_300};
 `;
