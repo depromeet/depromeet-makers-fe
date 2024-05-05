@@ -15,9 +15,14 @@ function LoginPage() {
           <WelcomeStep onNext={() => setStep(STEP[1])} />
         </Step>
         <Step name={STEP[1]}>
-          <EmailStep onBack={() => setStep(STEP[0])} onNext={() => setStep(STEP[2])} />
+          <EmailStep
+            onBack={() => setStep(STEP[0])}
+            onNext={(type) => (type === 'join' ? setStep(STEP[2]) : setStep(STEP[4]))}
+          />
         </Step>
         <Step name={STEP[2]}>Join</Step>
+        <Step name={STEP[3]}>Join Complete</Step>
+        <Step name={STEP[4]}>Certify</Step>
       </Funnel>
     </div>
   );

@@ -5,12 +5,22 @@ import Input from '@/components/Input';
 import LoginLayout from './LoginLayout';
 
 interface Props {
-  onNext: () => void;
+  onNext: (type: 'join' | 'login') => void;
   onBack: () => void;
 }
 
 function EmailStep(props: Props) {
   const [email, setEmail] = useState('');
+
+  const onSubmit = () => {
+    // TODO : email validation
+    // 임시 valid
+    if (email.indexOf('login') === -1) {
+      props.onNext('login');
+    } else {
+      props.onNext('join');
+    }
+  };
 
   return (
     <LoginLayout
@@ -18,7 +28,7 @@ function EmailStep(props: Props) {
       onBack={props.onBack}
       buttonProps={{
         children: '다음',
-        onClick: props.onNext,
+        onClick: onSubmit,
         disabled: !email,
       }}
     >
