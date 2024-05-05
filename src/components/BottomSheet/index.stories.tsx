@@ -21,9 +21,11 @@ export function Default() {
 
   return (
     <LazyMotion features={domMax}>
-      <button type="button" onClick={toggleShowing}>
-        toggle
-      </button>
+      <div style={{ minHeight: '300vh' }}>
+        <button type="button" onClick={toggleShowing}>
+          toggle
+        </button>
+      </div>
       <BottomSheet onClickOutside={toggleShowing} isShowing={isShowing}>
         {[1, 2, 3, 4, 5, 6].map((index) => (
           <ChipLine key={index} isSelected={selected === index} onClick={() => setSelected(index)}>

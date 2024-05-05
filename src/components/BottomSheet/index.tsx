@@ -1,6 +1,8 @@
-import { type ComponentProps, type MouseEventHandler } from 'react';
+import { type ComponentProps, type MouseEventHandler, useEffect } from 'react';
 import { m, type Variants } from 'framer-motion';
 import styled from 'styled-components';
+
+import { useScrollLock } from '@/hooks/useScrollLock';
 
 import Icon from '../Icon';
 import AnimatePortal from '../Portal/AnimatePortal';
@@ -13,10 +15,20 @@ interface Props extends ComponentProps<typeof AnimatePortal> {
 }
 
 const BottomSheet = ({ onClickOutside, isShowing, children, mode }: Props) => {
+  const { lockScroll, unlockScroll } = useScrollLock();
+
   const onClickOutsideDefault: MouseEventHandler<HTMLDivElement> = (e) => {
     if (e.target !== e.currentTarget) return;
     if (onClickOutside) onClickOutside();
   };
+
+  useEffect(() => {
+    if (isShowing) {
+      lockScroll();
+    } else {
+      unlockScroll();
+    }
+  }, [isShowing, lockScroll, unlockScroll]);
 
   return (
     <AnimatePortal isShowing={isShowing} mode={mode}>
@@ -101,7 +113,6 @@ const Content = styled(m.div)`
 const ScrollableContent = styled.div`
   width: 100%;
   overflow-y: auto;
-  position: relative;
 
   &::-webkit-scrollbar {
     display: none;
