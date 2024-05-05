@@ -3,6 +3,7 @@ import type { SVGProps } from 'react';
 import { ArrowDown, ArrowLeft, ArrowUp } from './ArrowIcon';
 import { CalendarIcon } from './CalendarIcon';
 import { FillCheckBoxIcon, OutlineCheckBoxIcon } from './CheckBoxIcon';
+import { CheckIcon } from './CheckIcon';
 import { ClipboardCheckIcon } from './ClipboardCheckIcon';
 import { AbsenceFaceIcon, BaseFaceIcon, LatenessFaceIcon } from './FaceIcon';
 import { HomeIcon } from './HomeIcon';
@@ -23,6 +24,7 @@ export const IconComponentMap = {
   'arrow-up': ArrowUp,
   'arrow-down': ArrowDown,
   'arrow-left': ArrowLeft,
+  check: CheckIcon,
 } as const;
 
 interface Props extends IconComponentProps {
