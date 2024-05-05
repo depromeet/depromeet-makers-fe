@@ -2,7 +2,9 @@ import { useState } from 'react';
 import { type Meta } from '@storybook/react';
 import { domMax, LazyMotion } from 'framer-motion';
 
-import BottomSheet from './BottomSheet';
+import ChipLine from '@/components/Chip/ChipLine';
+
+import BottomSheet from '.';
 
 const meta: Meta<typeof BottomSheet> = {
   title: 'BottomSheet',
@@ -12,6 +14,7 @@ const meta: Meta<typeof BottomSheet> = {
 export default meta;
 
 export function Default() {
+  const [selected, setSelected] = useState(1);
   const [isShowing, setIsShowing] = useState(true);
 
   const toggleShowing = () => setIsShowing((prev) => !prev);
@@ -22,7 +25,11 @@ export function Default() {
         toggle
       </button>
       <BottomSheet onClickOutside={toggleShowing} isShowing={isShowing}>
-        bottom sheet content
+        {[1, 2, 3, 4, 5, 6].map((index) => (
+          <ChipLine key={index} isSelected={selected === index} onClick={() => setSelected(index)}>
+            {index}주차
+          </ChipLine>
+        ))}
       </BottomSheet>
     </LazyMotion>
   );

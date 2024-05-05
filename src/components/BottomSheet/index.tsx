@@ -33,7 +33,7 @@ const BottomSheet = ({ onClickOutside, isShowing, children, mode }: Props) => {
               <Icon name="x-icon" width={16} height={16} color="#000000" />
             </button>
           </Header>
-          {children}
+          <ScrollableContent>{children}</ScrollableContent>
         </Content>
       </MobileScrim>
     </AnimatePortal>
@@ -96,6 +96,35 @@ const Content = styled(m.div)`
   max-height: calc(100vh - 175px);
   background-color: #fff;
   border-radius: 24px 24px 0 0;
+`;
+
+const ScrollableContent = styled.div`
+  width: calc(100% + 14px);
+  overflow-y: auto;
+  position: relative;
+  left: 7px;
+
+  &::-webkit-scrollbar {
+    width: 14px;
+    height: 14px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    outline: none;
+    border-radius: 10px;
+    border: 4px solid transparent;
+    box-shadow: inset 6px 6px 0 rgba(34, 34, 34, 0.15);
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    border: 4px solid transparent;
+    box-shadow: inset 6px 6px 0 rgba(34, 34, 34, 0.3);
+  }
+
+  &::-webkit-scrollbar-track {
+    box-shadow: none;
+    background-color: transparent;
+  }
 `;
 
 const Header = styled.header`
