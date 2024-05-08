@@ -6,9 +6,9 @@ export function ArrowDown(props: IconComponentProps) {
       <path
         d="M4 6L8 10L12 6"
         stroke={props.color ?? '#0F172A'}
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );
@@ -20,9 +20,9 @@ export function ArrowUp(props: IconComponentProps) {
       <path
         d="M12 10L8 6L4 10"
         stroke={props.color ?? '#0F172A'}
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );
@@ -34,9 +34,9 @@ export function ArrowLeft(props: IconComponentProps) {
       <path
         d="M15 18L9 12L15 6"
         stroke={props.color ?? '#0F172A'}
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );
