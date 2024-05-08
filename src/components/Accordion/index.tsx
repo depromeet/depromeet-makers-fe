@@ -23,11 +23,13 @@ export const AccordionItem = ({ title, children }: AccordionItemProps) => {
 
   const willChange = useWillChange();
 
+  const isContentExist = Boolean(children);
+
   return (
     <AccordionItemContainer>
-      <AccordionItemHeader onClick={() => setIsOpen((prev) => !prev)}>
+      <AccordionItemHeader onClick={() => isContentExist && setIsOpen((prev) => !prev)}>
         {title && <AccordionItemTitle>{title}</AccordionItemTitle>}
-        <AccordionItemArrow name="arrow-down" isOpen={isOpen} />
+        {isContentExist && <AccordionItemArrow name="arrow-down" isOpen={isOpen} />}
       </AccordionItemHeader>
 
       <AnimatePresence initial={false}>
