@@ -27,7 +27,7 @@ function StatusSelect(props: Props) {
       const { bottom } = selectRef.current.getBoundingClientRect();
       const windowHeight = window.innerHeight;
 
-      const DROPDOWN_HEIGHT = 210;
+      const DROPDOWN_HEIGHT = 230;
 
       if (windowHeight - bottom < DROPDOWN_HEIGHT) {
         setDropdownPosition('top');
@@ -114,7 +114,13 @@ function Dropdown({ position = 'bottom', ...props }: DropdownProps) {
       }}
     >
       {ATTENDANCE_STATUS_LIST.map((status) => (
-        <DropdownItem key={`status-${status}`} onClick={() => props.onClick(status)}>
+        <DropdownItem
+          key={`status-${status}`}
+          onClick={() => {
+            props.onClick(status);
+            props.onClose();
+          }}
+        >
           {status}
         </DropdownItem>
       ))}

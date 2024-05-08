@@ -13,13 +13,16 @@ interface Props {
 }
 
 function UserItem(props: Props) {
+  const onChange = (value: ATTENDANCE_STATUS) => {
+    console.log(value);
+  };
   return (
     <Container>
       <TextWrapper>
         <Name>{props.name}</Name>
         <Position>{props.position}</Position>
       </TextWrapper>
-      <StatusSelect onClick={() => null} value={props.status} />
+      <StatusSelect onClick={onChange} value={props.status} />
     </Container>
   );
 }
