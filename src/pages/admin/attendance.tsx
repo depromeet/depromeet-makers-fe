@@ -3,10 +3,12 @@ import styled from 'styled-components';
 
 import IconButton from '@/components/Button/IconButton';
 import Layout from '@/components/Layout';
+import TeamSelect from '@/features/admin/attendance/TeamSelect';
 import WeekSelect from '@/features/admin/attendance/WeekSelect';
 
 function AdminAttendancePage() {
   const [week, setWeek] = useState(1);
+  const [team, setTeam] = useState(1);
 
   return (
     <Layout>
@@ -15,6 +17,9 @@ function AdminAttendancePage() {
           <WeekSelect value={week} onChange={(week) => setWeek(week)} />
           <IconButton iconName="state">전체 출석률</IconButton>
         </TopSection>
+        <section>
+          <TeamSelect value={team} onChange={(team) => setTeam(team)} />
+        </section>
       </Main>
     </Layout>
   );
