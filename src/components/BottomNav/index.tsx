@@ -11,7 +11,7 @@ type NavItemProps = {
 
 const NAV_ITEMS = [
   // TODO: path 수정 필요
-  { text: '홈', icon: 'home', path: '' },
+  { text: '홈', icon: 'home', path: '/home' },
   { text: '일정', icon: 'calendar', path: '' },
   { text: '마이페이지', icon: 'user', path: '' },
 ] as const;
@@ -38,12 +38,16 @@ export const BottomNav = () => {
 const BottomNavStyled = styled.nav`
   position: fixed;
   bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
 
   display: flex;
   justify-content: space-evenly;
-  width: 100%;
+  width: ${({ theme }) => theme.size.maxWidth};
   padding: 12px 0;
+  z-index: ${({ theme }) => theme.zIndex.bottomNav};
 
+  background-color: ${({ theme }) => theme.color.white};
   border-top: 1px solid ${({ theme }) => theme.color.gray_200};
 `;
 
