@@ -21,8 +21,8 @@ function ChipLine({ children, isSelected, onClick }: PropsWithChildren<ChipLineP
 export default ChipLine;
 
 const ChipLineStyled = styled.button`
+  width: 100%;
   display: flex;
-  width: 350px;
   padding: 24px 0px;
   justify-content: space-between;
   align-items: center;
