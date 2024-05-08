@@ -1,19 +1,24 @@
-import React from 'react';
+import type { ButtonHTMLAttributes } from 'react';
 import styled, { useTheme } from 'styled-components';
 
+import type { IconComponentMap } from '../Icon';
 import Icon from '../Icon';
 
-function CopyButton(props: React.ButtonHTMLAttributes<HTMLButtonElement>) {
+interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
+  iconName: keyof typeof IconComponentMap;
+}
+
+function IconButton({ iconName, ...props }: Props) {
   const theme = useTheme();
   return (
     <ButtonStyled {...props}>
-      <Icon name="clipboard-check" width={20} height={20} color={theme.color.gray_400} />
+      <Icon name={iconName} width={20} height={20} color={theme.color.gray_400} />
       {props.children}
     </ButtonStyled>
   );
 }
 
-export default CopyButton;
+export default IconButton;
 
 const ButtonStyled = styled.button`
   ${({ theme }) => theme.typo.subtitle3};
