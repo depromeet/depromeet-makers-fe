@@ -63,8 +63,8 @@ function PasswordInputStep(props: { onBack: () => void; onNext: (value: string) 
 function PasswordInputConfirmStep(props: { onBack: () => void; onNext: () => void; password: string }) {
   const [input, setInput] = useState('');
 
-  const isDisabled = input.length !== PASSWORD_LENGTH;
   const isError = input.length === PASSWORD_LENGTH && input !== props.password;
+  const isDisabled = input.length !== PASSWORD_LENGTH || isError;
 
   return (
     <LoginLayout
@@ -73,7 +73,7 @@ function PasswordInputConfirmStep(props: { onBack: () => void; onNext: () => voi
       buttonProps={{
         children: '다음',
         onClick: props.onNext,
-        disabled: isDisabled || isError,
+        disabled: isDisabled,
         type: 'submit',
       }}
     >
