@@ -3,6 +3,8 @@ import typo from './typo';
 
 const zIndex = {
   fab: 999,
+  backdrop: 1000,
+  modal: 1001,
 };
 
 const theme = {
