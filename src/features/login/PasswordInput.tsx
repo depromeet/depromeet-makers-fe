@@ -12,6 +12,7 @@ function PasswordInput(props: Props) {
   return (
     <DotContainer>
       <Input
+        autoFocus
         type="number"
         maxLength={props.passwordLength}
         onChange={(e) => e.target.value.length <= props.passwordLength && props.onChange(e.target.value)}

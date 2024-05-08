@@ -1,10 +1,6 @@
 {
   "parser": "@typescript-eslint/parser",
-  "plugins": [
-    "@typescript-eslint",
-    "unused-imports",
-    "simple-import-sort"
-  ],
+  "plugins": ["@typescript-eslint", "unused-imports", "simple-import-sort"],
   "extends": [
     "next/core-web-vitals",
     "plugin:@typescript-eslint/recommended",
@@ -21,9 +17,7 @@
       }
     ],
     "unused-imports/no-unused-imports": "error",
-    "unused-imports/no-unused-imports-ts": [
-      "error"
-    ],
+    "unused-imports/no-unused-imports-ts": ["error"],
     "unused-imports/no-unused-vars": [
       "warn",
       {
@@ -48,23 +42,10 @@
       "warn",
       {
         "groups": [
-          [
-            "^react",
-            "^next",
-            "^@?\\w"
-          ],
-          [
-            "@/(.*)"
-          ],
-          [
-            "^\\.\\.(?!/?$)",
-            "^\\.\\./?$"
-          ],
-          [
-            "^\\./(?=.*/)(?!/?$)",
-            "^\\.(?!/?$)",
-            "^\\./?$"
-          ]
+          ["^react", "^next", "^@?\\w"],
+          ["@/(.*)"],
+          ["^\\.\\.(?!/?$)", "^\\.\\./?$"],
+          ["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"]
         ]
       }
     ],
@@ -78,10 +59,9 @@
     "jsx-a11y/label-has-associated-control": [
       2,
       {
-        "labelAttributes": [
-          "htmlFor"
-        ]
+        "labelAttributes": ["htmlFor"]
       }
-    ]
+    ],
+    "jsx-a11y/no-autofocus": "off"
   }
 }

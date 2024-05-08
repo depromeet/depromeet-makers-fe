@@ -32,7 +32,7 @@ function EmailStep(props: Props) {
         disabled: !email,
       }}
     >
-      <Input placeholder="이메일을 입력해주세요." value={email} onChange={(e) => setEmail(e.target.value)} />
+      <Input autoFocus placeholder="이메일을 입력해주세요." value={email} onChange={(e) => setEmail(e.target.value)} />
     </LoginLayout>
   );
 }
