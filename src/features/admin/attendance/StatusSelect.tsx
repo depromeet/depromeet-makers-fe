@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { m } from 'framer-motion';
+import { AnimatePresence, m } from 'framer-motion';
 import styled, { useTheme } from 'styled-components';
 
 import Icon from '@/components/Icon';
@@ -8,6 +8,7 @@ import { ATTENDANCE_STATUS_LIST } from '@/constants/attendance';
 import useOutsideClick from '@/hooks/useOutsideClick';
 
 type DropdownPosition = 'top' | 'bottom';
+
 interface Props {
   value: ATTENDANCE_STATUS;
   onClick: (value: ATTENDANCE_STATUS) => void;
@@ -38,19 +39,15 @@ function StatusSelect(props: Props) {
 
   return (
     <Container ref={selectRef}>
-      <Label
-        onClick={() => {
-          console.log('click', dropdownPosition);
-          setIsShowing(true);
-        }}
-        status={props.value}
-      >
+      <Label onClick={() => setIsShowing(() => !isShowing)} status={props.value}>
         <span>{props.value}</span>
         <Icon name="arrow-down" color={theme.color.gray_400} width={16} height={16} />
       </Label>
-      {isShowing && (
-        <Dropdown onClick={props.onClick} onClose={() => setIsShowing(false)} position={dropdownPosition} />
-      )}
+      <AnimatePresence>
+        {isShowing && (
+          <Dropdown onClick={props.onClick} onClose={() => setIsShowing(false)} position={dropdownPosition} />
+        )}
+      </AnimatePresence>
     </Container>
   );
 }

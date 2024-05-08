@@ -36,7 +36,7 @@ export default AdminAttendancePage;
 
 const Main = styled.main`
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   padding: 32px 20px;
   background-color: ${({ theme }) => theme.color.gray_100};
 `;
