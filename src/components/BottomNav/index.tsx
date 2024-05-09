@@ -14,18 +14,21 @@ export const BottomNav = ({ items }: { items: NavItemType }) => {
   const pathname = usePathname();
 
   return (
-    <BottomNavStyled>
-      {items.map(({ text, icon, path }) => {
-        const selected = path === pathname;
+    <>
+      <BottomNavStyled>
+        {items.map(({ text, icon, path }) => {
+          const selected = path === pathname;
 
-        return (
-          <NavItem key={path} href={path} selected={selected}>
-            <Icon name={icon} width={26} height={26} color={selected ? theme.color.gray_900 : theme.color.gray_400} />
-            {text}
-          </NavItem>
-        );
-      })}
-    </BottomNavStyled>
+          return (
+            <NavItem key={path} href={path} selected={selected}>
+              <Icon name={icon} width={26} height={26} color={selected ? theme.color.gray_900 : theme.color.gray_400} />
+              {text}
+            </NavItem>
+          );
+        })}
+      </BottomNavStyled>
+      <Blank />
+    </>
   );
 };
 
@@ -36,7 +39,7 @@ const BottomNavStyled = styled.nav`
   transform: translate(-50%, 0);
 
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   width: ${({ theme }) => theme.size.maxWidth};
   padding: 12px 0;
   z-index: ${({ theme }) => theme.zIndex.bottomNav};
@@ -51,8 +54,12 @@ const NavItem = styled.a<NavItemProps>`
   justify-content: center;
   align-items: center;
   gap: 4px;
+  width: 130px;
 
   color: ${({ theme, selected }) => (selected ? theme.color.gray_900 : theme.color.gray_400)};
   fill: ${({ theme, selected }) => (selected ? theme.color.gray_900 : theme.color.gray_400)};
   font-weight: 500;
+`;
+const Blank = styled.div`
+  height: 68px;
 `;
