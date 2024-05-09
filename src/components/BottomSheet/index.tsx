@@ -80,6 +80,7 @@ const MobileScrim = styled(m.div)`
   left: 0;
   right: 0;
   left: 0;
+  margin: 0 auto;
 
   overflow: hidden;
 

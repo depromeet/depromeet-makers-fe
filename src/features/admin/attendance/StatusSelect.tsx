@@ -3,7 +3,7 @@ import { AnimatePresence, m } from 'framer-motion';
 import styled, { useTheme } from 'styled-components';
 
 import Icon from '@/components/Icon';
-import type { ATTENDANCE_STATUS } from '@/constants/attendance';
+import { ATTENDANCE_STATUS } from '@/constants/attendance';
 import { ATTENDANCE_STATUS_LIST } from '@/constants/attendance';
 import useOutsideClick from '@/hooks/useOutsideClick';
 
@@ -65,13 +65,13 @@ const Label = styled.button<{ status: ATTENDANCE_STATUS }>`
 
   color: ${({ status, theme }) => {
     switch (status) {
-      case '출석':
+      case ATTENDANCE_STATUS.출석:
         return theme.color.green_300;
-      case '지각':
+      case ATTENDANCE_STATUS.지각:
         return theme.color.yellow_300;
-      case '결석':
+      case ATTENDANCE_STATUS.결석:
         return theme.color.red_300;
-      default:
+      case ATTENDANCE_STATUS.출석대기:
         return theme.color.gray_400;
     }
   }};
