@@ -39,7 +39,7 @@ function StatusSelect(props: Props) {
 
   return (
     <Container ref={selectRef}>
-      <Label onClick={() => setIsShowing(() => !isShowing)} status={props.value}>
+      <Label onClick={() => setIsShowing((prev) => !prev)} status={props.value}>
         <span>{props.value}</span>
         <Icon name="arrow-down" color={theme.color.gray_400} width={16} height={16} />
       </Label>
