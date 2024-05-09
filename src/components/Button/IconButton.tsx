@@ -1,4 +1,5 @@
 import type { ButtonHTMLAttributes } from 'react';
+import Link from 'next/link';
 import styled, { useTheme } from 'styled-components';
 
 import type { IconComponentMap } from '../Icon';
@@ -6,10 +7,23 @@ import Icon from '../Icon';
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   iconName: keyof typeof IconComponentMap;
+  href?: string;
 }
 
-function IconButton({ iconName, ...props }: Props) {
+function IconButton({ iconName, href, ...props }: Props) {
   const theme = useTheme();
+
+  if (href) {
+    return (
+      <Link href={href}>
+        <ButtonStyled {...props}>
+          <Icon name={iconName} width={20} height={20} color={theme.color.gray_400} />
+          {props.children}
+        </ButtonStyled>
+      </Link>
+    );
+  }
+
   return (
     <ButtonStyled {...props}>
       <Icon name={iconName} width={20} height={20} color={theme.color.gray_400} />
