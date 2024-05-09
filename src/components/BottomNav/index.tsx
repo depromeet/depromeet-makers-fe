@@ -59,6 +59,7 @@ const NavItem = styled.a<NavItemProps>`
   color: ${({ theme, selected }) => (selected ? theme.color.gray_900 : theme.color.gray_400)};
   fill: ${({ theme, selected }) => (selected ? theme.color.gray_900 : theme.color.gray_400)};
   font-weight: 500;
+  ${({ theme }) => theme.typo.caption};
 `;
 const Blank = styled.div`
   height: 68px;
