@@ -8,7 +8,7 @@ interface StyledProps {
 type Props = React.ButtonHTMLAttributes<HTMLButtonElement> & StyledProps;
 
 function Button(props: Props) {
-  return <ButtonStyled {...props} />;
+  return <ButtonStyled {...props} onClick={(e) => !props.disabled && props.onClick?.(e)} />;
 }
 
 export default Button;
@@ -39,4 +39,11 @@ const ButtonStyled = styled.button<Partial<Props>>`
         `;
     }
   }}
+
+  &:disabled {
+    background-color: ${({ theme }) => theme.color.gray_200};
+    border: 1px solid ${({ theme }) => theme.color.gray_200};
+    color: ${({ theme }) => theme.color.gray_400};
+    cursor: not-allowed;
+  }
 `;

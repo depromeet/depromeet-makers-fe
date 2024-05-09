@@ -1,6 +1,6 @@
 import type { IconComponentProps } from '.';
 
-function StateIcon({ color = '#94A3B8', ...props }: IconComponentProps) {
+export function StateIcon({ color = '#94A3B8', ...props }: IconComponentProps) {
   return (
     <svg
       width="20"
@@ -42,5 +42,3 @@ function StateIcon({ color = '#94A3B8', ...props }: IconComponentProps) {
     </svg>
   );
 }
-
-export default StateIcon;
