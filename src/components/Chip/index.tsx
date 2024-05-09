@@ -8,7 +8,7 @@ interface ChipProps {
 }
 
 function Chip(props: PropsWithChildren<ChipProps>) {
-  return <ChipStyled {...props} />;
+  return <ChipStyled {...props} className="chip" />;
 }
 
 export default Chip;

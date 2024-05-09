@@ -30,4 +30,8 @@ const ChipLineStyled = styled.button`
   ${({ theme }) => theme.typo.subtitle1};
   color: ${({ theme }) => theme.color.gray_900};
   line-height: 20px;
+
+  & + & {
+    border-top: 1px solid ${({ theme }) => theme.color.gray_100};
+  }
 `;

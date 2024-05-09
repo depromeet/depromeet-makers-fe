@@ -42,7 +42,7 @@ const BottomSheet = ({ onClickOutside, isShowing, children, mode }: Props) => {
         <Content variants={bottomSheetVariants}>
           <Header>
             <button onClick={onClickOutside}>
-              <Icon name="x-icon" width={16} height={16} color="#000000" />
+              <Icon name="x-icon" width={24} height={24} color="#000000" />
             </button>
           </Header>
           <ScrollableContent>{children}</ScrollableContent>
@@ -80,6 +80,7 @@ const MobileScrim = styled(m.div)`
   left: 0;
   right: 0;
   left: 0;
+  margin: 0 auto;
 
   overflow: hidden;
 

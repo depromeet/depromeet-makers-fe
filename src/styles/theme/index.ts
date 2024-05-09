@@ -2,6 +2,7 @@ import color from './color';
 import typo from './typo';
 
 const zIndex = {
+  dropdown: 10,
   fab: 999,
   bottomNav: 1000,
   backdrop: 1001,

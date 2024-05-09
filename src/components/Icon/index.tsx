@@ -8,6 +8,7 @@ import { ClipboardCheckIcon } from './ClipboardCheckIcon';
 import { AbsenceFaceIcon, BaseFaceIcon, LatenessFaceIcon } from './FaceIcon';
 import { HomeIcon } from './HomeIcon';
 import { RefreshIcon } from './RefreshIcon';
+import { StateIcon } from './StateIcon';
 import { UserIcon } from './UserIcon';
 import { XIcon } from './XIcon';
 
@@ -26,6 +27,7 @@ export const IconComponentMap = {
   'arrow-down': ArrowDown,
   'arrow-left': ArrowLeft,
   check: CheckIcon,
+  state: StateIcon,
   refresh: RefreshIcon,
 } as const;
 
