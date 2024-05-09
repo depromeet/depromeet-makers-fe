@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { AnimatePresence, m } from 'framer-motion';
 import styled, { useTheme } from 'styled-components';
 
@@ -22,24 +22,37 @@ function StatusSelect(props: Props) {
   const [dropdownPosition, setDropdownPosition] = useState<DropdownPosition>();
   const [isShowing, setIsShowing] = useState(false);
 
-  useEffect(() => {
+  const getPosition = useCallback(() => {
     if (selectRef.current) {
-      const { bottom } = selectRef.current.getBoundingClientRect();
+      const { top, bottom } = selectRef.current.getBoundingClientRect();
       const windowHeight = window.innerHeight;
 
-      const DROPDOWN_HEIGHT = 230;
-
-      if (windowHeight - bottom < DROPDOWN_HEIGHT) {
-        setDropdownPosition('top');
-      } else {
-        setDropdownPosition('bottom');
+      const DROPDOWN_HEIGHT = 230 + 64;
+      if (top < DROPDOWN_HEIGHT) {
+        return 'bottom';
       }
+      if (windowHeight - bottom < DROPDOWN_HEIGHT) {
+        return 'top';
+      }
+      return 'bottom';
     }
-  }, [selectRef.current]);
+  }, [selectRef.current?.getBoundingClientRect()]);
+
+  useEffect(() => {
+    if (selectRef.current) {
+      const position = getPosition();
+      setDropdownPosition(position);
+    }
+  }, [getPosition]);
 
   return (
     <Container ref={selectRef}>
-      <Label onClick={() => setIsShowing((prev) => !prev)} status={props.value}>
+      <Label
+        onClick={() => {
+          setIsShowing((prev) => !prev);
+        }}
+        status={props.value}
+      >
         <span>{props.value}</span>
         <Icon name="arrow-down" color={theme.color.gray_400} width={16} height={16} />
       </Label>
