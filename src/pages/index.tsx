@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { Badge } from '@/components/Badge';
 import { BottomNav } from '@/components/BottomNav';
 import { FAB } from '@/components/FAB';
+import { USER_NAV_ITEMS } from '@/constants/bottomNav';
 import { Absence } from '@/features/home/Absence';
 import { Attendance } from '@/features/home/Attendance';
 import { RuleLink } from '@/features/home/RuleLink';
@@ -44,7 +45,7 @@ const Home = () => {
       </Container>
 
       {isVisibleFab && <FAB text="출석하기 🙌" subText="세션이 시작되었습니다." />}
-      <BottomNav />
+      <BottomNav items={USER_NAV_ITEMS} />
     </>
   );
 };

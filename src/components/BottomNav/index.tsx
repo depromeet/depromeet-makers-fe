@@ -1,6 +1,7 @@
 import { usePathname } from 'next/navigation';
 import styled from 'styled-components';
 
+import type { NavItemType } from '@/constants/bottomNav';
 import theme from '@/styles/theme';
 
 import Icon from '../Icon';
@@ -9,19 +10,12 @@ type NavItemProps = {
   selected?: boolean;
 };
 
-const NAV_ITEMS = [
-  // TODO: path 수정 필요
-  { text: '홈', icon: 'home', path: '/home' },
-  { text: '일정', icon: 'calendar', path: '' },
-  { text: '마이페이지', icon: 'user', path: '' },
-] as const;
-
-export const BottomNav = () => {
+export const BottomNav = ({ items }: { items: NavItemType }) => {
   const pathname = usePathname();
 
   return (
     <BottomNavStyled>
-      {NAV_ITEMS.map(({ text, icon, path }) => {
+      {items.map(({ text, icon, path }) => {
         const selected = path === pathname;
 
         return (
