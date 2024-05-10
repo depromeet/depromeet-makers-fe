@@ -33,31 +33,42 @@ const TotalAttendance = () => {
   };
 
   return (
-    <>
+    <Container>
       <Header title="전체 출석률" canBack />
 
-      <SubHeader>
-        <TextContainer>
-          <Badge>{`${week}주차`}</Badge>
-          <Text>{date}</Text>
-        </TextContainer>
-        <RefreshButton name="refresh" onClick={handleRefresh} />
-      </SubHeader>
+      <Layout>
+        <SubHeader>
+          <TextContainer>
+            <Badge>{`${week}주차`}</Badge>
+            <Text>{date}</Text>
+          </TextContainer>
+          <RefreshButton name="refresh" onClick={handleRefresh} />
+        </SubHeader>
 
-      <BoxContainer>
-        <InfoBox title="출석률" content={`${attendanceRate}%`} isSuccess={attendanceRate >= 80} />
-        <InfoBox title="출석" content={attendanceCount} />
-        <InfoBox title="전체 멤버" content={totalCount} />
-      </BoxContainer>
+        <BoxContainer>
+          <InfoBox title="출석률" content={`${attendanceRate}%`} isSuccess={attendanceRate >= 80} />
+          <InfoBox title="출석" content={attendanceCount} />
+          <InfoBox title="전체 멤버" content={totalCount} />
+        </BoxContainer>
 
-      <TeamContainer>
-        {TEAM_INFO.map((team) => (
-          <TeamAttendance key={team.teamNumber} {...team} />
-        ))}
-      </TeamContainer>
-    </>
+        <TeamContainer>
+          {TEAM_INFO.map((team) => (
+            <TeamAttendance key={team.teamNumber} {...team} />
+          ))}
+        </TeamContainer>
+      </Layout>
+    </Container>
   );
 };
+
+const Container = styled.div`
+  background-color: ${({ theme }) => theme.color.gray_100};
+  height: 100dvh;
+`;
+
+const Layout = styled.div`
+  padding: 0 20px;
+`;
 
 const SubHeader = styled.div`
   display: flex;
