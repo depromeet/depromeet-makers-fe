@@ -55,7 +55,7 @@ const Container = styled.main`
   flex-direction: column;
   position: relative;
 
-  height: calc(100dvh - 80px);
+  height: calc(100dvh);
   padding: 32px 20px;
   overflow: auto;
 
