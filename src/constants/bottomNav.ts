@@ -8,9 +8,9 @@ export type NavItemType = {
 
 export const USER_NAV_ITEMS: NavItemType = [
   // TODO: path 수정 필요
-  { text: '홈', icon: 'home', path: '/home' },
-  { text: '일정', icon: 'calendar', path: '' },
-  { text: '마이페이지', icon: 'user', path: '' },
+  { text: '홈', icon: 'home', path: '/' },
+  { text: '일정', icon: 'calendar', path: '/schedule' },
+  { text: '마이페이지', icon: 'user', path: '/my' },
 ] as const;
 
 export const ADMIN_NAV_ITEMS: NavItemType = [
