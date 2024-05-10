@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
 import styled from 'styled-components';
 
 import { Badge } from '@/components/Badge';
@@ -13,6 +15,14 @@ const Home = () => {
   const week = '1주차';
   const date = '4월 3일';
   const isVisibleFab = true;
+
+  const router = useRouter();
+  // TODO: 로그인 임시 코드
+  useEffect(() => {
+    const isAuthenticated = localStorage.getItem('isAuthenticated');
+
+    if (!isAuthenticated) router.push('/login');
+  }, [router]);
 
   return (
     <>
