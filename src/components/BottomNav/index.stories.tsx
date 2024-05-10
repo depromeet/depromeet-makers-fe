@@ -1,6 +1,8 @@
 import type { Meta } from '@storybook/react';
 import styled from 'styled-components';
 
+import { USER_NAV_ITEMS } from '@/constants/bottomNav';
+
 import { BottomNav } from '.';
 
 const meta: Meta<typeof BottomNav> = {
@@ -14,7 +16,7 @@ export default meta;
 export const Default = () => {
   return (
     <BottomNavWrapper>
-      <BottomNav />
+      <BottomNav items={USER_NAV_ITEMS} />
     </BottomNavWrapper>
   );
 };
