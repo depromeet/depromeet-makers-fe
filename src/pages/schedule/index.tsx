@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { BottomNav } from '@/components/BottomNav';
+import { USER_NAV_ITEMS } from '@/constants/bottomNav';
 import { SCHEDULE_15TH } from '@/features/schedule/index.constants';
 import ScheduleItem from '@/features/schedule/ScheduleItem';
 import { isSameDate } from '@/utils/date';
@@ -8,20 +10,23 @@ function SchedulePage() {
   const today = new Date();
 
   return (
-    <PageLayout>
-      <Hgroup>
-        <h1>디프만 15기 일정</h1>
-        <hr />
-        <p>토요일 오후 2시~5시 진행</p>
-      </Hgroup>
-      {/* // TODO : 어떤것으로 key를 할지? */}
-      <ScheduleList>
-        {SCHEDULE_15TH.map((schedule, index) => {
-          const isToday = isSameDate(today, new Date(schedule.date));
-          return <ScheduleItem key={schedule.date} {...schedule} week={index + 1} isToday={isToday} />;
-        })}
-      </ScheduleList>
-    </PageLayout>
+    <>
+      <PageLayout>
+        <Hgroup>
+          <h1>디프만 15기 일정</h1>
+          <hr />
+          <p>토요일 오후 2시~5시 진행</p>
+        </Hgroup>
+        {/* // TODO : 어떤것으로 key를 할지? */}
+        <ScheduleList>
+          {SCHEDULE_15TH.map((schedule, index) => {
+            const isToday = isSameDate(today, new Date(schedule.date));
+            return <ScheduleItem key={schedule.date} {...schedule} week={index + 1} isToday={isToday} />;
+          })}
+        </ScheduleList>
+      </PageLayout>
+      <BottomNav items={USER_NAV_ITEMS} />
+    </>
   );
 }
 
