@@ -44,7 +44,11 @@ const Container = styled.main`
   flex-direction: column;
   position: relative;
 
-  padding-top: 32px;
+  height: calc(100dvh - 80px);
+  padding: 32px 20px;
+  overflow: auto;
+
+  background-color: ${({ theme }) => theme.color.gray_100};
 `;
 
 const InfoContainer = styled.div`
