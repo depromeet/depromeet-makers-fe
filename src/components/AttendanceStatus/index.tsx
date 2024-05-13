@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import type { IconComponentMap } from '../Icon';
 import Icon from '../Icon';
 
-interface CheckedProps {
+export interface CheckedProps {
   week: number;
   variant: 'default' | 'lateness' | 'absent' | 'absent-proof';
 }
