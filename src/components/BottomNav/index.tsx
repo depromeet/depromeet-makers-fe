@@ -43,7 +43,7 @@ const BottomNavStyled = styled.nav`
 
   display: flex;
   justify-content: space-evenly;
-  width: ${({ theme }) => theme.size.maxWidth};
+  width: ${({ theme }) => theme.maxWidth};
   padding: 12px 0;
   z-index: ${({ theme }) => theme.zIndex.bottomNav};
 
