@@ -1,4 +1,5 @@
 import color from './color';
+import media from './media';
 import typo from './typo';
 
 const zIndex = {
@@ -14,10 +15,8 @@ const theme = {
   typo,
   color,
   zIndex,
+  media,
   maxWidth: '475px',
-  size: {
-    maxWidth: '475px',
-  },
 };
 
 export default theme;
