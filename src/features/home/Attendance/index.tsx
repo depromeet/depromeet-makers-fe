@@ -29,30 +29,40 @@ export const Attendance = () => {
 
   return (
     <Container>
-      <Title>
-        <Text>출석 현황</Text>
-        {isBefore15Min && <SubText>15분전입니다. 정각에 새로고침 해주세요.</SubText>}
-      </Title>
+      <Content>
+        <Title>
+          <Text>출석 현황</Text>
+          {isBefore15Min && <SubText>15분전입니다. 정각에 새로고침 해주세요.</SubText>}
+        </Title>
 
-      <Grid>
-        {attendanceResponse.map(({ id, week, checked, isOffline = false, status = 'default' }) =>
-          checked ? (
-            // TODO: 응답 값에 맞게 타입 수정
-            <AttendanceStatusChecked key={id} week={week} variant={status as CheckedProps['variant']} />
-          ) : (
-            <AttendanceStatus key={id} week={week} isOffline={isOffline} />
-          ),
-        )}
-      </Grid>
+        <Grid>
+          {attendanceResponse.map(({ id, week, checked, isOffline = false, status = 'default' }) =>
+            checked ? (
+              // TODO: 응답 값에 맞게 타입 수정
+              <AttendanceStatusChecked key={id} week={week} variant={status as CheckedProps['variant']} />
+            ) : (
+              <AttendanceStatus key={id} week={week} isOffline={isOffline} />
+            ),
+          )}
+        </Grid>
+      </Content>
     </Container>
   );
 };
 
 const Container = styled.div`
   padding: 24px 20px;
-
+  width: 100%;
+  ${({ theme }) => theme.media.mobile`
+    width: fit-content;
+  `};
   border-radius: 12px;
   background-color: ${({ theme }) => theme.color.white};
+`;
+
+const Content = styled.div`
+  width: fit-content;
+  margin: 0 auto;
 `;
 
 const Title = styled.div`
@@ -60,6 +70,7 @@ const Title = styled.div`
   align-items: center;
   gap: 8px;
 
+  width: fit-content;
   margin-bottom: 20px;
 `;
 
