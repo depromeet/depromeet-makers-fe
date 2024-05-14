@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+import type { CheckedProps } from '@/components/AttendanceStatus';
 import { AttendanceStatus, AttendanceStatusChecked } from '@/components/AttendanceStatus';
 
 // TODO: 응답 값으로 수정 필요
@@ -36,7 +37,8 @@ export const Attendance = () => {
       <Grid>
         {attendanceResponse.map(({ id, week, checked, isOffline = false, status = 'default' }) =>
           checked ? (
-            <AttendanceStatusChecked key={id} week={week} variant={status} />
+            // TODO: 응답 값에 맞게 타입 수정
+            <AttendanceStatusChecked key={id} week={week} variant={status as CheckedProps['variant']} />
           ) : (
             <AttendanceStatus key={id} week={week} isOffline={isOffline} />
           ),

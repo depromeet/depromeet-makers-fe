@@ -65,8 +65,8 @@ const Desc = styled.p`
 const ButtonWrapper = styled.div`
   position: fixed;
   bottom: 48px;
-  left: 0;
-  right: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
   width: 100%;
   padding: 0 20px;
   max-width: ${({ theme }) => theme.maxWidth};

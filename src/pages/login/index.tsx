@@ -13,6 +13,13 @@ function LoginPage() {
   const router = useRouter();
   const { Funnel, Step, setStep } = useFunnel(STEP[0]);
 
+  // TODO: 로그인 임시 코드
+  const handleCompleteSignUp = () => {
+    localStorage.setItem('isAuthenticated', 'true');
+
+    router.push('/');
+  };
+
   return (
     <div>
       <Funnel>
@@ -29,10 +36,10 @@ function LoginPage() {
           <JoinStep onBack={() => setStep(STEP[1])} onNext={() => setStep(STEP[3])} />
         </Step>
         <Step name={STEP[3]}>
-          <JoinCompleteStep onNext={() => router.push('/')} />
+          <JoinCompleteStep onNext={handleCompleteSignUp} />
         </Step>
         <Step name={STEP[4]}>
-          <CertifyStep onNext={() => router.push('/')} onBack={() => setStep(STEP[1])} />
+          <CertifyStep onNext={handleCompleteSignUp} onBack={() => setStep(STEP[1])} />
         </Step>
       </Funnel>
     </div>
