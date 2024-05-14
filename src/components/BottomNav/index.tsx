@@ -1,6 +1,7 @@
 import { usePathname } from 'next/navigation';
 import styled from 'styled-components';
 
+import type { NavItemType } from '@/constants/bottomNav';
 import theme from '@/styles/theme';
 
 import Icon from '../Icon';
@@ -9,29 +10,25 @@ type NavItemProps = {
   selected?: boolean;
 };
 
-const NAV_ITEMS = [
-  // TODO: path 수정 필요
-  { text: '홈', icon: 'home', path: '/home' },
-  { text: '일정', icon: 'calendar', path: '' },
-  { text: '마이페이지', icon: 'user', path: '' },
-] as const;
-
-export const BottomNav = () => {
+export const BottomNav = ({ items }: { items: NavItemType }) => {
   const pathname = usePathname();
 
   return (
-    <BottomNavStyled>
-      {NAV_ITEMS.map(({ text, icon, path }) => {
-        const selected = path === pathname;
+    <>
+      <BottomNavStyled>
+        {items.map(({ text, icon, path }) => {
+          const selected = path === pathname;
 
-        return (
-          <NavItem key={path} href={path} selected={selected}>
-            <Icon name={icon} width={26} height={26} color={selected ? theme.color.gray_900 : theme.color.gray_400} />
-            {text}
-          </NavItem>
-        );
-      })}
-    </BottomNavStyled>
+          return (
+            <NavItem key={path} href={path} selected={selected}>
+              <Icon name={icon} width={26} height={26} color={selected ? theme.color.gray_900 : theme.color.gray_400} />
+              {text}
+            </NavItem>
+          );
+        })}
+      </BottomNavStyled>
+      <Blank />
+    </>
   );
 };
 
@@ -42,7 +39,7 @@ const BottomNavStyled = styled.nav`
   transform: translate(-50%, 0);
 
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   width: ${({ theme }) => theme.maxWidth};
   padding: 12px 0;
   z-index: ${({ theme }) => theme.zIndex.bottomNav};
@@ -57,8 +54,13 @@ const NavItem = styled.a<NavItemProps>`
   justify-content: center;
   align-items: center;
   gap: 4px;
+  width: 130px;
 
   color: ${({ theme, selected }) => (selected ? theme.color.gray_900 : theme.color.gray_400)};
   fill: ${({ theme, selected }) => (selected ? theme.color.gray_900 : theme.color.gray_400)};
   font-weight: 500;
+  ${({ theme }) => theme.typo.caption};
+`;
+const Blank = styled.div`
+  height: 68px;
 `;

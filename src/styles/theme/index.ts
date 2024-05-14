@@ -15,6 +15,9 @@ const theme = {
   color,
   zIndex,
   maxWidth: '475px',
+  size: {
+    maxWidth: '475px',
+  },
 };
 
 export default theme;

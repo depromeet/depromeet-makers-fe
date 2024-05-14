@@ -2,9 +2,11 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { m } from 'framer-motion';
 import styled from 'styled-components';
 
+import { BottomNav } from '@/components/BottomNav';
 import IconButton from '@/components/Button/IconButton';
 import Layout from '@/components/Layout';
 import { ATTENDANCE_STATUS } from '@/constants/attendance';
+import { ADMIN_NAV_ITEMS } from '@/constants/bottomNav';
 import TeamSelect from '@/features/admin/attendance/TeamSelect';
 import UserItem from '@/features/admin/attendance/UserItem';
 import WeekSelect from '@/features/admin/attendance/WeekSelect';
@@ -29,7 +31,9 @@ function AdminAttendancePage() {
           <>
             <TopSection>
               <WeekSelect value={week} onChange={(week) => setWeek(week)} />
-              <IconButton iconName="state">전체 출석률</IconButton>
+              <IconButton href="/admin/total" iconName="state">
+                전체 출석률
+              </IconButton>
             </TopSection>
             <TeamSection>
               <TeamSelect value={team} onChange={(team) => setTeam(team)} />
@@ -42,6 +46,7 @@ function AdminAttendancePage() {
           ))}
         </UserSection>
       </Main>
+      <BottomNav items={ADMIN_NAV_ITEMS} />
     </Layout>
   );
 }
