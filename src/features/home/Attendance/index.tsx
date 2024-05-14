@@ -53,11 +53,12 @@ export const Attendance = () => {
 const Container = styled.div`
   padding: 24px 20px;
   width: 100%;
-  ${({ theme }) => theme.media.mobile`
-    width: fit-content;
-  `};
   border-radius: 12px;
   background-color: ${({ theme }) => theme.color.white};
+
+  @media ${({ theme }) => theme.media.mobile} {
+    width: fit-content;
+  }
 `;
 
 const Content = styled.div`
