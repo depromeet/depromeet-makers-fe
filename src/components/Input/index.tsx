@@ -23,13 +23,13 @@ const InputStyled = styled.input<InputProps>`
   line-height: 38px;
   ${({ theme }) => theme.typo.p};
   border: 1px solid ${({ theme }) => theme.color.gray_300};
-  outline: 1px solid ${({ theme }) => theme.color.gray_300};
+  outline: none;
+  /* outline: 1px solid ${({ theme }) => theme.color.gray_300}; */
   background: ${({ theme }) => theme.color.white};
   color: ${({ theme }) => theme.color.gray_900};
 
   &:focus {
     border: 1px solid ${({ theme }) => theme.color.gray_400};
-    outline: 1px solid ${({ theme }) => theme.color.gray_400};
   }
 
   &::placeholder {
