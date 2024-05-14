@@ -17,7 +17,7 @@ export const FAB = ({ subText, text, children, ...props }: FABProps) => {
 };
 
 const FABStyled = styled.button`
-  position: absolute;
+  position: fixed;
   left: 50%;
   bottom: 108px;
   transform: translate(-50%, 0%);
