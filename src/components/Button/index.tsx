@@ -16,7 +16,7 @@ export default Button;
 const ButtonStyled = styled.button<Partial<Props>>`
   padding: 18px 16px;
   border-radius: 12px;
-
+  ${({ theme }) => theme.typo.title3};
   ${({ onClick }) => onClick && { cursor: 'pointer' }}
 
   &:disabled {
