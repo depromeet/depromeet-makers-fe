@@ -75,6 +75,7 @@ const Label = styled.button<{ status: ATTENDANCE_STATUS }>`
   gap: 4px;
   border-radius: 4px;
   padding: 8px;
+  ${({ theme }) => theme.typo.subtitle2};
 
   color: ${({ status, theme }) => {
     switch (status) {
