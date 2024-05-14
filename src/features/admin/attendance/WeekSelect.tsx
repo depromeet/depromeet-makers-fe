@@ -29,7 +29,14 @@ function WeekSelect(props: Props) {
       </Label>
       <BottomSheet onClickOutside={toggleShowing} isShowing={isShowing}>
         {WEEK_LIST.map((week) => (
-          <ChipLine key={week} isSelected={props.value === week} onClick={() => props.onChange(week)}>
+          <ChipLine
+            key={week}
+            isSelected={props.value === week}
+            onClick={() => {
+              props.onChange(week);
+              toggleShowing();
+            }}
+          >
             {week}주차
           </ChipLine>
         ))}
