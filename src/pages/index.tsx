@@ -55,7 +55,10 @@ const Container = styled.main`
   flex-direction: column;
   position: relative;
 
-  height: calc(100dvh - 80px);
+  height: calc(100dvh - 68px);
+  ${({ theme }) => theme.media.mobile`
+    height: calc(100vh + 160px);
+  `};
   padding: 32px 20px;
   overflow: auto;
 
@@ -92,7 +95,10 @@ const Title = styled.h2`
 const AttendanceContainer = styled.section`
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 16px;
+
+  margin-bottom: 60px;
 `;
 
 export default Home;
