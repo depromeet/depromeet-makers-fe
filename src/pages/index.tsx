@@ -55,11 +55,15 @@ const Container = styled.main`
   flex-direction: column;
   position: relative;
 
-  height: calc(100dvh - 80px);
+  height: calc(100dvh - 68px);
   padding: 32px 20px;
   overflow: auto;
 
   background-color: ${({ theme }) => theme.color.gray_100};
+
+  @media ${({ theme }) => theme.media.mobile} {
+    height: calc(100vh + 160px);
+  }
 `;
 
 const InfoContainer = styled.div`
@@ -92,7 +96,10 @@ const Title = styled.h2`
 const AttendanceContainer = styled.section`
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 16px;
+
+  margin-bottom: 60px;
 `;
 
 export default Home;
