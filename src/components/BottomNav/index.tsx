@@ -21,7 +21,7 @@ export const BottomNav = ({ items }: { items: NavItemType }) => {
 
           return (
             <NavItem key={path} href={path} selected={selected}>
-              <Icon name={icon} width={26} height={26} color={selected ? theme.color.gray_900 : theme.color.gray_400} />
+              <Icon name={icon} width={26} height={26} color={selected ? theme.color.gray_900 : theme.color.gray_300} />
               {text}
             </NavItem>
           );
@@ -56,8 +56,8 @@ const NavItem = styled.a<NavItemProps>`
   gap: 4px;
   width: 130px;
 
-  color: ${({ theme, selected }) => (selected ? theme.color.gray_900 : theme.color.gray_400)};
-  fill: ${({ theme, selected }) => (selected ? theme.color.gray_900 : theme.color.gray_400)};
+  color: ${({ theme, selected }) => (selected ? theme.color.gray_900 : theme.color.gray_300)};
+  fill: ${({ theme, selected }) => (selected ? theme.color.gray_900 : theme.color.gray_300)};
   font-weight: 500;
   ${({ theme }) => theme.typo.caption};
 `;
