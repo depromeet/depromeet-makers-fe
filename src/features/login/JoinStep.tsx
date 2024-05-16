@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 
+import { useSetDefaultPassCord } from '@/hooks/apis/auth/useSetDefaultPassCord';
 import { usePostLogin } from '@/hooks/auth/usePostLogin';
-import { useSetDefaultPassCord } from '@/hooks/auth/useSetDefaultPassCord';
 
 import LoginLayout from './LoginLayout';
 import PasswordInput from './PasswordInput';

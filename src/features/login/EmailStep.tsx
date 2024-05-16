@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import Input from '@/components/Input';
 import { REGEX } from '@/constants/regex';
-import { getHasMember } from '@/hooks/auth/useGetHasMember';
+import { getHasMember } from '@/hooks/apis/auth/useGetHasMember';
 
 import LoginLayout from './LoginLayout';
 
