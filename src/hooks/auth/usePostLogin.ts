@@ -1,7 +1,7 @@
 import type { UseMutationOptions } from '@tanstack/react-query';
 import { useMutation } from '@tanstack/react-query';
-import type { AxiosError } from 'axios';
 
+import type { CustomError } from '@/apis';
 import { api } from '@/apis';
 import { STORAGE_KEY } from '@/constants/storage';
 
@@ -15,20 +15,12 @@ interface PostLoginResponse {
   refreshToken: string;
 }
 
-interface PostLoginError extends AxiosError {
-  data: {
-    code: string;
-    data?: string;
-    message: string;
-  };
-}
-
 const postLogin = async (request: PostLoginRequest): Promise<PostLoginResponse> => {
   const res = await api.post<PostLoginResponse>('/v1/auth/login', request);
   return res.data;
 };
 
-export const usePostLogin = (options?: UseMutationOptions<PostLoginResponse, PostLoginError, PostLoginRequest>) =>
+export const usePostLogin = (options?: UseMutationOptions<PostLoginResponse, CustomError, PostLoginRequest>) =>
   useMutation({
     mutationFn: postLogin,
     ...options,
