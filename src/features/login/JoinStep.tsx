@@ -1,5 +1,8 @@
 import { useRef, useState } from 'react';
 
+import { usePostLogin } from '@/hooks/auth/usePostLogin';
+import { useSetDefaultPassCord } from '@/hooks/auth/useSetDefaultPassCord';
+
 import LoginLayout from './LoginLayout';
 import PasswordInput from './PasswordInput';
 
@@ -15,9 +18,26 @@ function JoinStep(props: Props) {
   const [isConfirmStep, setIsConfirmStep] = useState(false);
   const passwordValueRef = useRef<string>();
 
+  const { mutate: onMutateLogin } = usePostLogin({
+    onSuccess: () => {
+      props.onNext();
+    },
+  });
+
+  const { mutate: onMutatePassCord } = useSetDefaultPassCord({
+    onSuccess: () => {
+      if (!passwordValueRef.current) return;
+
+      onMutateLogin({ email: props.email, passCord: passwordValueRef.current });
+    },
+    onError: (error) => {
+      console.error(error);
+    },
+  });
+
   const onSubmit = () => {
-    // TODO : API 연결
-    props.onNext();
+    if (!passwordValueRef.current) return;
+    onMutatePassCord({ email: props.email, passCord: passwordValueRef.current });
   };
 
   if (isConfirmStep && passwordValueRef.current)
