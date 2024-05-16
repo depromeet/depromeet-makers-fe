@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import Input from '@/components/Input';
+import { getHasMember } from '@/hooks/auth/useGetHasMember';
 
 import LoginLayout from './LoginLayout';
 
@@ -17,12 +18,22 @@ function EmailStep(props: Props) {
 
   const isDisabled = !email || !!error;
 
-  const onSubmit = () => {
-    // TODO : email validation
-    if (email.indexOf('aa') !== -1) {
-      props.onNext('login', email);
-    } else {
-      props.onNext('join', email);
+  const onSubmit = async () => {
+    try {
+      const { result } = await getHasMember({ email });
+      console.log('result: ', result);
+      if (!result) {
+        setError('현기수에 해당하는 이메일이 아닙니다. ');
+        return;
+      }
+
+      if (email.indexOf('sumi') !== -1) {
+        props.onNext('login', email);
+      } else {
+        props.onNext('join', email);
+      }
+    } catch (error) {
+      console.error('error: ', error);
     }
   };
 
