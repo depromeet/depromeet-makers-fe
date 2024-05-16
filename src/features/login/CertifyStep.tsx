@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { usePostLogin } from '@/hooks/auth/usePostLogin';
+import { usePostLogin } from '@/hooks/apis/auth/usePostLogin';
 
 import LoginLayout from './LoginLayout';
 import PasswordInput from './PasswordInput';
