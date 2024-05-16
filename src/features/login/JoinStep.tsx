@@ -16,11 +16,15 @@ interface Props {
 
 function JoinStep(props: Props) {
   const [isConfirmStep, setIsConfirmStep] = useState(false);
+  const [error, setError] = useState('');
   const passwordValueRef = useRef<string>();
 
   const { mutate: onMutateLogin } = usePostLogin({
     onSuccess: () => {
       props.onNext();
+    },
+    onError: (error) => {
+      setError(error.data.message);
     },
   });
 
@@ -31,7 +35,7 @@ function JoinStep(props: Props) {
       onMutateLogin({ email: props.email, passCord: passwordValueRef.current });
     },
     onError: (error) => {
-      console.error(error);
+      setError(error.data.message);
     },
   });
 
@@ -46,6 +50,7 @@ function JoinStep(props: Props) {
         onBack={() => setIsConfirmStep(false)}
         onNext={onSubmit}
         password={passwordValueRef.current}
+        error={error}
       />
     );
 
@@ -81,11 +86,13 @@ function PasswordInputStep(props: { onBack: () => void; onNext: (value: string) 
   );
 }
 
-function PasswordInputConfirmStep(props: { onBack: () => void; onNext: () => void; password: string }) {
+function PasswordInputConfirmStep(props: { onBack: () => void; onNext: () => void; password: string; error?: string }) {
   const [input, setInput] = useState('');
 
-  const isError = input.length === PASSWORD_LENGTH && input !== props.password;
-  const isDisabled = input.length !== PASSWORD_LENGTH || isError;
+  const isNotEqual = input.length === PASSWORD_LENGTH && input !== props.password;
+  const isDisabled = input.length !== PASSWORD_LENGTH || isNotEqual;
+
+  const error = props.error ?? (isNotEqual ? '비밀번호가 일치하지 않습니다.' : '');
 
   return (
     <LoginLayout
@@ -98,12 +105,7 @@ function PasswordInputConfirmStep(props: { onBack: () => void; onNext: () => voi
         type: 'submit',
       }}
     >
-      <PasswordInput
-        passwordLength={PASSWORD_LENGTH}
-        inputLength={input.length}
-        onChange={setInput}
-        error={isError ? '비밀번호가 일치하지 않습니다.' : undefined}
-      />
+      <PasswordInput passwordLength={PASSWORD_LENGTH} inputLength={input.length} onChange={setInput} error={error} />
     </LoginLayout>
   );
 }
