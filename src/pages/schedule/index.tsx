@@ -2,26 +2,38 @@ import styled from 'styled-components';
 
 import { BottomNav } from '@/components/BottomNav';
 import { USER_NAV_ITEMS } from '@/constants/bottomNav';
-import { SCHEDULE_15TH } from '@/features/schedule/index.constants';
 import ScheduleItem from '@/features/schedule/ScheduleItem';
+import { useGetSessionList } from '@/hooks/apis/sessions/useGetSessionList';
 import { isSameDate } from '@/utils/date';
 
 function SchedulePage() {
   const today = new Date();
 
+  const { data } = useGetSessionList();
+
   return (
     <>
       <PageLayout>
         <Hgroup>
-          <h1>디프만 15기 일정</h1>
+          <h1>디프만 {data?.generation}기 일정</h1>
           <hr />
           <p>토요일 오후 2시~5시 진행</p>
         </Hgroup>
-        {/* // TODO : 어떤것으로 key를 할지? */}
         <ScheduleList>
-          {SCHEDULE_15TH.map((schedule, index) => {
-            const isToday = isSameDate(today, new Date(schedule.date));
-            return <ScheduleItem key={schedule.date} {...schedule} week={index + 1} isToday={isToday} />;
+          {data?.sessions.map((schedule) => {
+            const isToday = isSameDate(today, new Date(schedule.startTime));
+
+            return (
+              <ScheduleItem
+                key={schedule.sessionId}
+                isToday={isToday}
+                title={schedule.title}
+                isOffline={schedule.sessionType === 'OFFLINE'}
+                week={schedule.week}
+                desc="" // TODO: 세션 설명 필요
+                date={schedule.startTime}
+              />
+            );
           })}
         </ScheduleList>
       </PageLayout>
@@ -62,6 +74,7 @@ const PageLayout = styled.main`
   width: 100%;
   background-color: ${({ theme }) => theme.color.gray_100};
   padding: 32px 20px;
+  min-height: calc(100vh - 68px);
 `;
 
 const ScheduleList = styled.div`
