@@ -5,14 +5,21 @@ import CertifyStep from '@/features/login/CertifyStep';
 import EmailStep from '@/features/login/EmailStep';
 import JoinCompleteStep from '@/features/login/JoinCompleteStep';
 import JoinStep from '@/features/login/JoinStep';
-import WelcomeStep from '@/features/login/WelcomStep';
+import WelcomeStep from '@/features/login/WelcomeStep';
 import { useFunnel } from '@/hooks/useFunnel';
 
-const STEP = ['welcome', 'email', 'join', 'join-complete', 'certify'];
+const STEP = {
+  WELCOME: 'welcome',
+  EMAIL: 'email',
+  JOIN: 'join',
+  JOIN_COMPLETE: 'join-complete',
+  CERTIFY: 'certify',
+};
+
 function LoginPage() {
   const router = useRouter();
 
-  const { Funnel, Step, setStep } = useFunnel(STEP[0]);
+  const { Funnel, Step, setStep } = useFunnel(STEP.WELCOME);
 
   const [email, setEmail] = useState('');
 
@@ -26,26 +33,26 @@ function LoginPage() {
   return (
     <div>
       <Funnel>
-        <Step name={STEP[0]}>
-          <WelcomeStep onNext={() => setStep(STEP[1])} />
+        <Step name={STEP.WELCOME}>
+          <WelcomeStep onNext={() => setStep(STEP.EMAIL)} />
         </Step>
-        <Step name={STEP[1]}>
+        <Step name={STEP.EMAIL}>
           <EmailStep
-            onBack={() => setStep(STEP[0])}
+            onBack={() => setStep(STEP.WELCOME)}
             onNext={(type, email) => {
-              type === 'join' ? setStep(STEP[2]) : setStep(STEP[4]);
+              type === 'join' ? setStep(STEP.JOIN) : setStep(STEP.CERTIFY);
               setEmail(email);
             }}
           />
         </Step>
-        <Step name={STEP[2]}>
-          <JoinStep email={email} onBack={() => setStep(STEP[1])} onNext={() => setStep(STEP[3])} />
+        <Step name={STEP.JOIN}>
+          <JoinStep email={email} onBack={() => setStep(STEP.EMAIL)} onNext={() => setStep(STEP.JOIN_COMPLETE)} />
         </Step>
-        <Step name={STEP[3]}>
+        <Step name={STEP.JOIN_COMPLETE}>
           <JoinCompleteStep onNext={handleCompleteSignUp} />
         </Step>
-        <Step name={STEP[4]}>
-          <CertifyStep email={email} onNext={handleCompleteSignUp} onBack={() => setStep(STEP[1])} />
+        <Step name={STEP.CERTIFY}>
+          <CertifyStep email={email} onNext={handleCompleteSignUp} onBack={() => setStep(STEP.EMAIL)} />
         </Step>
       </Funnel>
     </div>
