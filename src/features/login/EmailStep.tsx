@@ -19,6 +19,11 @@ function EmailStep(props: Props) {
   const isDisabled = !email || !!error;
 
   const onSubmit = async () => {
+    if (!EMAIL_REGEX.test(email)) {
+      setError('이메일 형식이 올바르지 않습니다.');
+      return;
+    }
+
     try {
       const { result } = await getHasMember({ email });
       console.log('result: ', result);
@@ -43,13 +48,7 @@ function EmailStep(props: Props) {
       setEmail('');
       return;
     }
-
-    if (!EMAIL_REGEX.test(e.target.value)) {
-      setError('이메일 형식이 올바르지 않습니다.');
-    } else {
-      setError('');
-    }
-
+    setError('');
     setEmail(e.target.value);
   };
 
