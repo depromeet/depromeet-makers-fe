@@ -8,6 +8,7 @@ const PASSWORD_LENGTH = 6;
 interface Props {
   onNext: () => void;
   onBack: () => void;
+  email: string;
 }
 
 function JoinStep(props: Props) {

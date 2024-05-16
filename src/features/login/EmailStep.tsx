@@ -7,7 +7,7 @@ import LoginLayout from './LoginLayout';
 const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
 interface Props {
-  onNext: (type: 'join' | 'login') => void;
+  onNext: (type: 'join' | 'login', email: string) => void;
   onBack: () => void;
 }
 
@@ -19,11 +19,10 @@ function EmailStep(props: Props) {
 
   const onSubmit = () => {
     // TODO : email validation
-    // 임시 valid
-    if (email.indexOf('login') !== -1) {
-      props.onNext('login');
+    if (email.indexOf('aa') !== -1) {
+      props.onNext('login', email);
     } else {
-      props.onNext('join');
+      props.onNext('join', email);
     }
   };
 
@@ -36,6 +35,8 @@ function EmailStep(props: Props) {
 
     if (!EMAIL_REGEX.test(e.target.value)) {
       setError('이메일 형식이 올바르지 않습니다.');
+    } else {
+      setError('');
     }
 
     setEmail(e.target.value);

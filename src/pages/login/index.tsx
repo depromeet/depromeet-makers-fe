@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 
 import CertifyStep from '@/features/login/CertifyStep';
@@ -11,7 +11,10 @@ import { useFunnel } from '@/hooks/useFunnel';
 const STEP = ['welcome', 'email', 'join', 'join-complete', 'certify'];
 function LoginPage() {
   const router = useRouter();
+
   const { Funnel, Step, setStep } = useFunnel(STEP[0]);
+
+  const [email, setEmail] = useState('');
 
   // TODO: 로그인 임시 코드
   const handleCompleteSignUp = () => {
@@ -29,17 +32,20 @@ function LoginPage() {
         <Step name={STEP[1]}>
           <EmailStep
             onBack={() => setStep(STEP[0])}
-            onNext={(type) => (type === 'join' ? setStep(STEP[2]) : setStep(STEP[4]))}
+            onNext={(type, email) => {
+              type === 'join' ? setStep(STEP[2]) : setStep(STEP[4]);
+              setEmail(email);
+            }}
           />
         </Step>
         <Step name={STEP[2]}>
-          <JoinStep onBack={() => setStep(STEP[1])} onNext={() => setStep(STEP[3])} />
+          <JoinStep email={email} onBack={() => setStep(STEP[1])} onNext={() => setStep(STEP[3])} />
         </Step>
         <Step name={STEP[3]}>
           <JoinCompleteStep onNext={handleCompleteSignUp} />
         </Step>
         <Step name={STEP[4]}>
-          <CertifyStep onNext={handleCompleteSignUp} onBack={() => setStep(STEP[1])} />
+          <CertifyStep email={email} onNext={handleCompleteSignUp} onBack={() => setStep(STEP[1])} />
         </Step>
       </Funnel>
     </div>

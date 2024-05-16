@@ -10,6 +10,7 @@ const dummy_password = '111111';
 interface Props {
   onNext: () => void;
   onBack: () => void;
+  email: string;
 }
 
 function CertifyStep(props: Props) {
