@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/router';
 
 import CertifyStep from '@/features/login/CertifyStep';
@@ -23,10 +23,7 @@ function LoginPage() {
 
   const [email, setEmail] = useState('');
 
-  // TODO: 로그인 임시 코드
   const handleCompleteSignUp = () => {
-    localStorage.setItem('isAuthenticated', 'true');
-
     router.push('/');
   };
 
