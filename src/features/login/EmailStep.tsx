@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 
 import Input from '@/components/Input';
+import { REGEX } from '@/constants/regex';
 import { getHasMember } from '@/hooks/auth/useGetHasMember';
 
 import LoginLayout from './LoginLayout';
-
-const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
 interface Props {
   onNext: (type: 'join' | 'login', email: string) => void;
@@ -19,7 +18,7 @@ function EmailStep(props: Props) {
   const isDisabled = !email || !!error;
 
   const onSubmit = async () => {
-    if (!EMAIL_REGEX.test(email)) {
+    if (!REGEX.EMAIL.test(email)) {
       setError('이메일 형식이 올바르지 않습니다.');
       return;
     }
@@ -32,6 +31,7 @@ function EmailStep(props: Props) {
         return;
       }
 
+      // TODO : API의 response에 따라 수정
       if (email.indexOf('sumi') !== -1) {
         props.onNext('login', email);
       } else {
