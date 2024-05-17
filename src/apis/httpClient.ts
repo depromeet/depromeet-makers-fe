@@ -64,7 +64,7 @@ class HttpClient {
   private onResponseRejected(error: AxiosError) {
     if (!isAxiosError(error)) return Promise.reject(error);
 
-    return Promise.reject(error.response);
+    return Promise.reject(error.response?.data);
   }
 }
 
