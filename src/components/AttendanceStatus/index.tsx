@@ -32,8 +32,7 @@ export function AttendanceStatus(props: UnCheckedProps) {
 const BaseStyled = styled.div`
   ${({ theme }) => theme.typo.caption};
 
-  width: 70px;
-  height: 70px;
+  aspect-ratio: 1 / 1;
   border-radius: 8px;
   display: flex;
   flex-direction: column;

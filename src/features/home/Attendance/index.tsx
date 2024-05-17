@@ -45,10 +45,7 @@ const Container = styled.div`
   }
 `;
 
-const Content = styled.div`
-  width: fit-content;
-  margin: 0 auto;
-`;
+const Content = styled.div``;
 
 const Title = styled.div`
   display: flex;
@@ -76,6 +73,4 @@ const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 10px;
-  width: fit-content;
-  min-width: 310px;
 `;
