@@ -12,16 +12,25 @@ import { Absence } from '@/features/home/Absence';
 import { Attendance } from '@/features/home/Attendance';
 import { RuleLink } from '@/features/home/RuleLink';
 import { useGetAttendance } from '@/hooks/apis/attendance/useGetAttendance';
+import { useGetCheckIn } from '@/hooks/apis/attendance/useGetCheckIn';
 import { useGetInfo } from '@/hooks/apis/user/useGetInfo';
 
 const Home = () => {
   const { data: attendance } = useGetAttendance({ generation: CURRENT_GENERATION });
+  const { data: sessionAttendance } = useGetCheckIn();
 
   // TODO: 응답 값으로 수정 필요
   const title = `디프만 15기 첫출발,\n함께 시작해 볼까요? 🌱`;
   const week = '1주차';
   const date = '4월 3일';
-  const isVisibleFab = true;
+  const isVisibleFab = sessionAttendance?.needFloatingButton;
+
+  const getSessionAttendanceStatus = () => {
+    if (sessionAttendance?.isBeforeSession15minutes) return 'BEFORE_15MINUTE';
+    if (sessionAttendance?.expectAttendanceStatus === 'ABSENCE') return 'AFTER_15MINUTE';
+
+    return 'ON_TIME';
+  };
 
   const router = useRouter();
 
@@ -57,7 +66,7 @@ const Home = () => {
         </AttendanceContainer>
       </Container>
 
-      {isVisibleFab && <FAB text="출석하기 🙌" subText="세션이 시작되었습니다." />}
+      {isVisibleFab && <FAB text="출석하기 🙌" sessionAttendanceStatus={getSessionAttendanceStatus()} />}
       <BottomNav items={USER_NAV_ITEMS} />
     </>
   );
