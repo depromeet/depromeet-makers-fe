@@ -24,15 +24,13 @@ function EmailStep(props: Props) {
     }
 
     try {
-      const { result } = await getHasMember({ email });
-      console.log('result: ', result);
-      if (!result) {
+      const { isMemberExists, isPassCordAssigned } = await getHasMember({ email });
+      if (!isMemberExists) {
         setError('현기수에 해당하는 이메일이 아닙니다. ');
         return;
       }
 
-      // TODO : API의 response에 따라 수정
-      if (email.indexOf('sumi') !== -1) {
+      if (isPassCordAssigned) {
         props.onNext('login', email);
       } else {
         props.onNext('join', email);
