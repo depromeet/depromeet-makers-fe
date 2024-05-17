@@ -20,9 +20,8 @@ const Home = () => {
   const router = useRouter();
   // TODO: 로그인 임시 코드
   useEffect(() => {
-    const isAuthenticated = localStorage.getItem('isAuthenticated');
-
-    if (!isAuthenticated) router.push('/login');
+    // const isAuthenticated = localStorage.getItem('isAuthenticated');
+    // if (!isAuthenticated) router.push('/login');
   }, [router]);
 
   return (
