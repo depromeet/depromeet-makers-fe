@@ -16,15 +16,15 @@ const SUB_TEXT = {
 
 export const FAB = ({ text, sessionAttendanceStatus, children, ...props }: FABProps) => {
   return (
-    <FABStyled sessionAttendanceStatus={sessionAttendanceStatus} {...props}>
-      <SubText>{SUB_TEXT[sessionAttendanceStatus]}</SubText>
+    <FABStyled {...props}>
+      <SubText sessionAttendanceStatus={sessionAttendanceStatus}>{SUB_TEXT[sessionAttendanceStatus]}</SubText>
       <Text>{text}</Text>
       {children}
     </FABStyled>
   );
 };
 
-const FABStyled = styled.button<Pick<FABProps, 'sessionAttendanceStatus'>>`
+const FABStyled = styled.button`
   position: fixed;
   left: 50%;
   bottom: 108px;
@@ -40,8 +40,7 @@ const FABStyled = styled.button<Pick<FABProps, 'sessionAttendanceStatus'>>`
   padding: 18px 32px;
 
   border-radius: 40px;
-  color: ${({ theme, sessionAttendanceStatus }) =>
-    sessionAttendanceStatus === 'AFTER_15MINUTE' ? theme.color.yellow_300 : theme.color.white};
+  color: ${({ theme }) => theme.color.white};
   background-color: ${({ theme }) => theme.color.gray_900};
 `;
 
@@ -50,7 +49,8 @@ const Text = styled.p`
   color: ${({ theme }) => theme.color.white};
 `;
 
-const SubText = styled.p`
+const SubText = styled.p<Pick<FABProps, 'sessionAttendanceStatus'>>`
   ${({ theme }) => theme.typo.caption};
-  color: ${({ theme }) => theme.color.gray_300};
+  color: ${({ theme, sessionAttendanceStatus }) =>
+    sessionAttendanceStatus === 'AFTER_15MINUTE' ? theme.color.yellow_300 : theme.color.gray_300};
 `;
