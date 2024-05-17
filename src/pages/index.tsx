@@ -6,9 +6,11 @@ import { Badge } from '@/components/Badge';
 import { BottomNav } from '@/components/BottomNav';
 import { FAB } from '@/components/FAB';
 import { USER_NAV_ITEMS } from '@/constants/bottomNav';
+import { STORAGE_KEY } from '@/constants/storage';
 import { Absence } from '@/features/home/Absence';
 import { Attendance } from '@/features/home/Attendance';
 import { RuleLink } from '@/features/home/RuleLink';
+import { useGetInfo } from '@/hooks/apis/user/useGetInfo';
 
 const Home = () => {
   // TODO: 응답 값으로 수정 필요
@@ -18,9 +20,14 @@ const Home = () => {
   const isVisibleFab = true;
 
   const router = useRouter();
+
+  // NOTE: 유저 정보 가져오기
+  const { data } = useGetInfo();
+  console.log('data: ', data);
+
   // TODO: 로그인 임시 코드
   useEffect(() => {
-    const isAuthenticated = localStorage.getItem('isAuthenticated');
+    const isAuthenticated = localStorage.getItem(STORAGE_KEY.ACCESS_TOKEN);
 
     if (!isAuthenticated) router.push('/login');
   }, [router]);

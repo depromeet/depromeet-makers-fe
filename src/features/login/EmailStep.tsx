@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 
 import Input from '@/components/Input';
+import { REGEX } from '@/constants/regex';
+import { getHasMember } from '@/hooks/apis/auth/useGetHasMember';
 
 import LoginLayout from './LoginLayout';
 
-const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-
 interface Props {
-  onNext: (type: 'join' | 'login') => void;
+  onNext: (type: 'join' | 'login', email: string) => void;
   onBack: () => void;
 }
 
@@ -17,13 +17,28 @@ function EmailStep(props: Props) {
 
   const isDisabled = !email || !!error;
 
-  const onSubmit = () => {
-    // TODO : email validation
-    // 임시 valid
-    if (email.indexOf('login') !== -1) {
-      props.onNext('login');
-    } else {
-      props.onNext('join');
+  const onSubmit = async () => {
+    if (!REGEX.EMAIL.test(email)) {
+      setError('이메일 형식이 올바르지 않습니다.');
+      return;
+    }
+
+    try {
+      const { result } = await getHasMember({ email });
+      console.log('result: ', result);
+      if (!result) {
+        setError('현기수에 해당하는 이메일이 아닙니다. ');
+        return;
+      }
+
+      // TODO : API의 response에 따라 수정
+      if (email.indexOf('sumi') !== -1) {
+        props.onNext('login', email);
+      } else {
+        props.onNext('join', email);
+      }
+    } catch (error) {
+      console.error('error: ', error);
     }
   };
 
@@ -33,11 +48,7 @@ function EmailStep(props: Props) {
       setEmail('');
       return;
     }
-
-    if (!EMAIL_REGEX.test(e.target.value)) {
-      setError('이메일 형식이 올바르지 않습니다.');
-    }
-
+    setError('');
     setEmail(e.target.value);
   };
 
