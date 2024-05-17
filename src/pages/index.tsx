@@ -11,7 +11,7 @@ import { STORAGE_KEY } from '@/constants/storage';
 import { Absence } from '@/features/home/Absence';
 import { Attendance } from '@/features/home/Attendance';
 import { RuleLink } from '@/features/home/RuleLink';
-import { useGetAttendance } from '@/hooks/api/useGetAttendance';
+import { useGetAttendance } from '@/hooks/apis/attendance/useGetAttendance';
 import { useGetInfo } from '@/hooks/apis/user/useGetInfo';
 
 const Home = () => {
