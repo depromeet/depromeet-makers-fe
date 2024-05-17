@@ -14,7 +14,9 @@ export default meta;
 export const Default = () => {
   return (
     <FABWrapper>
-      <FAB text="플로팅 버튼 텍스트" subText="서브 텍스트" />
+      <FAB text="플로팅 버튼 텍스트" sessionAttendanceStatus="AFTER_15MINUTE" />
+      <FAB text="플로팅 버튼 텍스트" sessionAttendanceStatus="BEFORE_15MINUTE" />
+      <FAB text="플로팅 버튼 텍스트" sessionAttendanceStatus="ON_TIME" />
     </FABWrapper>
   );
 };
