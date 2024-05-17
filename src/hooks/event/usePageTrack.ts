@@ -2,16 +2,14 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import mixpanel from 'mixpanel-browser';
 
+import { isProduction } from '@/constants/environment';
 import { pageview } from '@/utils/gtag';
-
-// import { pageview } from '~/libs/gtag';
-// import { isProd } from '~/utils/common';
 
 const usePageTrack = () => {
   const router = useRouter();
   useEffect(() => {
     const handleRouteChange = (url: URL) => {
-      if (!(process.env.NODE_ENV === 'production')) return;
+      if (!isProduction) return;
 
       pageview(url);
       mixpanel.track('Page view', { label: url, category: process.env.WEB_VERSION });
