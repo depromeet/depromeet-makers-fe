@@ -24,10 +24,10 @@ export const usePostLogin = (options?: UseMutationOptions<PostLoginResponse, Cus
   useMutation({
     mutationFn: postLogin,
     ...options,
-    onSuccess: (data, v, c) => {
+    onSuccess: (data, ...rest) => {
       window.localStorage.setItem(STORAGE_KEY.ACCESS_TOKEN, data.accessToken);
       window.localStorage.setItem(STORAGE_KEY.REFRESH_TOKEN, data.refreshToken);
 
-      options?.onSuccess?.(data, v, c);
+      options?.onSuccess?.(data, ...rest);
     },
   });
