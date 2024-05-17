@@ -9,7 +9,8 @@ interface GerHasMemberRequest {
 }
 
 interface GerHasMemberResponse {
-  result: boolean;
+  isMemberExists: boolean;
+  isPassCordAssigned: boolean;
 }
 
 export const getHasMember = async (request: GerHasMemberRequest): Promise<GerHasMemberResponse> => {
