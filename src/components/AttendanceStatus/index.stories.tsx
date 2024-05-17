@@ -18,10 +18,9 @@ export function Default() {
       </AttendanceStatusWrapper>
 
       <AttendanceStatusWrapper>
-        <AttendanceStatusChecked week={1} variant="default" />
-        <AttendanceStatusChecked week={2} variant="lateness" />
-        <AttendanceStatusChecked week={3} variant="absent" />
-        <AttendanceStatusChecked week={4} variant="absent-proof" />
+        <AttendanceStatusChecked week={1} variant="ATTENDANCE" />
+        <AttendanceStatusChecked week={2} variant="ABSENCE" />
+        <AttendanceStatusChecked week={3} variant="TARDY" />
       </AttendanceStatusWrapper>
     </div>
   );

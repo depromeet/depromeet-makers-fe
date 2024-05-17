@@ -7,3 +7,5 @@ export enum ATTENDANCE_STATUS {
 }
 
 export const ATTENDANCE_STATUS_LIST = Object.keys(ATTENDANCE_STATUS) as ATTENDANCE_STATUS[];
+
+export const CURRENT_GENERATION = Number(process.env.NEXT_PUBLIC_DEPROMEET_GENERATION || 0);
