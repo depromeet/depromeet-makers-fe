@@ -15,7 +15,7 @@ import { useGetAttendance } from '@/hooks/api/useGetAttendance';
 import { useGetInfo } from '@/hooks/apis/user/useGetInfo';
 
 const Home = () => {
-  const { data } = useGetAttendance({ generation: CURRENT_GENERATION });
+  const { data: attendance } = useGetAttendance({ generation: CURRENT_GENERATION });
 
   // TODO: 응답 값으로 수정 필요
   const title = `디프만 15기 첫출발,\n함께 시작해 볼까요? 🌱`;
@@ -49,8 +49,11 @@ const Home = () => {
         <Title>{title}</Title>
 
         <AttendanceContainer>
-          <Attendance attendances={data?.attendances || []} />
-          <Absence offlineAbsenceCount={data?.offlineAbsenceScore} totalAbsenceCount={data?.totalAbsenceScore} />
+          <Attendance attendances={attendance?.attendances || []} />
+          <Absence
+            offlineAbsenceCount={attendance?.offlineAbsenceScore}
+            totalAbsenceCount={attendance?.totalAbsenceScore}
+          />
         </AttendanceContainer>
       </Container>
 
