@@ -30,7 +30,7 @@ function SchedulePage() {
                 title={schedule.title}
                 isOffline={schedule.sessionType === 'OFFLINE'}
                 week={schedule.week}
-                desc="" // TODO: 세션 설명 필요
+                desc={schedule.description}
                 date={schedule.startTime}
               />
             );
