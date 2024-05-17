@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import Script from 'next/script';
 import mixpanel from 'mixpanel-browser';
 
-const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS ?? 'G-CVL3MG6TPV';
+const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS;
 const MIXPANEL_ID = process.env.NEXT_PUBLIC_MIXPANEL_ID;
 
 const MonitoringInitializer = () => {
@@ -27,9 +27,7 @@ const MonitoringInitializer = () => {
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
-                gtag('config', '${GA_TRACKING_ID}', {
-                  page_path: window.location.pathname,
-                });
+                gtag('config', '${GA_TRACKING_ID}');
             `,
             }}
           />
