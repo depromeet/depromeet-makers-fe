@@ -1,12 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import type { AttendanceStatus } from '@/types/attendance';
+
 import type { IconComponentMap } from '../Icon';
 import Icon from '../Icon';
 
 export interface CheckedProps {
   week: number;
-  variant: 'default' | 'lateness' | 'absent' | 'absent-proof';
+  variant: Exclude<AttendanceStatus, 'ATTENDANCE_ON_HOLD'>;
 }
 
 interface UnCheckedProps {
@@ -51,10 +53,9 @@ const UncheckedStyled = styled(BaseStyled)<Partial<UnCheckedProps>>`
 `;
 
 const FACE_ICON_MAP: Record<CheckedProps['variant'], keyof typeof IconComponentMap> = {
-  default: 'face',
-  lateness: 'face-lateness',
-  absent: 'face-absence',
-  'absent-proof': 'face-absence',
+  ATTENDANCE: 'face',
+  TARDY: 'face-lateness',
+  ABSENCE: 'face-absence',
 };
 
 export function AttendanceStatusChecked(props: CheckedProps) {
@@ -69,41 +70,24 @@ export function AttendanceStatusChecked(props: CheckedProps) {
 const CheckedStyled = styled(BaseStyled)<Partial<CheckedProps>>`
   ${({ variant, theme }) => {
     switch (variant) {
-      case 'default':
+      case 'ATTENDANCE':
         return `
             background-color: ${theme.color.green_100};
             border: 1px solid ${theme.color.green_200};
             color: ${theme.color.green_300};
 
         `;
-      case 'lateness':
+      case 'TARDY':
         return `
             border: 1px solid ${theme.color.yellow_100};
             background: ${theme.color.yellow_200};
             color: ${theme.color.yellow_300};
         `;
-      case 'absent':
+      case 'ABSENCE':
         return `
             border: 1px solid ${theme.color.red_100};
             background: ${theme.color.red_200};
             color: ${theme.color.red_300};
-        `;
-      case 'absent-proof':
-        return `
-            border: 1px solid ${theme.color.red_100};
-            background: ${theme.color.red_200};
-            color: ${theme.color.red_300};
-
-            &::after {
-                content: '';
-                position: absolute;
-                background: ${theme.color.red_300};
-                width: 5px;
-                height: 5px;
-                border-radius: 50%;
-                top: 8px;
-                right: 8px;
-            }
         `;
     }
   }}

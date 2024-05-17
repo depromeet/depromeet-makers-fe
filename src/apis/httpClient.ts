@@ -19,23 +19,23 @@ class HttpClient {
   }
 
   get<T>(...args: Parameters<typeof this.client.get>) {
-    return this.client.get<T>(...args);
+    return this.client.get<T, T>(...args);
   }
 
   post<T>(...args: Parameters<typeof this.client.post>) {
-    return this.client.post<T>(...args);
+    return this.client.post<T, T>(...args);
   }
 
   put<T>(...args: Parameters<typeof this.client.put>) {
-    return this.client.put<T>(...args);
+    return this.client.put<T, T>(...args);
   }
 
   patch<T>(...args: Parameters<typeof this.client.patch>) {
-    return this.client.patch<T>(...args);
+    return this.client.patch<T, T>(...args);
   }
 
   delete<T>(...args: Parameters<typeof this.client.delete>) {
-    return this.client.delete<T>(...args);
+    return this.client.delete<T, T>(...args);
   }
 
   private setInterceptor() {
@@ -58,7 +58,7 @@ class HttpClient {
   }
 
   private onResponseFulfilled(response: AxiosResponse) {
-    return response;
+    return response.data;
   }
 
   private onResponseRejected(error: AxiosError) {

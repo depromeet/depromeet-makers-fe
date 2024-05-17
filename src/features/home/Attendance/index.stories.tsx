@@ -11,5 +11,5 @@ const meta: Meta<typeof Attendance> = {
 export default meta;
 
 export const Default = () => {
-  return <Attendance />;
+  return <Attendance attendances={[]} />;
 };

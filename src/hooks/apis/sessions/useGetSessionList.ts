@@ -72,9 +72,7 @@ const getSessionList = async (): Promise<GetSessionListResponse> => {
   const generation = process.env.NEXT_PUBLIC_DEPROMEET_GENERATION;
   const request: GetSessionListRequest = { generation: Number(generation) };
 
-  const res = await api.get<GetSessionListResponse>('/sessions', { params: request });
-
-  return res.data;
+  return await api.get<GetSessionListResponse>('/sessions', { params: request });
 };
 
 export const useGetSessionList = (

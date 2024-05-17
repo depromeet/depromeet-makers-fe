@@ -5,14 +5,18 @@ import styled from 'styled-components';
 import { Badge } from '@/components/Badge';
 import { BottomNav } from '@/components/BottomNav';
 import { FAB } from '@/components/FAB';
+import { CURRENT_GENERATION } from '@/constants/attendance';
 import { USER_NAV_ITEMS } from '@/constants/bottomNav';
 import { STORAGE_KEY } from '@/constants/storage';
 import { Absence } from '@/features/home/Absence';
 import { Attendance } from '@/features/home/Attendance';
 import { RuleLink } from '@/features/home/RuleLink';
+import { useGetAttendance } from '@/hooks/apis/attendance/useGetAttendance';
 import { useGetInfo } from '@/hooks/apis/user/useGetInfo';
 
 const Home = () => {
+  const { data: attendance } = useGetAttendance({ generation: CURRENT_GENERATION });
+
   // TODO: 응답 값으로 수정 필요
   const title = `디프만 15기 첫출발,\n함께 시작해 볼까요? 🌱`;
   const week = '1주차';
@@ -31,7 +35,6 @@ const Home = () => {
 
     if (!isAuthenticated) router.push('/login');
   }, [router]);
-
   return (
     <>
       <Container>
@@ -46,8 +49,11 @@ const Home = () => {
         <Title>{title}</Title>
 
         <AttendanceContainer>
-          <Attendance />
-          <Absence />
+          <Attendance attendances={attendance?.attendances || []} />
+          <Absence
+            offlineAbsenceCount={attendance?.offlineAbsenceScore}
+            totalAbsenceCount={attendance?.totalAbsenceScore}
+          />
         </AttendanceContainer>
       </Container>
 

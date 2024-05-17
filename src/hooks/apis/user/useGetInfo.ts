@@ -16,8 +16,7 @@ interface GetInfoResponse {
 }
 
 const getInfo = async (): Promise<GetInfoResponse> => {
-  const res = await api.get<GetInfoResponse>('/v1/me');
-  return res.data;
+  return await api.get<GetInfoResponse>('/v1/me');
 };
 
 export const useGetInfo = (options?: UseQueryOptions<GetInfoResponse, CustomError>) =>

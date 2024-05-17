@@ -16,8 +16,7 @@ interface PostLoginResponse {
 }
 
 const postLogin = async (request: PostLoginRequest): Promise<PostLoginResponse> => {
-  const res = await api.post<PostLoginResponse>('/v1/auth/login', request);
-  return res.data;
+  return await api.post<PostLoginResponse>('/v1/auth/login', request);
 };
 
 export const usePostLogin = (options?: UseMutationOptions<PostLoginResponse, CustomError, PostLoginRequest>) =>
