@@ -1,23 +1,23 @@
 import type { ButtonHTMLAttributes } from 'react';
 import styled from 'styled-components';
 
-import { useCheckIn } from '@/hooks/apis/attendance/useCheckIn';
+import type { SessionAttendanceStatus } from '@/types/attendance';
 
 type FABProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   text: string;
-  subText?: string;
+  sessionAttendanceStatus: SessionAttendanceStatus;
 };
 
-export const FAB = ({ subText, text, children, ...props }: FABProps) => {
-  const { mutate } = useCheckIn();
+const SUB_TEXT = {
+  BEFORE_15MINUTE: '세션 시작 전 미리 출석해주세요!',
+  ON_TIME: '세션이 시작되었습니다.',
+  AFTER_15MINUTE: '출석 시 지각 처리됩니다.',
+};
 
-  const handleCheckIn = () => {
-    mutate();
-  };
-
+export const FAB = ({ text, sessionAttendanceStatus, children, ...props }: FABProps) => {
   return (
-    <FABStyled {...props} onClick={handleCheckIn}>
-      <SubText>{subText}</SubText>
+    <FABStyled {...props}>
+      <SubText sessionAttendanceStatus={sessionAttendanceStatus}>{SUB_TEXT[sessionAttendanceStatus]}</SubText>
       <Text>{text}</Text>
       {children}
     </FABStyled>
@@ -49,7 +49,8 @@ const Text = styled.p`
   color: ${({ theme }) => theme.color.white};
 `;
 
-const SubText = styled.p`
+const SubText = styled.p<Pick<FABProps, 'sessionAttendanceStatus'>>`
   ${({ theme }) => theme.typo.caption};
-  color: ${({ theme }) => theme.color.gray_300};
+  color: ${({ theme, sessionAttendanceStatus }) =>
+    sessionAttendanceStatus === 'AFTER_15MINUTE' ? theme.color.yellow_300 : theme.color.gray_300};
 `;
