@@ -24,7 +24,7 @@ function JoinStep(props: Props) {
       props.onNext();
     },
     onError: (error) => {
-      setError(error.data.message);
+      setError(error.message);
     },
   });
 
@@ -35,7 +35,7 @@ function JoinStep(props: Props) {
       onMutateLogin({ email: props.email, passCord: passwordValueRef.current });
     },
     onError: (error) => {
-      setError(error.data.message);
+      setError(error.message);
     },
   });
 
