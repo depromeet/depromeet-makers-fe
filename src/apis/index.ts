@@ -9,9 +9,7 @@ export const api = new HttpClient({
 });
 
 export interface CustomError extends AxiosError {
-  data: {
-    code: string;
-    data?: string;
-    message: string;
-  };
+  code: string;
+  data?: string;
+  message: string;
 }
