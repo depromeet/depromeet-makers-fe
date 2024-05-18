@@ -1,14 +1,22 @@
 import type { ButtonHTMLAttributes } from 'react';
 import styled from 'styled-components';
 
+import { useCheckIn } from '@/hooks/apis/attendance/useCheckIn';
+
 type FABProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   text: string;
   subText?: string;
 };
 
 export const FAB = ({ subText, text, children, ...props }: FABProps) => {
+  const { mutate } = useCheckIn();
+
+  const handleCheckIn = () => {
+    mutate();
+  };
+
   return (
-    <FABStyled {...props}>
+    <FABStyled {...props} onClick={handleCheckIn}>
       <SubText>{subText}</SubText>
       <Text>{text}</Text>
       {children}

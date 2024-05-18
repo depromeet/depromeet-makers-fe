@@ -21,8 +21,12 @@ const SnackBarStyled = styled.button<Pick<SnackBarProps, 'showClose'>>`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 350px;
+  width: ${({ theme }) => `calc(${theme.maxWidth} - 40px)`};
   font-weight: 500;
+
+  @media (max-width: ${({ theme }) => theme.media.mobileMax}px) {
+    width: calc(100vw - 40px);
+  }
 
   ${({ theme }) => theme.typo.p};
 

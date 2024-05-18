@@ -25,7 +25,7 @@ function CertifyStep(props: Props) {
       props.onNext();
     },
     onError: (error) => {
-      setError(error.data.message);
+      setError(error.message);
     },
   });
 
