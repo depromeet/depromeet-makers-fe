@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import { Header } from '@/components/Header';
+import theme from '@/styles/theme';
 
 // TODO: 추후 변경 필요
 
@@ -32,13 +33,14 @@ const CONTENT = `
 const Rule = () => {
   return (
     <>
-      <Header title="출석 규정" canBack />
+      <Header title="출석 규정" canBack backgroundColor={theme.color.white} />
       <Content>{CONTENT}</Content>
     </>
   );
 };
 
 const Content = styled.p`
+  margin-top: 68px;
   padding: 24px 20px;
   ${({ theme }) => theme.typo.p};
   color: ${({ theme }) => theme.color.gray_900};

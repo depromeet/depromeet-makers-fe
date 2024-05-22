@@ -10,9 +10,10 @@ type HeaderProps = {
   canBack?: boolean;
   canClose?: boolean;
   onClose?: () => void;
+  backgroundColor?: string;
 };
 
-export const Header = ({ title, canBack, canClose, onClose }: HeaderProps) => {
+export const Header = ({ title, canBack, canClose, onClose, backgroundColor = 'transparent' }: HeaderProps) => {
   const router = useRouter();
 
   const handleBack = () => {
@@ -20,7 +21,7 @@ export const Header = ({ title, canBack, canClose, onClose }: HeaderProps) => {
   };
 
   return (
-    <HeaderStyled>
+    <HeaderStyled backgroundColor={backgroundColor}>
       <button type="button" onClick={handleBack}>
         {canBack && <Icon name="arrow-left" />}
       </button>
@@ -35,11 +36,18 @@ export const Header = ({ title, canBack, canClose, onClose }: HeaderProps) => {
 };
 
 const HeaderStyled = styled.header<Omit<HeaderProps, 'title'>>`
-  position: relative;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  margin: 0 auto;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: ${({ theme }) => theme.maxWidth};
   padding: 20px;
+  background-color: ${({ backgroundColor }) => backgroundColor};
 `;
 
 const Title = styled.h1`
