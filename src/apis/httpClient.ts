@@ -6,6 +6,7 @@ import axios, {
   type InternalAxiosRequestConfig,
   isAxiosError,
 } from 'axios';
+import Cookies from 'js-cookie';
 
 import { STORAGE_KEY } from '@/constants/storage';
 
@@ -44,7 +45,7 @@ class HttpClient {
   }
 
   private onRequestFulfilled(config: InternalAxiosRequestConfig) {
-    const token = window.localStorage.getItem(STORAGE_KEY.ACCESS_TOKEN);
+    const token = Cookies.get(STORAGE_KEY.ACCESS_TOKEN);
 
     if (token) {
       config.headers['Authorization'] = `Bearer ${token}`;

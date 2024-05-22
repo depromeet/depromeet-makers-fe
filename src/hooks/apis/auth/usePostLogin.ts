@@ -1,5 +1,6 @@
 import type { UseMutationOptions } from '@tanstack/react-query';
 import { useMutation } from '@tanstack/react-query';
+import Cookies from 'js-cookie';
 
 import type { CustomError } from '@/apis';
 import { api } from '@/apis';
@@ -24,8 +25,8 @@ export const usePostLogin = (options?: UseMutationOptions<PostLoginResponse, Cus
     mutationFn: postLogin,
     ...options,
     onSuccess: (data, ...rest) => {
-      window.localStorage.setItem(STORAGE_KEY.ACCESS_TOKEN, data.accessToken);
-      window.localStorage.setItem(STORAGE_KEY.REFRESH_TOKEN, data.refreshToken);
+      Cookies.set(STORAGE_KEY.ACCESS_TOKEN, data.accessToken, { expires: 1 });
+      Cookies.set(STORAGE_KEY.REFRESH_TOKEN, data.refreshToken, { expires: 1 });
 
       options?.onSuccess?.(data, ...rest);
     },
