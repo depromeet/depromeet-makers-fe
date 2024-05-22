@@ -45,7 +45,8 @@ const HeaderStyled = styled.header<Omit<HeaderProps, 'title'>>`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: ${({ theme }) => theme.maxWidth};
+  width: 100%;
+  max-width: ${({ theme }) => theme.maxWidth};
   padding: 20px;
   background-color: ${({ backgroundColor }) => backgroundColor};
 `;
