@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 
+import { Metadata } from '@/components/Metadata';
 import CertifyStep from '@/features/login/CertifyStep';
 import EmailStep from '@/features/login/EmailStep';
 import JoinCompleteStep from '@/features/login/JoinCompleteStep';
@@ -29,6 +30,8 @@ function LoginPage() {
 
   return (
     <div>
+      <Metadata />
+
       <Funnel>
         <Step name={STEP.WELCOME}>
           <WelcomeStep onNext={() => setStep(STEP.EMAIL)} />

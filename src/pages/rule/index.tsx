@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import { Header } from '@/components/Header';
+import { Metadata } from '@/components/Metadata';
 import theme from '@/styles/theme';
 
 // TODO: 추후 변경 필요
@@ -33,6 +34,8 @@ const CONTENT = `
 const Rule = () => {
   return (
     <>
+      <Metadata />
+
       <Header title="출석 규정" canBack backgroundColor={theme.color.white} />
       <Content>{CONTENT}</Content>
     </>
