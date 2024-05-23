@@ -1,5 +1,3 @@
-import { useEffect } from 'react';
-import { useRouter } from 'next/router';
 import styled from 'styled-components';
 
 import { Badge } from '@/components/Badge';
@@ -7,7 +5,6 @@ import { BottomNav } from '@/components/BottomNav';
 import { FAB } from '@/components/FAB';
 import { CURRENT_GENERATION } from '@/constants/attendance';
 import { USER_NAV_ITEMS } from '@/constants/bottomNav';
-import { STORAGE_KEY } from '@/constants/storage';
 import { Absence } from '@/features/home/Absence';
 import { Attendance } from '@/features/home/Attendance';
 import { RuleLink } from '@/features/home/RuleLink';
@@ -32,18 +29,10 @@ const Home = () => {
     return 'ON_TIME';
   };
 
-  const router = useRouter();
-
   // NOTE: 유저 정보 가져오기
   const { data } = useGetInfo();
   console.log('data: ', data);
 
-  // TODO: 로그인 임시 코드
-  useEffect(() => {
-    const isAuthenticated = localStorage.getItem(STORAGE_KEY.ACCESS_TOKEN);
-
-    if (!isAuthenticated) router.push('/login');
-  }, [router]);
   return (
     <>
       <Container>
