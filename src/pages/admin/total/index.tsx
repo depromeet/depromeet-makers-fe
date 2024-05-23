@@ -62,11 +62,14 @@ const TotalAttendance = () => {
 };
 
 const Container = styled.div`
+  display: flex;
+  flex-direction: column;
   background-color: ${({ theme }) => theme.color.gray_100};
   height: 100dvh;
 `;
 
 const ContentContainer = styled.div`
+  margin-top: 68px;
   padding: 0 20px;
 `;
 
