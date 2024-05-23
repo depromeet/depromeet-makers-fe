@@ -4,7 +4,7 @@ import Cookies from 'js-cookie';
 
 import type { CustomError } from '@/apis';
 import { api } from '@/apis';
-import { STORAGE_KEY } from '@/constants/storage';
+import { COOKIE_KEY } from '@/constants/cookie';
 
 interface PostLoginRequest {
   email: string;
@@ -25,8 +25,8 @@ export const usePostLogin = (options?: UseMutationOptions<PostLoginResponse, Cus
     mutationFn: postLogin,
     ...options,
     onSuccess: (data, ...rest) => {
-      Cookies.set(STORAGE_KEY.ACCESS_TOKEN, data.accessToken, { expires: 1 });
-      Cookies.set(STORAGE_KEY.REFRESH_TOKEN, data.refreshToken, { expires: 1 });
+      Cookies.set(COOKIE_KEY.ACCESS_TOKEN, data.accessToken, { expires: 1 });
+      Cookies.set(COOKIE_KEY.REFRESH_TOKEN, data.refreshToken, { expires: 1 });
 
       options?.onSuccess?.(data, ...rest);
     },

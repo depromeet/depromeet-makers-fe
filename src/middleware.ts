@@ -1,10 +1,10 @@
 import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 
-import { STORAGE_KEY } from './constants/storage';
+import { COOKIE_KEY } from './constants/cookie';
 
 export async function middleware(request: NextRequest) {
-  const token = request.cookies.get(STORAGE_KEY.ACCESS_TOKEN);
+  const token = request.cookies.get(COOKIE_KEY.ACCESS_TOKEN);
 
   return token ? NextResponse.next() : NextResponse.redirect(new URL('/login', request.url));
 }
