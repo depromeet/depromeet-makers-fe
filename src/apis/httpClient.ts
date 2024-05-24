@@ -64,6 +64,7 @@ class HttpClient {
 
   private onResponseRejected(error: AxiosError) {
     if (!isAxiosError(error)) return Promise.reject(error);
+    // TODO : 강제 로그아웃 처리 필요
 
     return Promise.reject(error.response?.data);
   }
