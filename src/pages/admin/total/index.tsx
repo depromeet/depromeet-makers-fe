@@ -9,16 +9,6 @@ import { TeamAttendance } from '@/features/total/TeamAttendance';
 import { useGetAttendanceStats } from '@/hooks/apis/attendance/useGetAttendanceStats';
 import { getDateText } from '@/utils/date';
 
-// TODO: 응답값으로 변경
-const TEAM_INFO = [
-  { teamNumber: 1, attendantCount: 4, totalCount: 10 },
-  { teamNumber: 2, attendantCount: 10, totalCount: 10 },
-  { teamNumber: 3, attendantCount: 2, totalCount: 10 },
-  { teamNumber: 4, attendantCount: 0, totalCount: 10 },
-  { teamNumber: 5, attendantCount: 4, totalCount: 10 },
-  { teamNumber: 6, attendantCount: 4, totalCount: 10 },
-];
-
 const TotalAttendance = () => {
   // TODO: 아래 옵셔널 체이닝 관련 값들 변경해야함
   const { data, refetch } = useGetAttendanceStats({ week: 1, generation: CURRENT_GENERATION });
@@ -52,11 +42,7 @@ const TotalAttendance = () => {
           <InfoBox title="전체 멤버" content={data?.memberCount || 0} />
         </BoxContainer>
 
-        <TeamContainer>
-          {TEAM_INFO.map((team) => (
-            <TeamAttendance key={team.teamNumber} {...team} />
-          ))}
-        </TeamContainer>
+        <TeamContainer>{data?.teams?.map((team) => <TeamAttendance key={team.teamNumber} {...team} />)}</TeamContainer>
       </ContentContainer>
     </Container>
   );
@@ -105,6 +91,7 @@ const TeamContainer = styled.ul`
   flex-direction: column;
   justify-content: center;
 
+  min-height: 276px;
   padding: 24px 20px;
   gap: 24px;
 

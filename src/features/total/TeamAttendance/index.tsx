@@ -4,26 +4,26 @@ import { Progress } from './Progress';
 
 interface TeamStatus {
   teamNumber: number;
-  attendantCount: number;
-  totalCount: number;
+  attendanceCount: number;
+  memberCount: number;
 }
 
-export const TeamAttendance = ({ teamNumber, attendantCount, totalCount }: TeamStatus) => {
+export const TeamAttendance = ({ teamNumber, attendanceCount, memberCount }: TeamStatus) => {
   const getAttendantCount = () => {
-    if (attendantCount < 0) return 0;
+    if (attendanceCount < 0) return 0;
 
-    return attendantCount > totalCount ? totalCount : attendantCount;
+    return attendanceCount > memberCount ? memberCount : attendanceCount;
   };
 
   const formattedAttendantCount = getAttendantCount();
 
-  const attendanceRate = Math.floor((formattedAttendantCount * 100) / totalCount);
+  const attendanceRate = Math.floor((formattedAttendantCount * 100) / memberCount);
 
   return (
     <TeamContainer>
       <TeamText>{`${teamNumber}팀`}</TeamText>
       <Progress percent={attendanceRate} />
-      <PercentText>{`${formattedAttendantCount}/${totalCount}`}</PercentText>
+      <PercentText>{`${formattedAttendantCount}/${memberCount}`}</PercentText>
     </TeamContainer>
   );
 };
