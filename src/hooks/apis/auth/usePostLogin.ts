@@ -26,7 +26,7 @@ export const usePostLogin = (options?: UseMutationOptions<PostLoginResponse, Cus
     ...options,
     onSuccess: (data, ...rest) => {
       Cookies.set(COOKIE_KEY.ACCESS_TOKEN, data.accessToken, { expires: 1 });
-      Cookies.set(COOKIE_KEY.REFRESH_TOKEN, data.refreshToken, { expires: 1 });
+      Cookies.set(COOKIE_KEY.REFRESH_TOKEN, data.refreshToken, { expires: 7 });
 
       options?.onSuccess?.(data, ...rest);
     },
