@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Badge } from '@/components/Badge';
 import { BottomNav } from '@/components/BottomNav';
 import { FAB } from '@/components/FAB';
+import { Metadata } from '@/components/Metadata';
 import { CURRENT_GENERATION } from '@/constants/attendance';
 import { USER_NAV_ITEMS } from '@/constants/bottomNav';
 import { Absence } from '@/features/home/Absence';
@@ -35,6 +36,8 @@ const Home = () => {
 
   return (
     <>
+      <Metadata />
+
       <Container>
         <InfoContainer>
           <DateContainer>
