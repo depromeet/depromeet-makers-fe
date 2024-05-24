@@ -135,7 +135,7 @@ function Dropdown({ position = 'bottom', ...props }: DropdownProps) {
             props.onClose();
           }}
         >
-          {status}
+          {ATTENDANCE_STATUS_KR[status]}
         </DropdownItem>
       ))}
     </DropdownContainer>

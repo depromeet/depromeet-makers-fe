@@ -38,7 +38,7 @@ export const useGetGroupAttendance = (
   });
 };
 
-const dummy = [
+const dummy: AttendanceItemType[] = [
   {
     attendanceId: '01HWPNRE5TS9S7VC99WPETE5KE',
     generation: 15,
@@ -47,7 +47,7 @@ const dummy = [
     memberName: '김개발',
     memberPosition: 'DESIGN',
     sessionType: 'ONLINE',
-    attendanceStatus: 'ATTENDANCE',
+    attendanceStatus: ATTENDANCE_STATUS.출석,
     attendanceTime: '2024-05-24T14:09:10.243Z',
   },
 ];

@@ -1,21 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import type { ATTENDANCE_STATUS } from '@/constants/attendance';
 import type { AttendanceItemType } from '@/hooks/apis/attendance/useGetGroupAttendance';
+import { useModifyAttendance } from '@/hooks/apis/attendance/useModifyAttendance';
 
 import StatusSelect from './StatusSelect';
 
-interface Props {
-  id: number;
-  name: string;
-  position: string;
-  status: ATTENDANCE_STATUS;
-}
-
 function UserItem(props: AttendanceItemType) {
+  const [status, setStatus] = useState<ATTENDANCE_STATUS>(props.attendanceStatus);
+  const { mutate } = useModifyAttendance();
+
   const onChange = (value: ATTENDANCE_STATUS) => {
-    console.log(value);
+    // optimistic update
+    setStatus(value);
+    console.log('value: ', value);
+
+    // api call
+    mutate({ attendanceId: props.attendanceId, attendanceStatus: value });
   };
 
   return (
@@ -24,7 +26,7 @@ function UserItem(props: AttendanceItemType) {
         <Name>{props.memberName}</Name>
         <Position>{props.memberPosition}</Position>
       </TextWrapper>
-      <StatusSelect onClick={onChange} value={props.attendanceStatus} />
+      <StatusSelect onClick={onChange} value={status} />
     </Container>
   );
 }
