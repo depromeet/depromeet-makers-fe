@@ -19,7 +19,6 @@ function AdminAttendancePage() {
   const [team, setTeam] = useState(1);
 
   const { data } = useGetGroupAttendance({ generation: 15, week, groupId: String(team) });
-  console.log('data: ', data);
 
   return (
     <Layout>
@@ -44,11 +43,7 @@ function AdminAttendancePage() {
             </TeamSection>
           </>
         )}
-        <UserSection ref={ref}>
-          {data.map((data) => (
-            <UserItem key={data.memberId} {...data} />
-          ))}
-        </UserSection>
+        <UserSection ref={ref}>{data?.map((data) => <UserItem key={data.memberId} {...data} />)}</UserSection>
       </Main>
       <BottomNav items={ADMIN_NAV_ITEMS} />
     </Layout>
