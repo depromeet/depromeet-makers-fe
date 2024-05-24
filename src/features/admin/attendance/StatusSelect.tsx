@@ -3,7 +3,7 @@ import { AnimatePresence, m } from 'framer-motion';
 import styled, { useTheme } from 'styled-components';
 
 import Icon from '@/components/Icon';
-import { ATTENDANCE_STATUS } from '@/constants/attendance';
+import { ATTENDANCE_STATUS, ATTENDANCE_STATUS_KR } from '@/constants/attendance';
 import { ATTENDANCE_STATUS_LIST } from '@/constants/attendance';
 import useOutsideClick from '@/hooks/useOutsideClick';
 
@@ -53,7 +53,7 @@ function StatusSelect(props: Props) {
         }}
         status={props.value}
       >
-        <span>{props.value}</span>
+        <span>{ATTENDANCE_STATUS_KR[props.value]}</span>
         <Icon name="arrow-down" color={theme.color.gray_400} width={16} height={16} />
       </Label>
       <AnimatePresence>

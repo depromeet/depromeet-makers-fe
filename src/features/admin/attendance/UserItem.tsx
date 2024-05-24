@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import type { ATTENDANCE_STATUS } from '@/constants/attendance';
+import type { AttendanceItemType } from '@/hooks/apis/attendance/useGetGroupAttendance';
 
 import StatusSelect from './StatusSelect';
 
@@ -12,17 +13,18 @@ interface Props {
   status: ATTENDANCE_STATUS;
 }
 
-function UserItem(props: Props) {
+function UserItem(props: AttendanceItemType) {
   const onChange = (value: ATTENDANCE_STATUS) => {
     console.log(value);
   };
+
   return (
     <Container>
       <TextWrapper>
-        <Name>{props.name}</Name>
-        <Position>{props.position}</Position>
+        <Name>{props.memberName}</Name>
+        <Position>{props.memberPosition}</Position>
       </TextWrapper>
-      <StatusSelect onClick={onChange} value={props.status} />
+      <StatusSelect onClick={onChange} value={props.attendanceStatus} />
     </Container>
   );
 }
