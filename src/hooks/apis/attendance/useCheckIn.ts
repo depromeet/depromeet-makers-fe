@@ -26,7 +26,7 @@ export const useCheckIn = (options?: UseMutationOptions<CheckInResponse, CustomE
     mutationFn: () => api.post<CheckInResponse>(`/v1/check-in`, location),
     ...options,
     onSuccess: (data, ...rest) => {
-      showSnackBar({ message: SNACKBAR_MESSAGE[data.code] ?? data.message });
+      showSnackBar({ message: SNACKBAR_MESSAGE['200'] ?? data.message });
 
       options?.onSuccess?.(data, ...rest);
     },
