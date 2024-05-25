@@ -9,15 +9,15 @@ import { USER_NAV_ITEMS } from '@/constants/bottomNav';
 import { Absence } from '@/features/home/Absence';
 import { Attendance } from '@/features/home/Attendance';
 import { RuleLink } from '@/features/home/RuleLink';
+import { useCheckIn } from '@/hooks/apis/attendance/useCheckIn';
 import { useGetAttendance } from '@/hooks/apis/attendance/useGetAttendance';
 import { useGetCheckIn } from '@/hooks/apis/attendance/useGetCheckIn';
 import { useGetInfo } from '@/hooks/apis/user/useGetInfo';
-import { useCheckIn } from '@/hooks/apis/attendance/useCheckIn';
 
 const Home = () => {
   const { data: attendance } = useGetAttendance({ generation: CURRENT_GENERATION });
   const { data: sessionAttendance } = useGetCheckIn();
-  const { mutate } = useCheckIn()
+  const { mutate } = useCheckIn();
 
   // TODO: 응답 값으로 수정 필요
   const title = `디프만 15기 첫출발,\n함께 시작해 볼까요? 🌱`;
@@ -37,8 +37,8 @@ const Home = () => {
   console.log('data: ', data);
 
   const handleClickCheckIn = () => {
-    mutate()
-  }
+    mutate();
+  };
 
   return (
     <>
@@ -64,7 +64,9 @@ const Home = () => {
         </AttendanceContainer>
       </Container>
 
-      {isVisibleFab && <FAB text="출석하기 🙌" sessionAttendanceStatus={getSessionAttendanceStatus()} onClick={handleClickCheckIn} />}
+      {isVisibleFab && (
+        <FAB text="출석하기 🙌" sessionAttendanceStatus={getSessionAttendanceStatus()} onClick={handleClickCheckIn} />
+      )}
       <BottomNav items={USER_NAV_ITEMS} />
     </>
   );
