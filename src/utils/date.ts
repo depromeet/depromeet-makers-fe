@@ -5,3 +5,23 @@ export const isSameDate = (date1: Date, date2: Date) => {
     date1.getDate() === date2.getDate()
   );
 };
+
+export const getFormattedDate = (dateString: string) => {
+  const date = new Date(dateString);
+
+  return {
+    year: date.getFullYear().toString(),
+    month: (date.getMonth() + 1).toString(),
+    day: date.getDate().toString(),
+  };
+};
+
+export const getDateText = (dateString: string) => {
+  const { year, month, day } = getFormattedDate(dateString);
+
+  return {
+    year: `${year}년`,
+    month: `${month}월`,
+    day: `${day}일`,
+  };
+};

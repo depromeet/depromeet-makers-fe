@@ -3,33 +3,20 @@ import styled from 'styled-components';
 import { Badge } from '@/components/Badge';
 import { Header } from '@/components/Header';
 import Icon from '@/components/Icon';
+import { CURRENT_GENERATION } from '@/constants/attendance';
 import { InfoBox } from '@/features/total/InfoBox';
 import { TeamAttendance } from '@/features/total/TeamAttendance';
-
-// TODO: 응답값으로 변경
-const TEAM_INFO = [
-  { teamNumber: 1, attendantCount: 4, totalCount: 10 },
-  { teamNumber: 2, attendantCount: 10, totalCount: 10 },
-  { teamNumber: 3, attendantCount: 2, totalCount: 10 },
-  { teamNumber: 4, attendantCount: 0, totalCount: 10 },
-  { teamNumber: 5, attendantCount: 4, totalCount: 10 },
-  { teamNumber: 6, attendantCount: 4, totalCount: 10 },
-];
-
-const RESPONSE = {
-  week: 1,
-  date: '4월 3일',
-  attendanceCount: 80,
-  totalCount: 100,
-};
+import { useGetAttendanceStats } from '@/hooks/apis/attendance/useGetAttendanceStats';
+import { getDateText } from '@/utils/date';
 
 const TotalAttendance = () => {
-  const { week, date, attendanceCount, totalCount } = RESPONSE;
+  // TODO: 아래 옵셔널 체이닝 관련 값들 변경해야함
+  const { data, refetch } = useGetAttendanceStats({ week: 1, generation: CURRENT_GENERATION });
 
-  const attendanceRate = Math.floor((attendanceCount * 100) / totalCount);
+  const { month, day } = getDateText(data?.sessionDate || '');
 
   const handleRefresh = () => {
-    // TODO: refetch 로직 추가
+    refetch();
   };
 
   return (
@@ -39,23 +26,23 @@ const TotalAttendance = () => {
       <ContentContainer>
         <SubHeader>
           <TextContainer>
-            <Badge>{`${week}주차`}</Badge>
-            <Text>{date}</Text>
+            <Badge>{`${data?.week}주차`}</Badge>
+            <Text>{`${month} ${day}`}</Text>
           </TextContainer>
           <RefreshButton name="refresh" onClick={handleRefresh} />
         </SubHeader>
 
         <BoxContainer>
-          <InfoBox title="출석률" content={`${attendanceRate}%`} isSuccess={attendanceRate >= 80} />
-          <InfoBox title="출석" content={attendanceCount} />
-          <InfoBox title="전체 멤버" content={totalCount} />
+          <InfoBox
+            title="출석률"
+            content={`${data?.attendancePercentage || 0}%`}
+            isSuccess={(data?.attendancePercentage || 0) >= 80}
+          />
+          <InfoBox title="출석" content={data?.attendanceCount || 0} />
+          <InfoBox title="전체 멤버" content={data?.memberCount || 0} />
         </BoxContainer>
 
-        <TeamContainer>
-          {TEAM_INFO.map((team) => (
-            <TeamAttendance key={team.teamNumber} {...team} />
-          ))}
-        </TeamContainer>
+        <TeamContainer>{data?.teams?.map((team) => <TeamAttendance key={team.teamNumber} {...team} />)}</TeamContainer>
       </ContentContainer>
     </Container>
   );
@@ -107,6 +94,7 @@ const TeamContainer = styled.ul`
   flex-direction: column;
   justify-content: center;
 
+  min-height: 276px;
   padding: 24px 20px;
   gap: 24px;
 

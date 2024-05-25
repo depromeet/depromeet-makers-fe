@@ -15,7 +15,7 @@ type Story = StoryObj<typeof TeamAttendance>;
 export const Default: Story = {
   args: {
     teamNumber: 1,
-    attendantCount: 0,
-    totalCount: 10,
+    attendanceCount: 0,
+    memberCount: 10,
   },
 };
