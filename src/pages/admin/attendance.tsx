@@ -10,12 +10,15 @@ import { ADMIN_NAV_ITEMS } from '@/constants/bottomNav';
 import TeamSelect from '@/features/admin/attendance/TeamSelect';
 import UserItem from '@/features/admin/attendance/UserItem';
 import WeekSelect from '@/features/admin/attendance/WeekSelect';
+import { useGetGroupAttendance } from '@/hooks/apis/attendance/useGetGroupAttendance';
 
 function AdminAttendancePage() {
   const { ref, isViewMiniHeader } = useScrollAction();
 
   const [week, setWeek] = useState(1);
   const [team, setTeam] = useState(1);
+
+  const { data } = useGetGroupAttendance({ generation: 15, week, groupId: String(team) });
 
   return (
     <Layout>
@@ -40,11 +43,7 @@ function AdminAttendancePage() {
             </TeamSection>
           </>
         )}
-        <UserSection ref={ref}>
-          {DUMMY_DATA.map((data) => (
-            <UserItem key={data.id} {...data} />
-          ))}
-        </UserSection>
+        <UserSection ref={ref}>{data?.map((data) => <UserItem key={data.memberId} {...data} />)}</UserSection>
       </Main>
       <BottomNav items={ADMIN_NAV_ITEMS} />
     </Layout>
