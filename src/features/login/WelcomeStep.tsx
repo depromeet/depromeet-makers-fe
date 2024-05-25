@@ -1,6 +1,9 @@
 import React from 'react';
+import Image from 'next/image';
+import styled from 'styled-components';
 
 import LoginLayout from './LoginLayout';
+import Img from './welcome-1.png';
 
 interface Props {
   onNext: () => void;
@@ -14,8 +17,20 @@ function WelcomeStep(props: Props) {
         children: '입장하기',
         onClick: props.onNext,
       }}
-    ></LoginLayout>
+    >
+      <ImageContainer>
+        <Image src={Img} width={300} height={300} alt="welcome  " />
+      </ImageContainer>
+    </LoginLayout>
   );
 }
 
 export default WelcomeStep;
+
+const ImageContainer = styled.div`
+  text-align: center;
+  height: calc(100vh - 340px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;

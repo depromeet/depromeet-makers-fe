@@ -41,6 +41,7 @@ export default LoginLayout;
 
 const Main = styled.main`
   padding: 20px;
+  min-height: 100vh;
 `;
 
 const Header = styled.header``;
