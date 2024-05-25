@@ -8,15 +8,11 @@ interface AttendanceProps {
 }
 
 export const Attendance = ({ attendances }: AttendanceProps) => {
-  // TODO: 응답 값으로 수정 필요
-  const isBefore15Min = true;
-
   return (
     <Container>
       <Content>
         <Title>
           <Text>출석 현황</Text>
-          {isBefore15Min && <SubText>15분전입니다. 정각에 새로고침 해주세요.</SubText>}
         </Title>
 
         <Grid>
