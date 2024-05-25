@@ -1,5 +1,5 @@
 import type { UseMutationOptions } from '@tanstack/react-query';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import type { CustomError } from '@/apis';
 import { api } from '@/apis';
@@ -20,6 +20,7 @@ const SNACKBAR_MESSAGE: Record<string, string> = {
 
 export const useCheckIn = (options?: UseMutationOptions<CheckInResponse, CustomError>) => {
   const location = useGeolocation();
+  const queryClient = useQueryClient();
   const { showSnackBar } = useSnackBar();
 
   return useMutation({
@@ -27,6 +28,8 @@ export const useCheckIn = (options?: UseMutationOptions<CheckInResponse, CustomE
     ...options,
     onSuccess: (data, ...rest) => {
       showSnackBar({ message: SNACKBAR_MESSAGE['200'] ?? data.message });
+
+      queryClient.invalidateQueries({ queryKey: ['check-in'] });
 
       options?.onSuccess?.(data, ...rest);
     },
