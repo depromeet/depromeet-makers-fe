@@ -4,7 +4,7 @@ import { Badge } from '@/components/Badge';
 import { BottomNav } from '@/components/BottomNav';
 import { FAB } from '@/components/FAB';
 import { Metadata } from '@/components/Metadata';
-import { CURRENT_GENERATION } from '@/constants/attendance';
+import { ATTENDANCE_STATUS, CURRENT_GENERATION } from '@/constants/attendance';
 import { USER_NAV_ITEMS } from '@/constants/bottomNav';
 import { Absence } from '@/features/home/Absence';
 import { Attendance } from '@/features/home/Attendance';
@@ -27,7 +27,7 @@ const Home = () => {
 
   const getSessionAttendanceStatus = () => {
     if (sessionAttendance?.isBeforeSession15minutes) return 'BEFORE_15MINUTE';
-    if (sessionAttendance?.expectAttendanceStatus === 'ABSENCE') return 'AFTER_15MINUTE';
+    if (sessionAttendance?.expectAttendanceStatus === ATTENDANCE_STATUS.지각) return 'AFTER_15MINUTE';
 
     return 'ON_TIME';
   };
