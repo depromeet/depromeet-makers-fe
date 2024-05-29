@@ -29,9 +29,9 @@ export const useCheckIn = (options?: UseMutationOptions<CheckInResponse, CustomE
     onSuccess: (data, ...rest) => {
       showSnackBar({ message: SNACKBAR_MESSAGE['200'] ?? data.message });
 
-      queryClient.invalidateQueries({ queryKey: ['check-in'] });
-
       options?.onSuccess?.(data, ...rest);
+
+      return queryClient.invalidateQueries({ queryKey: ['check-in'] });
     },
     onError: (data, ...rest) => {
       showSnackBar({ message: SNACKBAR_MESSAGE[data.code] ?? data.message });

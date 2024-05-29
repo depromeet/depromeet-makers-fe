@@ -20,7 +20,8 @@ export const useGetCheckIn = (options?: UseQueryOptions<CheckInResponse, CustomE
     queryKey: ['check-in'],
     queryFn: () => api.get<CheckInResponse>(`/v1/check-in`),
     ...options,
-    refetchInterval: POLLING_INTERVAL,
+    refetchInterval: (data) => (data.state.error?.code ? 0 : POLLING_INTERVAL),
     refetchIntervalInBackground: true,
+    refetchOnMount: true,
   });
 };
