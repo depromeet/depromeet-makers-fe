@@ -13,9 +13,9 @@ function JoinCompleteStep() {
 
   const onNext = () => {
     if (data?.generations[0].role === 'ORGANIZER') {
-      router.push('/admin/attendance');
+      router.replace('/admin/attendance');
     } else {
-      router.push('/');
+      router.replace('/');
     }
   };
 
