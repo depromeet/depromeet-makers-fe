@@ -22,5 +22,6 @@ export const useGetCheckIn = (options?: UseQueryOptions<CheckInResponse, CustomE
     ...options,
     refetchInterval: (data) => (data.state.error?.code ? 0 : POLLING_INTERVAL),
     refetchIntervalInBackground: true,
+    refetchOnMount: true,
   });
 };
