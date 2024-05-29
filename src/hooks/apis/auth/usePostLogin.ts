@@ -24,10 +24,10 @@ export const usePostLogin = (options?: UseMutationOptions<PostLoginResponse, Cus
   useMutation({
     mutationFn: postLogin,
     ...options,
-    onSuccess: (data, ...rest) => {
+    onSuccess: async (data, ...rest) => {
       Cookies.set(COOKIE_KEY.ACCESS_TOKEN, data.accessToken, { expires: 1 });
       Cookies.set(COOKIE_KEY.REFRESH_TOKEN, data.refreshToken, { expires: 7 });
 
-      options?.onSuccess?.(data, ...rest);
+      options?.onSuccess?.({ ...data }, ...rest);
     },
   });
