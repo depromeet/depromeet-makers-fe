@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import Cookies from 'js-cookie';
 
+import { COOKIE_KEY } from '@/constants/cookie';
 import { usePostLogin } from '@/hooks/apis/auth/usePostLogin';
 import { getUserRoleByToken } from '@/hooks/apis/user/useGetInfo';
 
@@ -24,6 +26,8 @@ function CertifyStep(props: Props) {
   const { mutate } = usePostLogin({
     onSuccess: async ({ accessToken }) => {
       const role = await getUserRoleByToken(accessToken);
+      Cookies.set(COOKIE_KEY.USER_ROLE, role, { expires: 1 });
+
       if (role === 'ORGANIZER') {
         router.replace('/admin/attendance');
       } else {

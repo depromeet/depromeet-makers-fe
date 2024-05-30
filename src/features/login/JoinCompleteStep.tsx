@@ -1,7 +1,9 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import Cookies from 'js-cookie';
 import styled from 'styled-components';
 
+import { COOKIE_KEY } from '@/constants/cookie';
 import { useGetInfo } from '@/hooks/apis/user/useGetInfo';
 
 import LoginLayout from './LoginLayout';
@@ -12,7 +14,13 @@ function JoinCompleteStep() {
   const { data } = useGetInfo();
 
   const onNext = () => {
-    if (data?.generations[0].role === 'ORGANIZER') {
+    const role = data?.generations[0].role;
+
+    if (role) {
+      Cookies.set(COOKIE_KEY.USER_ROLE, role, { expires: 1 });
+    }
+
+    if (role === 'ORGANIZER') {
       router.replace('/admin/attendance');
     } else {
       router.replace('/');
