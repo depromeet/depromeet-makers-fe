@@ -13,6 +13,7 @@ import { useCheckIn } from '@/hooks/apis/attendance/useCheckIn';
 import { useGetAttendance } from '@/hooks/apis/attendance/useGetAttendance';
 import { useGetCheckIn } from '@/hooks/apis/attendance/useGetCheckIn';
 import { useGetInfo } from '@/hooks/apis/user/useGetInfo';
+import { getDateText } from '@/utils/date';
 
 const TITLE = [
   `디프만 15기 첫출발,\n함께 시작해볼까요? 🌱`,
@@ -38,7 +39,7 @@ const Home = () => {
   const { data: sessionAttendance } = useGetCheckIn();
   const { mutate } = useCheckIn();
 
-  const date = '4월 3일';
+  const { month, day } = getDateText(String(new Date()));
   const isVisibleFab = sessionAttendance?.needFloatingButton;
 
   const getSessionAttendanceStatus = () => {
@@ -64,7 +65,7 @@ const Home = () => {
         <InfoContainer>
           <DateContainer>
             <Badge>{sessionAttendance?.week}</Badge>
-            <DateText>{date}</DateText>
+            <DateText>{`${month} ${day}`}</DateText>
           </DateContainer>
           <RuleLink />
         </InfoContainer>
