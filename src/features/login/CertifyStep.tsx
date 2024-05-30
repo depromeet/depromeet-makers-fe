@@ -1,6 +1,8 @@
 import { useState } from 'react';
+import { useRouter } from 'next/router';
 
 import { usePostLogin } from '@/hooks/apis/auth/usePostLogin';
+import { getUserRoleByToken } from '@/hooks/apis/user/useGetInfo';
 
 import LoginLayout from './LoginLayout';
 import PasswordInput from './PasswordInput';
@@ -8,21 +10,25 @@ import PasswordInput from './PasswordInput';
 const PASSWORD_LENGTH = 6;
 
 interface Props {
-  onNext: () => void;
   onBack: () => void;
   email: string;
 }
 
 function CertifyStep(props: Props) {
+  const router = useRouter();
   const [value, setValue] = useState('');
-
   const [error, setError] = useState('');
 
   const isDisabled = value.length !== PASSWORD_LENGTH || Boolean(error);
 
   const { mutate } = usePostLogin({
-    onSuccess: () => {
-      props.onNext();
+    onSuccess: async ({ accessToken }) => {
+      const role = await getUserRoleByToken(accessToken);
+      if (role === 'ORGANIZER') {
+        router.replace('/admin/attendance');
+      } else {
+        router.replace('/');
+      }
     },
     onError: (error) => {
       setError(error.message);

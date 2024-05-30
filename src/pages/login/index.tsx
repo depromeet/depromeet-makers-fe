@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import type { GetServerSideProps } from 'next';
-import { useRouter } from 'next/router';
 
 import { Metadata } from '@/components/Metadata';
 import { COOKIE_KEY } from '@/constants/cookie';
@@ -38,15 +37,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 };
 
 function LoginPage() {
-  const router = useRouter();
-
   const { Funnel, Step, setStep } = useFunnel(STEP.WELCOME);
 
   const [email, setEmail] = useState('');
-
-  const handleCompleteSignUp = () => {
-    router.push('/');
-  };
 
   return (
     <div>
@@ -69,10 +62,10 @@ function LoginPage() {
           <JoinStep email={email} onBack={() => setStep(STEP.EMAIL)} onNext={() => setStep(STEP.JOIN_COMPLETE)} />
         </Step>
         <Step name={STEP.JOIN_COMPLETE}>
-          <JoinCompleteStep onNext={handleCompleteSignUp} />
+          <JoinCompleteStep />
         </Step>
         <Step name={STEP.CERTIFY}>
-          <CertifyStep email={email} onNext={handleCompleteSignUp} onBack={() => setStep(STEP.EMAIL)} />
+          <CertifyStep email={email} onBack={() => setStep(STEP.EMAIL)} />
         </Step>
       </Funnel>
     </div>
