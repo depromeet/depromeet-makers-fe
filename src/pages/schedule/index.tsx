@@ -31,6 +31,7 @@ function SchedulePage() {
                 key={schedule.sessionId}
                 isToday={isToday}
                 title={schedule.title}
+                startTime={schedule.startTime}
                 isOffline={schedule.sessionType === 'OFFLINE'}
                 week={schedule.week}
                 desc={schedule.description}
