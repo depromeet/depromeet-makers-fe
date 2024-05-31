@@ -22,7 +22,7 @@ function SchedulePage() {
       <PageLayout>
         <Hgroup>
           <h1>디프만 {data?.generation}기 일정</h1>
-          <hr />
+          <Divider />
           <p>토요일 오후 2시~5시 진행</p>
         </Hgroup>
         <ScheduleList>
@@ -63,17 +63,17 @@ const Hgroup = styled.hgroup`
     color: ${({ theme }) => theme.color.gray_900};
     ${({ theme }) => theme.typo.h2};
   }
-  > hr {
-    width: 1px;
-    height: 16px;
-    color: ${({ theme }) => theme.color.gray_400};
-    margin: 0;
-  }
 
   > p {
     color: ${({ theme }) => theme.color.gray_600};
     ${({ theme }) => theme.typo.caption};
   }
+`;
+
+const Divider = styled.span`
+  width: 1px;
+  height: 16px;
+  background-color: ${({ theme }) => theme.color.gray_400};
 `;
 
 const PageLayout = styled.main`
