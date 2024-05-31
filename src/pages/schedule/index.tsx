@@ -10,7 +10,10 @@ import { isSameDate } from '@/utils/date';
 function SchedulePage() {
   const today = new Date();
 
-  const { data } = useGetSessionList();
+  const { data, isLoading } = useGetSessionList();
+
+  // NOTE: 글리치 현상 임시 처리
+  if (isLoading) return null;
 
   return (
     <>
