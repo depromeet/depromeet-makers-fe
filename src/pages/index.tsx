@@ -64,7 +64,7 @@ const Home = () => {
       <Container>
         <InfoContainer>
           <DateContainer>
-            <Badge>{sessionAttendance?.week}</Badge>
+            <Badge>{`${sessionAttendance?.week || 1}주차`}</Badge>
             <DateText>{`${month} ${day}`}</DateText>
           </DateContainer>
           <RuleLink />
