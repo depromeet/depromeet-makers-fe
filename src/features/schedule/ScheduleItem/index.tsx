@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import { Accordion, AccordionItem } from '@/components/Accordion';
 import { Badge } from '@/components/Badge';
+import { getDateText } from '@/utils/date';
 
 import type { ScheduleType } from '../index.constants';
 
@@ -12,12 +13,13 @@ interface ScheduleItemProps extends ScheduleType {
 }
 
 function ScheduleItem(props: ScheduleItemProps) {
+  const { month, day } = getDateText(props.startTime);
   return (
     <Container>
       <Head>
         <HeadLeft>
           <Badge variant="default">{props.week}주차</Badge>
-          <Title isToday={props.isToday}>{props.title}</Title>
+          <Title isToday={props.isToday}>{`${month} ${day}`}</Title>
         </HeadLeft>
         {props.isOffline ? <Badge variant="black">오프라인</Badge> : <Badge variant="line">온라인</Badge>}
       </Head>

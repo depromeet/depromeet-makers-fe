@@ -9,7 +9,8 @@ export type NavItemType = {
 export const USER_NAV_ITEMS: NavItemType = [
   { text: '홈', icon: 'home', path: '/' },
   { text: '일정', icon: 'calendar', path: '/schedule' },
-  { text: '마이페이지', icon: 'user', path: '/my' },
+  // NOTE: 심사를 위해 임시 주석 처리
+  // { text: '마이페이지', icon: 'user', path: '/my' },
 ] as const;
 
 export const ADMIN_NAV_ITEMS: NavItemType = [

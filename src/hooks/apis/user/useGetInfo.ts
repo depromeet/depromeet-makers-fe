@@ -6,19 +6,9 @@ import { api } from '@/apis';
 
 const GET_INFO_URL = '/v1/me';
 
-type Role = 'ORGANIZER' | 'MEMBER';
+import type { Role, UserInfo } from './user';
 
-interface GetInfoResponse {
-  id: string;
-  name: string;
-  email: string;
-  generations: {
-    generationId: number;
-    role: Role;
-    position: string;
-  }[];
-}
-
+type GetInfoResponse = UserInfo;
 export const getInfoByToken = async (token: string): Promise<GetInfoResponse> => {
   return await api.get<GetInfoResponse>(GET_INFO_URL, {
     headers: {
@@ -41,20 +31,3 @@ export const useGetInfo = (options?: UseQueryOptions<GetInfoResponse, CustomErro
     queryFn: () => getInfo(),
     ...options,
   });
-
-// export const fetchUserInfo = () => fetch(GET_INFO_URL)
-export const fetchUserInfo = async (accessToken: string) => {
-  const response = await fetch(process.env.NEXT_PUBLIC_API_URL + '/v1/me', {
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-    },
-  });
-  const data = await response.json();
-
-  return data;
-};
-
-export const fetchUserRole = async (accessToken: string): Promise<Role> => {
-  const data = await fetchUserInfo(accessToken);
-  return data.generations[0].role;
-};

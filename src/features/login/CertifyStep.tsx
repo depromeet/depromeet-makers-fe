@@ -1,10 +1,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import Cookies from 'js-cookie';
 
-import { COOKIE_KEY } from '@/constants/cookie';
 import { usePostLogin } from '@/hooks/apis/auth/usePostLogin';
-import { getUserRoleByToken } from '@/hooks/apis/user/useGetInfo';
 
 import LoginLayout from './LoginLayout';
 import PasswordInput from './PasswordInput';
@@ -24,9 +21,8 @@ function CertifyStep(props: Props) {
   const isDisabled = value.length !== PASSWORD_LENGTH || Boolean(error);
 
   const { mutate } = usePostLogin({
-    onSuccess: async ({ accessToken }) => {
-      const role = await getUserRoleByToken(accessToken);
-      Cookies.set(COOKIE_KEY.USER_ROLE, role, { expires: 1 });
+    onSuccess: async (data) => {
+      const role = data.member.generations[0].role;
 
       if (role === 'ORGANIZER') {
         router.replace('/admin/attendance');
