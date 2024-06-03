@@ -26,8 +26,8 @@ export async function middleware(request: NextRequest) {
   }
 
   if (request.nextUrl.pathname.startsWith('/admin')) {
-    const role = request.cookies.get(COOKIE_KEY.USER_ROLE)?.value;
-    if (role !== 'ORGANIZER') {
+    const role = request.cookies.get(COOKIE_KEY.ROLE)?.value;
+    if (!role?.includes('ORGANIZER')) {
       return NextResponse.redirect(new URL('/', request.url));
     }
   }

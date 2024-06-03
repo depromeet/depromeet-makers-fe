@@ -14,7 +14,6 @@ function UserItem(props: AttendanceItemType) {
   const onChange = (value: ATTENDANCE_STATUS) => {
     // optimistic update
     setStatus(value);
-    console.log('value: ', value);
 
     // api call
     mutate({ attendanceId: props.attendanceId, attendanceStatus: value });
