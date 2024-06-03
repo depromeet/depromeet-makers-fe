@@ -4,19 +4,9 @@ import { useQuery } from '@tanstack/react-query';
 import type { CustomError } from '@/apis';
 import { api } from '@/apis';
 
-type Role = 'ORGANIZER' | 'MEMBER';
+import type { Role, UserInfo } from './user';
 
-interface GetInfoResponse {
-  id: string;
-  name: string;
-  email: string;
-  generations: {
-    generationId: number;
-    role: Role;
-    position: string;
-  }[];
-}
-
+type GetInfoResponse = UserInfo;
 export const getInfoByToken = async (token: string): Promise<GetInfoResponse> => {
   return await api.get<GetInfoResponse>('/v1/me', {
     headers: {
