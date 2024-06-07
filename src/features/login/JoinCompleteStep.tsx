@@ -5,7 +5,6 @@ import styled from 'styled-components';
 import { useGetInfo } from '@/hooks/apis/user/useGetInfo';
 
 import LoginLayout from './LoginLayout';
-import Img from './welcome-2.png';
 
 function JoinCompleteStep() {
   const router = useRouter();
@@ -29,7 +28,7 @@ function JoinCompleteStep() {
       }}
     >
       <ImageContainer>
-        <Image src={Img} width={300} height={300} alt="welcome" />
+        <Image src="/assets/images/welcome-2.png" width={300} height={300} alt="welcome" />
       </ImageContainer>
     </LoginLayout>
   );

@@ -3,7 +3,6 @@ import Image from 'next/image';
 import styled from 'styled-components';
 
 import LoginLayout from './LoginLayout';
-import Img from './welcome-1.png';
 
 interface Props {
   onNext: () => void;
@@ -19,7 +18,7 @@ function WelcomeStep(props: Props) {
       }}
     >
       <ImageContainer>
-        <Image src={Img} width={300} height={300} alt="welcome  " />
+        <Image src="/assets/images/welcome-1.png" width={300} height={300} alt="welcome  " />
       </ImageContainer>
     </LoginLayout>
   );
