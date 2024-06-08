@@ -16,7 +16,7 @@ const getSessionList = async (): Promise<GetSessionResponse> => {
   const generation = process.env.NEXT_PUBLIC_DEPROMEET_GENERATION;
   const request: GetSessionRequest = { generation: Number(generation) };
 
-  return await api.get<GetSessionResponse>('/v1/session/info', { params: request });
+  return await api.get<GetSessionResponse>('/v1/sessions/info', { params: request });
 };
 
 export const useGetSession = (options?: UseQueryOptions<GetSessionResponse, CustomError, GetSessionResponse>) =>
