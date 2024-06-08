@@ -45,8 +45,8 @@ const Home = () => {
 
   const getSessionAttendanceStatus = () => {
     if (sessionAttendance?.isBeforeSession15minutes) return 'BEFORE_15MINUTE';
-    if (sessionAttendance?.expectAttendanceStatus === ATTENDANCE_STATUS.지각) return 'AFTER_15MINUTE';
 
+    if (sessionAttendance?.expectAttendanceStatus === ATTENDANCE_STATUS.지각) return 'AFTER_15MINUTE';
     return 'ON_TIME';
   };
 
@@ -65,13 +65,13 @@ const Home = () => {
       <Container>
         <InfoContainer>
           <DateContainer>
-            <Badge>{`${sessionAttendance?.week || 1}주차`}</Badge>
+            <Badge>{`${sessionAttendance?.week || 2}주차`}</Badge>
             <DateText>{`${month} ${day}`}</DateText>
           </DateContainer>
           <RuleLink />
         </InfoContainer>
 
-        <Title>{TITLE[sessionAttendance?.week || 0]}</Title>
+        <Title>{TITLE[sessionAttendance?.week || 2]}</Title>
 
         <AttendanceContainer>
           <Attendance attendances={attendance?.attendances || []} />
