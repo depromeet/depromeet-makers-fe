@@ -39,7 +39,7 @@ const TITLE = [
 const Home = () => {
   const { data: attendance } = useGetAttendance({ generation: CURRENT_GENERATION });
   const { data: sessionAttendance } = useGetCheckIn();
-  const { data: session } = useGetSession();
+  const { data: session, isLoading } = useGetSession();
   const { mutate } = useCheckIn();
 
   const { month, day } = getDateText(String(new Date()));
@@ -60,6 +60,8 @@ const Home = () => {
     mutate();
   };
 
+  if (isLoading) return null;
+
   return (
     <>
       <Metadata />
@@ -67,13 +69,13 @@ const Home = () => {
       <Container>
         <InfoContainer>
           <DateContainer>
-            <Badge>{`${session?.week || 2}주차`}</Badge>
+            <Badge>{`${session?.week || 1}주차`}</Badge>
             <DateText>{`${month} ${day}`}</DateText>
           </DateContainer>
           <RuleLink />
         </InfoContainer>
 
-        <Title>{TITLE[session?.week || 2]}</Title>
+        <Title>{TITLE[session?.week || 1]}</Title>
 
         <AttendanceContainer>
           <Attendance attendances={attendance?.attendances || []} />
