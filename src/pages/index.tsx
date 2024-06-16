@@ -9,6 +9,7 @@ import { USER_NAV_ITEMS } from '@/constants/bottomNav';
 import { TITLE } from '@/constants/home';
 import { Absence } from '@/features/home/Absence';
 import { Attendance } from '@/features/home/Attendance';
+import { Notification } from '@/features/home/Notification';
 import { RuleLink } from '@/features/home/RuleLink';
 import { useCheckIn } from '@/hooks/apis/attendance/useCheckIn';
 import { useGetAttendance } from '@/hooks/apis/attendance/useGetAttendance';
@@ -21,6 +22,7 @@ const Home = () => {
   const { data: attendance } = useGetAttendance({ generation: CURRENT_GENERATION });
   const { data: sessionAttendance } = useGetCheckIn();
   const { data: session, isLoading } = useGetSession();
+
   const { mutate } = useCheckIn();
 
   const { month, day } = getDateText(String(new Date()));
@@ -57,6 +59,8 @@ const Home = () => {
         </InfoContainer>
 
         <Title>{TITLE[session?.week || 1]}</Title>
+
+        <Notification />
 
         <AttendanceContainer>
           <Attendance attendances={attendance?.attendances || []} />
