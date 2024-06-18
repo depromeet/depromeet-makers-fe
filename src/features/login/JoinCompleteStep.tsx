@@ -1,18 +1,18 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import Cookies from 'js-cookie';
 import styled from 'styled-components';
-
-import { useGetInfo } from '@/hooks/apis/user/useGetInfo';
 
 import LoginLayout from './LoginLayout';
 import Img from './welcome-2.png';
 
 function JoinCompleteStep() {
   const router = useRouter();
-  const { data } = useGetInfo();
 
   const onNext = () => {
-    if (data?.generations[0].role === 'ORGANIZER') {
+    const roleData = Cookies.get('role');
+
+    if (roleData?.includes('ORGANIZER')) {
       router.replace('/admin/attendance');
     } else {
       router.replace('/');

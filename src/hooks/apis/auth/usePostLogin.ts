@@ -5,6 +5,7 @@ import Cookies from 'js-cookie';
 import type { CustomError } from '@/apis';
 import { api } from '@/apis';
 import { COOKIE_KEY } from '@/constants/cookie';
+import type { UserInfo } from '@/hooks/apis/user/user';
 
 interface PostLoginRequest {
   email: string;
@@ -14,6 +15,7 @@ interface PostLoginRequest {
 interface PostLoginResponse {
   accessToken: string;
   refreshToken: string;
+  member: UserInfo;
 }
 
 const postLogin = async (request: PostLoginRequest): Promise<PostLoginResponse> => {
@@ -27,6 +29,9 @@ export const usePostLogin = (options?: UseMutationOptions<PostLoginResponse, Cus
     onSuccess: async (data, ...rest) => {
       Cookies.set(COOKIE_KEY.ACCESS_TOKEN, data.accessToken, { expires: 1 });
       Cookies.set(COOKIE_KEY.REFRESH_TOKEN, data.refreshToken, { expires: 7 });
+      Cookies.set(COOKIE_KEY.ROLE, `${data.member.generations[0].generationId}-${data.member.generations[0].role}`, {
+        expires: 1,
+      });
 
       options?.onSuccess?.({ ...data }, ...rest);
     },
