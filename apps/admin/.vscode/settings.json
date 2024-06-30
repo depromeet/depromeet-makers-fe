@@ -4,6 +4,5 @@
     "source.fixAll.stylelint": "explicit",
     "source.addMissingImports": "explicit"
   },
-  "editor.formatOnSave": true,
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "editor.formatOnSave": true
 }
