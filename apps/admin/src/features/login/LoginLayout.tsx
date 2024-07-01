@@ -1,5 +1,5 @@
 import Button from '@depromeet-makers-fe/ui/src/components/Button/Button'; // TODO (@kimyouknow) module export 설정 수정하기
-import Icon from '@depromeet-makers-fe/ui/src/components/Icon/Icon'; // TODO (@kimyouknow) module export 설정 수정하기
+import { Icon } from '@depromeet-makers-fe/ui';
 import type { ComponentProps, PropsWithChildren } from 'react';
 import React from 'react';
 import styled from 'styled-components';

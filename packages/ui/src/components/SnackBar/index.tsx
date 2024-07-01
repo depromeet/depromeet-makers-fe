@@ -1,9 +1,9 @@
 import styled, { css } from "styled-components";
 
-import type { SnackBarProps } from "~/store/snackBar";
+import type { SnackBarProps } from "../../store/snackBar";
 
-import Icon from "~/components/Icon";
-import { SnackBarProvider } from "~/components/SnackBar/SnackBarProvider";
+import { Icon } from "../Icon";
+import { SnackBarProvider } from "./SnackBarProvider";
 
 export const SnackBar = ({
   id,

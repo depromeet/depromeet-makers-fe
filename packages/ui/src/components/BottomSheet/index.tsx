@@ -2,10 +2,10 @@ import { type ComponentProps, type MouseEventHandler, useEffect } from "react";
 import { m, type Variants } from "framer-motion";
 import styled from "styled-components";
 
-import { useScrollLock } from "~/hooks/useScrollLock";
+import { useScrollLock } from "../../hooks/useScrollLock";
 
-import AnimatePortal from "~/components/Portal/AnimatePortal";
-import Icon from "~/components/Icon/Icon";
+import { AnimatePortal } from "../Portal";
+import { Icon } from "../Icon";
 
 interface Props extends ComponentProps<typeof AnimatePortal> {
   /**

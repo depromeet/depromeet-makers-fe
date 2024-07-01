@@ -10,8 +10,8 @@
     "allowImportingTsExtensions": true,
     "inlineSources": false,
     "isolatedModules": true,
-    "module": "ESNext",
-    "moduleResolution": "Bundler",
+    "module": "esnext",
+    "moduleResolution": "bundler",
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "preserveWatchOutput": true,
@@ -21,5 +21,5 @@
     "strictNullChecks": true
   },
   "exclude": ["node_modules"],
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "@types"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "@types"]
 }

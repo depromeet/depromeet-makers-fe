@@ -6,8 +6,7 @@ import { TeamAttendance } from '~/features/total/TeamAttendance';
 import { useGetAttendanceStats } from '~/hooks/apis/attendance/useGetAttendanceStats';
 import { getDateText } from '~/utils/date';
 
-import { Badge, Header } from '@depromeet-makers-fe/ui';
-import Icon from '@depromeet-makers-fe/ui/src/components/Icon/Icon'; // TODO (@kimyouknow) module export 설정 수정하기
+import { Badge, Header, Icon } from '@depromeet-makers-fe/ui';
 
 const TotalAttendance = () => {
   // TODO: 아래 옵셔널 체이닝 관련 값들 변경해야함

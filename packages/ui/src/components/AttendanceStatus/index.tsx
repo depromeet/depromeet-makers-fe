@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 
-import type { AttendanceStatus } from "~/types/attendance";
+import type { AttendanceStatus } from "../../types/attendance";
 
-import type { IconComponentMap } from "~/components/Icon";
-import Icon from "~/components/Icon";
+import type { IconComponentMap } from "../Icon";
+import { Icon } from "../Icon";
 
 export interface CheckedProps {
   week: number;

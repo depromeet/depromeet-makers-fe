@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import { REGEX } from '~/constants/regex';
 import { getHasMember } from '~/hooks/apis/auth/useGetHasMember';

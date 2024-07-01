@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import Script from "next/script";
 import mixpanel from "mixpanel-browser";
 
-import { isProduction } from "~/constants/environment";
+import { isProduction } from "../constants/environment";
 
 const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS;
 const MIXPANEL_ID = process.env.NEXT_PUBLIC_MIXPANEL_ID;

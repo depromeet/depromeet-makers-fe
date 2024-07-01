@@ -5,7 +5,7 @@ import styled, { useTheme } from 'styled-components';
 import { ATTENDANCE_STATUS, ATTENDANCE_STATUS_KR } from '../../../constants/attendance';
 import { ATTENDANCE_STATUS_LIST } from '../../../constants/attendance';
 import useOutsideClick from '../../../hooks/useOutsideClick';
-import Icon from '@depromeet-makers-fe/ui/src/components/Icon/Icon'; // TODO (@kimyouknow) module export 설정 수정하기
+import { Icon } from '@depromeet-makers-fe/ui';
 
 type DropdownPosition = 'top' | 'bottom';
 

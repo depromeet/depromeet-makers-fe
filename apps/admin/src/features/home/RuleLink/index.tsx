@@ -1,4 +1,4 @@
-import Icon from '@depromeet-makers-fe/ui/src/components/Icon/Icon'; // TODO (@kimyouknow) module export 설정 수정하기
+import { Icon } from '@depromeet-makers-fe/ui'; // TODO (@kimyouknow) module export 설정 수정하기
 import Link from 'next/link';
 import styled from 'styled-components';
 

@@ -44,7 +44,7 @@ export interface IconComponentProps extends SVGProps<SVGSVGElement> {
   size?: number;
 }
 
-export default function Icon({ name, ...props }: Props) {
+export function Icon({ name, ...props }: Props) {
   const IconComponent = IconComponentMap[name];
 
   return <IconComponent {...props} />;

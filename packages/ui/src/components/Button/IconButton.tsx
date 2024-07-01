@@ -3,7 +3,7 @@ import Link from "next/link";
 import styled, { useTheme } from "styled-components";
 
 import type { IconComponentMap } from "~/components/Icon";
-import Icon from "~/components/Icon";
+import { Icon } from "../Icon";
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   iconName: keyof typeof IconComponentMap;

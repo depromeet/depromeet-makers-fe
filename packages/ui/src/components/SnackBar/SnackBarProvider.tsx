@@ -2,7 +2,7 @@ import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import styled from "styled-components";
 
-import { useIsMounted } from "~/hooks/useIsMounted";
+import { useIsMounted } from "../../hooks/useIsMounted";
 
 import { useSnackBar } from "./useSnackBar";
 import { SnackBar } from ".";

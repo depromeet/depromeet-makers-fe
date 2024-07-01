@@ -9,7 +9,7 @@ import {
 import styled from "styled-components";
 import { TRANSITION_VARIANTS } from "~/styles/theme/transition";
 import { PropsWithChildren, useState } from "react";
-import Icon from "~/components/Icon/Icon";
+import { Icon } from "../Icon";
 
 interface AccordionItemProps {
   title: string;
