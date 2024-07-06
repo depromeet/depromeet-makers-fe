@@ -5001,7 +5001,7 @@ __metadata:
     styled-components: "npm:^6.1.8"
     styled-reset: "npm:^4.5.2"
     typescript: "npm:^5"
-    utils: "npm:1.0.0"
+    utils: "npm:^1.0.0"
   languageName: unknown
   linkType: soft
 
@@ -6782,7 +6782,6 @@ __metadata:
     "@tanstack/eslint-plugin-query": "npm:^5.28.11"
     "@tanstack/react-query": "npm:^5.32.0"
     "@tanstack/react-query-devtools": "npm:^5.32.0"
-    "@types/gtag.js": "npm:^0.0.19"
     "@types/js-cookie": "npm:^3.0.6"
     "@types/mixpanel-browser": "npm:^2.49.0"
     "@types/node": "npm:^20"
@@ -6865,7 +6864,7 @@ __metadata:
     styled-components: "npm:^6.1.8"
     styled-reset: "npm:^4.5.2"
     typescript: "npm:^5"
-    utils: "npm:1.0.0"
+    utils: "npm:^1.0.0"
   languageName: unknown
   linkType: soft
 
@@ -10026,12 +10025,6 @@ __metadata:
   checksum: 10c0/effb03cad7c89dfa5bd4f6989364bfc79994c2042ec5966cb9b95990e2edee5cd8969ddf42616a0373ac49fac1403437deaf6e9050fbbaa3546093a59b9ac94e
   languageName: node
   linkType: hard
-
-"libraries@workspace:libraries/ui":
-  version: 0.0.0-use.local
-  resolution: "libraries@workspace:libraries/ui"
-  languageName: unknown
-  linkType: soft
 
 "lilconfig@npm:^3.0.0, lilconfig@npm:~3.1.1":
   version: 3.1.2
@@ -14324,10 +14317,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"utils@npm:1.0.0, utils@workspace:libraries/utils":
+"utils@npm:^1.0.0, utils@workspace:libraries/utils":
   version: 0.0.0-use.local
   resolution: "utils@workspace:libraries/utils"
   dependencies:
+    "@types/gtag.js": "npm:^0.0.19"
     tsup: "npm:^8.1.0"
     typescript: "npm:^5"
   languageName: unknown

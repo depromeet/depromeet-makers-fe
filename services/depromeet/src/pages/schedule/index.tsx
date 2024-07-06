@@ -5,7 +5,7 @@ import { Metadata } from '../../components/Metadata';
 import { USER_NAV_ITEMS } from '../../constants/bottomNav';
 import ScheduleItem from '../../features/schedule/ScheduleItem';
 import { useGetSessionList } from '../../hooks/apis/sessions/useGetSessionList';
-import { isSameDate } from '../../utils/date';
+import { isSameDate } from 'utils';
 
 function SchedulePage() {
   const today = new Date();

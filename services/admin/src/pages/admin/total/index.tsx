@@ -7,7 +7,7 @@ import { CURRENT_GENERATION } from '../../../constants/attendance';
 import { InfoBox } from '../../../features/total/InfoBox';
 import { TeamAttendance } from '../../../features/total/TeamAttendance';
 import { useGetAttendanceStats } from '../../../hooks/apis/attendance/useGetAttendanceStats';
-import { getDateText } from '../../../utils/date';
+import { getDateText } from 'utils';
 
 const TotalAttendance = () => {
   // TODO: 아래 옵셔널 체이닝 관련 값들 변경해야함

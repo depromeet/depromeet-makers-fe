@@ -9,6 +9,7 @@
     "build": "tsup"
   },
   "devDependencies": {
+    "@types/gtag.js": "^0.0.19",
     "tsup": "^8.1.0",
     "typescript": "^5"
   }

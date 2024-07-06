@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { Accordion, AccordionItem } from '../../../components/Accordion';
 import { Badge } from '../../../components/Badge';
-import { getDateText } from '../../../utils/date';
+import { getDateText } from 'utils';
 
 import type { ScheduleType } from '../index.constants';
 

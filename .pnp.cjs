@@ -15,10 +15,6 @@ const RAW_RUNTIME_STATE =
       "reference": "workspace:."\
     },\
     {\
-      "name": "libraries",\
-      "reference": "workspace:libraries/ui"\
-    },\
-    {\
       "name": "utils",\
       "reference": "workspace:libraries/utils"\
     },\
@@ -37,7 +33,6 @@ const RAW_RUNTIME_STATE =
     ["admin", ["workspace:services/admin"]],\
     ["depromeet", ["workspace:services/depromeet"]],\
     ["depromeet-makers-fe", ["workspace:."]],\
-    ["libraries", ["workspace:libraries/ui"]],\
     ["utils", ["workspace:libraries/utils"]]\
   ],\
   "fallbackPool": [\
@@ -59,7 +54,6 @@ const RAW_RUNTIME_STATE =
           ["@tanstack/eslint-plugin-query", "virtual:cfb8dc564756c090d7cb595deb14410f9816d1c6a46c80d9255294cc5e976dd4fc2a6db54c551b1b4a9550ae6999a863ee1aa795f239830cbb771049f5179310#npm:5.50.1"],\
           ["@tanstack/react-query", "virtual:cfb8dc564756c090d7cb595deb14410f9816d1c6a46c80d9255294cc5e976dd4fc2a6db54c551b1b4a9550ae6999a863ee1aa795f239830cbb771049f5179310#npm:5.50.1"],\
           ["@tanstack/react-query-devtools", "virtual:cfb8dc564756c090d7cb595deb14410f9816d1c6a46c80d9255294cc5e976dd4fc2a6db54c551b1b4a9550ae6999a863ee1aa795f239830cbb771049f5179310#npm:5.50.1"],\
-          ["@types/gtag.js", "npm:0.0.19"],\
           ["@types/js-cookie", "npm:3.0.6"],\
           ["@types/mixpanel-browser", "npm:2.49.0"],\
           ["@types/node", "npm:20.14.10"],\
@@ -10065,7 +10059,6 @@ const RAW_RUNTIME_STATE =
           ["@tanstack/eslint-plugin-query", "virtual:cfb8dc564756c090d7cb595deb14410f9816d1c6a46c80d9255294cc5e976dd4fc2a6db54c551b1b4a9550ae6999a863ee1aa795f239830cbb771049f5179310#npm:5.50.1"],\
           ["@tanstack/react-query", "virtual:cfb8dc564756c090d7cb595deb14410f9816d1c6a46c80d9255294cc5e976dd4fc2a6db54c551b1b4a9550ae6999a863ee1aa795f239830cbb771049f5179310#npm:5.50.1"],\
           ["@tanstack/react-query-devtools", "virtual:cfb8dc564756c090d7cb595deb14410f9816d1c6a46c80d9255294cc5e976dd4fc2a6db54c551b1b4a9550ae6999a863ee1aa795f239830cbb771049f5179310#npm:5.50.1"],\
-          ["@types/gtag.js", "npm:0.0.19"],\
           ["@types/js-cookie", "npm:3.0.6"],\
           ["@types/mixpanel-browser", "npm:2.49.0"],\
           ["@types/node", "npm:20.14.10"],\
@@ -13811,15 +13804,6 @@ const RAW_RUNTIME_STATE =
           ["type-check", "npm:0.4.0"]\
         ],\
         "linkType": "HARD"\
-      }]\
-    ]],\
-    ["libraries", [\
-      ["workspace:libraries/ui", {\
-        "packageLocation": "./libraries/ui/",\
-        "packageDependencies": [\
-          ["libraries", "workspace:libraries/ui"]\
-        ],\
-        "linkType": "SOFT"\
       }]\
     ]],\
     ["lilconfig", [\
@@ -18896,6 +18880,7 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./libraries/utils/",\
         "packageDependencies": [\
           ["utils", "workspace:libraries/utils"],\
+          ["@types/gtag.js", "npm:0.0.19"],\
           ["tsup", "virtual:b43ce9f4fa4619141e88291a4e683f26f14b09c924e218bcf65384a8e4d8ddd4cf4789df6b699830729f0e8056a132d07c54ee18efa1e340660c71f2d2360ec8#npm:8.1.0"],\
           ["typescript", "patch:typescript@npm%3A5.5.3#optional!builtin<compat/typescript>::version=5.5.3&hash=379a07"]\
         ],\

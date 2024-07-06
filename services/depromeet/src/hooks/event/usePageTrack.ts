@@ -3,7 +3,8 @@ import { useRouter } from 'next/router';
 import mixpanel from 'mixpanel-browser';
 
 import { isProduction } from '../../constants/environment';
-import { pageview } from '../../utils/gtag';
+import { pageview } from 'utils';
+const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS ?? '';
 
 const usePageTrack = () => {
   const router = useRouter();

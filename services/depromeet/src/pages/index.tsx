@@ -16,7 +16,7 @@ import { useGetAttendance } from '../hooks/apis/attendance/useGetAttendance';
 import { useGetCheckIn } from '../hooks/apis/attendance/useGetCheckIn';
 import { useGetSession } from '../hooks/apis/sessions/useGetSession';
 import { useGetInfo } from '../hooks/apis/user/useGetInfo';
-import { getDateText } from '../utils/date';
+import { getDateText } from 'utils';
 
 const Home = () => {
   const { data: attendance } = useGetAttendance({ generation: CURRENT_GENERATION });

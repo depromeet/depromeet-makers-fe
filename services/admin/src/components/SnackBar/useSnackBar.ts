@@ -3,7 +3,7 @@ import { useAtom } from 'jotai';
 
 import type { SnackBarProps } from '../../store/snackBar';
 import { snackBarsAtom } from '../../store/snackBar';
-import { generateId } from '../../utils/generateId';
+import { generateId } from 'utils';
 
 const DEFAULT_DURATION = 3000;
 

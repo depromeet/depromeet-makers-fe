@@ -9,7 +9,7 @@ import JoinCompleteStep from '../../features/login/JoinCompleteStep';
 import JoinStep from '../../features/login/JoinStep';
 import WelcomeStep from '../../features/login/WelcomeStep';
 import { useFunnel } from '../../hooks/useFunnel';
-import {cookieStringToObject} from 'utils';
+import { cookieStringToObject } from 'utils';
 
 const STEP = {
   WELCOME: 'welcome',
