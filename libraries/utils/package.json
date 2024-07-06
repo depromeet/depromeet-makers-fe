@@ -1,0 +1,16 @@
+{
+  "name": "utils",
+  "packageManager": "yarn@4.3.1",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsup"
+  },
+  "devDependencies": {
+    "@types/gtag.js": "^0.0.19",
+    "tsup": "^8.1.0",
+    "typescript": "^5"
+  }
+}
