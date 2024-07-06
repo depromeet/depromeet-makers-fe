@@ -7,12 +7,14 @@
 .yarn/install-state.gz
 
 **/dist
+.yarn/unplugged/
 
 # testing
 /coverage
 
 # next.js
 /.next/
+**/.next
 /out/
 
 # production
