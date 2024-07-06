@@ -1,0 +1,3 @@
+{
+  "extends": ["@depromeet-makers-fe/eslint-config", "next/core-web-vitals"]
+}
