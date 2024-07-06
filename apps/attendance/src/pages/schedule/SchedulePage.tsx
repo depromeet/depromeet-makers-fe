@@ -7,7 +7,7 @@ import ScheduleItem from '~/features/schedule/ScheduleItem';
 import { useGetSessionList } from '~/hooks/apis/sessions/useGetSessionList';
 import { isSameDate } from '~/utils/date';
 
-function SchedulePage() {
+export function SchedulePage() {
   const today = new Date();
 
   const { data, isLoading } = useGetSessionList();
@@ -49,8 +49,6 @@ function SchedulePage() {
     </>
   );
 }
-
-export default SchedulePage;
 
 const Hgroup = styled.hgroup`
   display: flex;

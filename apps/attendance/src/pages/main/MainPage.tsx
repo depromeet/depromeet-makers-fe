@@ -1,18 +1,17 @@
-import styled from 'styled-components';
-
-import { Metadata } from '../components/Metadata';
-import { ATTENDANCE_STATUS, CURRENT_GENERATION } from '../constants/attendance';
-import { USER_NAV_ITEMS } from '../constants/bottomNav';
-import { Absence } from '../features/home/Absence';
-import { Attendance } from '../features/home/Attendance';
-import { RuleLink } from '../features/home/RuleLink';
-import { useCheckIn } from '../hooks/apis/attendance/useCheckIn';
-import { useGetAttendance } from '../hooks/apis/attendance/useGetAttendance';
-import { useGetCheckIn } from '../hooks/apis/attendance/useGetCheckIn';
-import { useGetSession } from '../hooks/apis/sessions/useGetSession';
-import { useGetInfo } from '../hooks/apis/user/useGetInfo';
-import { getDateText } from '../utils/date';
+import { Metadata } from '~/components/Metadata';
+import { CURRENT_GENERATION, ATTENDANCE_STATUS } from '~/constants/attendance';
+import { USER_NAV_ITEMS } from '~/constants/bottomNav';
+import { Absence } from '~/features/home/Absence';
+import { Attendance } from '~/features/home/Attendance';
+import { RuleLink } from '~/features/home/RuleLink';
+import { useCheckIn } from '~/hooks/apis/attendance/useCheckIn';
+import { useGetAttendance } from '~/hooks/apis/attendance/useGetAttendance';
+import { useGetCheckIn } from '~/hooks/apis/attendance/useGetCheckIn';
+import { useGetSession } from '~/hooks/apis/sessions/useGetSession';
+import { useGetInfo } from '~/hooks/apis/user/useGetInfo';
+import { getDateText } from '~/utils/date';
 import { Badge, FAB, BottomNav } from '@depromeet-makers-fe/ui';
+import styled from 'styled-components';
 
 const TITLE = [
   `디프만 15기 첫출발,\n함께 시작해볼까요? 🌱`,
@@ -34,8 +33,10 @@ const TITLE = [
   '디프만 15기 고생하셨습니다 💙',
 ];
 
-const Home = () => {
-  const { data: attendance } = useGetAttendance({ generation: CURRENT_GENERATION });
+export function MainPage() {
+  const { data: attendance } = useGetAttendance({
+    generation: CURRENT_GENERATION,
+  });
   const { data: sessionAttendance } = useGetCheckIn();
   const { data: session, isLoading } = useGetSession();
   const { mutate } = useCheckIn();
@@ -52,7 +53,6 @@ const Home = () => {
 
   // NOTE: 유저 정보 가져오기
   const { data } = useGetInfo();
-  console.log('data: ', data);
 
   const handleClickCheckIn = () => {
     mutate();
@@ -90,7 +90,7 @@ const Home = () => {
       <BottomNav items={USER_NAV_ITEMS} />
     </>
   );
-};
+}
 
 const Container = styled.main`
   display: flex;
@@ -143,5 +143,3 @@ const AttendanceContainer = styled.section`
 
   margin-bottom: 60px;
 `;
-
-export default Home;

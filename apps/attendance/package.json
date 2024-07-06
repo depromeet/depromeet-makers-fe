@@ -1,5 +1,5 @@
 {
-  "name": "@depromeet-makers-fe/admin",
+  "name": "@depromeet-makers-fe/attendance",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -10,9 +10,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "lint:fix": "eslint 'src/**/*.{js,jsx,ts,tsx}' --fix",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "lint:fix": "eslint 'src/**/*.{js,jsx,ts,tsx}' --fix"
   },
   "dependencies": {
     "@depromeet-makers-fe/ui": "workspace:^",
