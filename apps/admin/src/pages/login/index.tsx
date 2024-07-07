@@ -25,7 +25,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   if (cookies[COOKIE_KEY.ACCESS_TOKEN]) {
     return {
       redirect: {
-        destination: '/',
+        destination: '/admin/attendance',
         permanent: false,
       },
     };

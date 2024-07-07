@@ -5,6 +5,15 @@ const nextConfig = {
     styledComponents: true,
   },
   transpilePackages: ['@depromeet-makers-fe/ui'],
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/login',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
