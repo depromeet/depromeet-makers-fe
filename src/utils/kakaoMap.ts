@@ -6,9 +6,24 @@ const isIos = () => {
   return Boolean(userAgent.match(/iPhone|iPad|iPod/i));
 };
 
-const APP_STORE_LINK = 'itms-apps://itunes.apple.com/app/id304608425';
+const isAndroid = () => {
+  const userAgent = navigator.userAgent;
+
+  return Boolean(userAgent.match(/Android/i));
+};
+
+export const isDesktop = () => {
+  return Boolean(!isAndroid() && !isIos());
+};
 
 export const openKakaoMap = ({ address, latitude, longitude }: SessionPlace) => {
+  const webUrl = `https://map.kakao.com/link/to/${address},${latitude},${longitude}`;
+
+  if (isDesktop()) {
+    location.href = webUrl;
+    return;
+  }
+
   if (!isIos()) return;
 
   const kakaoMapSearchUrl = `kakaomap://search?q=${address}&p=${latitude},${longitude}`;
@@ -21,11 +36,11 @@ export const openKakaoMap = ({ address, latitude, longitude }: SessionPlace) => 
     const end = new Date().getTime();
 
     if (end - start < 1500) {
-      location.href = APP_STORE_LINK;
+      location.href = webUrl;
     }
   }, 500);
 
-  window.addEventListener('blur', () => {
+  window.addEventListener('pagehide', () => {
     clearTimeout(timeout);
   });
 };
