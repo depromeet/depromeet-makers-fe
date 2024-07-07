@@ -6,7 +6,7 @@ const isIos = () => {
   return Boolean(userAgent.match(/iPhone|iPad|iPod/i));
 };
 
-const APP_STORE_LINK = 'https://apps.apple.com/kr/app/id304608425';
+const APP_STORE_LINK = 'itms-apps://itunes.apple.com/app/id304608425';
 
 export const openKakaoMap = ({ address, latitude, longitude }: SessionPlace) => {
   if (!isIos()) return;
