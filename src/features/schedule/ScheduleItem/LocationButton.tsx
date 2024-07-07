@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 import Icon from '@/components/Icon';
 import type { SessionType } from '@/hooks/apis/sessions/useGetSessionList';
+import { openKakaoMap } from '@/utils/kakaoMap';
 
 type LocationButtonProps = Pick<SessionType, 'place'>;
 
@@ -14,18 +15,22 @@ export const LocationButton = ({ place }: LocationButtonProps) => {
 
   if (latitude === 0 || longitude === 0) return null;
 
+  const handleClickLocationButton = () => {
+    openKakaoMap(place);
+  };
+
   return (
-    <LocationLink href={`https://map.kakao.com/link/to/${address},${latitude},${longitude}`}>
+    <LocationButtonContainer onClick={handleClickLocationButton}>
       <Text>
         <Icon name="location" />
         {address}
       </Text>
       <Icon name="arrow-right" />
-    </LocationLink>
+    </LocationButtonContainer>
   );
 };
 
-const LocationLink = styled.a`
+const LocationButtonContainer = styled.button`
   display: flex;
   justify-content: space-between;
   align-items: center;
