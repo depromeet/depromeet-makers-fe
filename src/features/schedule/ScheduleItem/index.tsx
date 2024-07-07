@@ -23,6 +23,7 @@ function ScheduleItem(props: ScheduleItemProps) {
         <HeadLeft>
           <Badge variant="default">{props.week}주차</Badge>
           <Title isToday={props.isToday}>{`${month} ${day}`}</Title>
+          {props.isToday && <TodayBadge>Today</TodayBadge>}
         </HeadLeft>
         {props.isOffline ? <Badge variant="black">오프라인</Badge> : <Badge variant="line">온라인</Badge>}
       </Head>
@@ -58,7 +59,7 @@ const Head = styled.div`
 const HeadLeft = styled.div`
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
 `;
 
 const Title = styled.p<Pick<ScheduleItemProps, 'isToday'>>`
@@ -82,4 +83,13 @@ const Description = styled.div`
   display: flex;
   flex-direction: column;
   gap: 12px;
+`;
+
+const TodayBadge = styled.span`
+  padding: 1px 4px;
+  border-radius: 2px;
+  background-color: ${({ theme }) => theme.color.green_200};
+
+  ${({ theme }) => theme.typo.tab};
+  color: ${({ theme }) => theme.color.green_300};
 `;
