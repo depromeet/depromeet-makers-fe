@@ -1,4 +1,4 @@
-import type { IconComponentMap } from "~/components/Icon";
+import type { IconComponentMap } from '../components/Icon';
 
 export type NavItemType = {
   text: string;
@@ -7,13 +7,13 @@ export type NavItemType = {
 }[];
 
 export const USER_NAV_ITEMS: NavItemType = [
-  { text: "홈", icon: "home", path: "/" },
-  { text: "일정", icon: "calendar", path: "/schedule" },
+  { text: '홈', icon: 'home', path: '/' },
+  { text: '일정', icon: 'calendar', path: '/schedule' },
   // NOTE: 심사를 위해 임시 주석 처리
   // { text: '마이페이지', icon: 'user', path: '/my' },
 ] as const;
 
 export const ADMIN_NAV_ITEMS: NavItemType = [
-  { text: "출석현황", icon: "team", path: "/admin/attendance" },
-  { text: "증빙", icon: "paper", path: "#" },
+  { text: '출석현황', icon: 'team', path: '/admin/attendance' },
+  { text: '증빙', icon: 'paper', path: '#' },
 ];

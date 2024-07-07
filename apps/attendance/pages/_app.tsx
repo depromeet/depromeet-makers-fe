@@ -2,8 +2,7 @@ import type { AppProps } from 'next/app';
 import { domAnimation, LazyMotion } from 'framer-motion';
 import { ThemeProvider } from 'styled-components';
 
-import MonitoringInitializer from '@depromeet-makers-fe/ui/src/components/MonitoringInitializer';
-import { SnackBar } from '@depromeet-makers-fe/ui';
+import { MonitoringInitializer, SnackBar } from '@depromeet-makers-fe/ui';
 import theme from '@depromeet-makers-fe/ui/src/styles/theme';
 import React from 'react';
 import Layout from '~/components/Layout';

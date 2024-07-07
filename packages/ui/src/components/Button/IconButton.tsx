@@ -1,9 +1,9 @@
-import type { ButtonHTMLAttributes } from "react";
-import Link from "next/link";
-import styled, { useTheme } from "styled-components";
+import type { ButtonHTMLAttributes } from 'react';
+import Link from 'next/link';
+import styled, { useTheme } from 'styled-components';
 
-import type { IconComponentMap } from "~/components/Icon";
-import { Icon } from "../Icon";
+import type { IconComponentMap } from '../Icon';
+import { Icon } from '../Icon';
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   iconName: keyof typeof IconComponentMap;
@@ -17,12 +17,7 @@ function IconButton({ iconName, href, ...props }: Props) {
     return (
       <Link href={href}>
         <ButtonStyled {...props}>
-          <Icon
-            name={iconName}
-            width={20}
-            height={20}
-            color={theme.color.gray_400}
-          />
+          <Icon name={iconName} width={20} height={20} color={theme.color.gray_400} />
           {props.children}
         </ButtonStyled>
       </Link>
@@ -31,12 +26,7 @@ function IconButton({ iconName, href, ...props }: Props) {
 
   return (
     <ButtonStyled {...props}>
-      <Icon
-        name={iconName}
-        width={20}
-        height={20}
-        color={theme.color.gray_400}
-      />
+      <Icon name={iconName} width={20} height={20} color={theme.color.gray_400} />
       {props.children}
     </ButtonStyled>
   );

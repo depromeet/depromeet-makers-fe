@@ -3,7 +3,7 @@ import { domMax, LazyMotion } from 'framer-motion';
 import styled, { useTheme } from 'styled-components';
 import BottomSheet from '@depromeet-makers-fe/ui/src/components/BottomSheet'; // TODO (@kimyouknow) module export 설정 수정하기
 import ChipLine from '@depromeet-makers-fe/ui/src/components/Chip/ChipLine'; // TODO (@kimyouknow) module export 설정 수정하기
-import Icon from '@depromeet-makers-fe/ui/src/components/Icon/Icon/Icon'; // TODO (@kimyouknow) module export 설정 수정하기
+import { Icon } from '@depromeet-makers-fe/ui';
 
 const WEEK_COUNT = 16;
 const WEEK_LIST = Array.from({ length: WEEK_COUNT }).map((_, index) => index + 1);

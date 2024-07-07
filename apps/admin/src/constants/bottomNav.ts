@@ -1,4 +1,4 @@
-import type { IconComponentMap } from '../components/Icon';
+import { IconComponentMap } from '@depromeet-makers-fe/ui';
 
 export type NavItemType = {
   text: string;

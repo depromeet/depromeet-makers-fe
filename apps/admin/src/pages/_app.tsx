@@ -8,8 +8,7 @@ import Layout from '../components/Layout';
 import usePageTrack from '../hooks/event/usePageTrack';
 import GlobalStyle from '../styles/GlobalStyle';
 import theme from '../styles/theme';
-import MonitoringInitializer from '@depromeet-makers-fe/ui/src/components/MonitoringInitializer';
-import { SnackBar } from '@depromeet-makers-fe/ui';
+import { MonitoringInitializer, SnackBar } from '@depromeet-makers-fe/ui';
 
 export default function App({ Component, pageProps }: AppProps) {
   return (

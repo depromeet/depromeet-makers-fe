@@ -1,6 +1,10 @@
 const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS;
 
 export const pageview = (url: URL) => {
+  if (GA_TRACKING_ID == null) {
+    throw Error('Google Analytics ID가 없습니다.');
+  }
+
   window.gtag('config', GA_TRACKING_ID, {
     page_path: url,
   });
