@@ -5,7 +5,10 @@
     "build": "turbo build",
     "dev": "turbo dev",
     "lint": "turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "admin": "pnpm --filter @depromeet-makers-fe/admin",
+    "attendance": "pnpm --filter @depromeet-makers-fe/attendance",
+    "ui": "pnpm --filter @depromeet-makers-fe/ui"
   },
   "devDependencies": {
     "prettier": "^3.2.5",
