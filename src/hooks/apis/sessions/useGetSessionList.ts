@@ -3,14 +3,15 @@ import { useQuery } from '@tanstack/react-query';
 
 import type { CustomError } from '@/apis';
 import { api } from '@/apis';
+import type { SessionPlace } from '@/types/session';
 
-interface SessionType {
+export interface SessionType {
   sessionId: string;
   week: number;
   title: string;
   startTime: string;
   sessionType: string;
-  place: string;
+  place?: SessionPlace;
   generation: number;
   description?: string;
 }

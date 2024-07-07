@@ -41,3 +41,16 @@ export function ArrowLeft(props: IconComponentProps) {
     </svg>
   );
 }
+
+export function ArrowRight(props: IconComponentProps) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none" {...props}>
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M8.82665 3.04102L7.88598 3.98568L11.248 7.33302H2.19531V8.66635H11.2473L7.88598 12.0143L8.82665 12.959L13.8066 7.99968L8.82665 3.04102Z"
+        fill="#64748B"
+      />
+    </svg>
+  );
+}
