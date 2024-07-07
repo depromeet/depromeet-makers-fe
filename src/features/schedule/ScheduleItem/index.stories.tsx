@@ -30,14 +30,14 @@ type Story = StoryObj<typeof ScheduleItem>;
 
 export const Today: Story = {
   args: {
-    desc: "Yes. It's animated by default, but you can disable it if you prefer.",
+    description: "Yes. It's animated by default, but you can disable it if you prefer.",
     isToday: true,
   },
 };
 
 export const NotToday: Story = {
   args: {
-    desc: "Yes. It's animated by default, but you can disable it if you prefer.",
+    description: "Yes. It's animated by default, but you can disable it if you prefer.",
     isToday: false,
   },
 };
