@@ -17,15 +17,20 @@ export const openKakaoMap = ({ address, latitude, longitude }: SessionPlace) => 
 
   location.href = kakaoMapSearchUrl;
 
-  const timeout = setTimeout(() => {
+  const successTimeout = setTimeout(() => {
+    location.href = kakaoMapSearchUrl;
+  }, 0);
+
+  const fallbackTimeout = setTimeout(() => {
     const end = new Date().getTime();
 
     if (end - start < 1500) {
       location.href = APP_STORE_LINK;
     }
-  }, 500);
+  }, 1000);
 
   window.addEventListener('blur', () => {
-    clearTimeout(timeout);
+    clearTimeout(fallbackTimeout);
+    clearTimeout(successTimeout);
   });
 };
