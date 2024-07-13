@@ -9,11 +9,10 @@ type LocationButtonProps = Pick<SessionType, 'place'>;
 export const LocationButton = ({ place }: LocationButtonProps) => {
   if (!place) return null;
 
-  const { address, latitude, longitude } = place;
+  const { address } = place;
 
   if (address === '온라인') return null;
-
-  if (latitude === 0 || longitude === 0) return null;
+  if (address === '오프라인') return null;
 
   const handleClickLocationButton = () => {
     openKakaoMap(place);
