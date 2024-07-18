@@ -1,5 +1,5 @@
 import type { ChangeEvent, FormEvent } from 'react';
-import { useRef } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import styled from 'styled-components';
 
 import Button from '@/components/Button';
@@ -9,13 +9,21 @@ import { CodeInputs } from './CodeInputs';
 
 export const AttendanceCodeModal = () => {
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
+  const [inputs, setInputs] = useState<string[]>(['', '', '', '']);
+
   // TODO: api 추가 후 에러 처리 필요
   const isError = true;
+
+  const isDisabledSubmit = useMemo(() => inputs.some((input) => input === ''), [inputs]);
 
   const handleAutoFocusNextInput = (event: ChangeEvent<HTMLInputElement>, index: number) => {
     const { maxLength, value } = event.target;
 
     if (value.length > maxLength) return;
+
+    const newInputs = [...inputs];
+    newInputs[index] = value;
+    setInputs(newInputs);
 
     const currentInput = inputRefs.current[index];
     const nextInput = inputRefs.current[index + 1];
@@ -30,11 +38,15 @@ export const AttendanceCodeModal = () => {
   };
 
   const handleClearNextAllInputs = (currentIndex: number) => () => {
-    inputRefs.current.forEach((input, index) => {
+    const inputs = inputRefs.current.map((input, index) => {
       if (input && index >= currentIndex) {
         input.value = '';
+        return '';
       }
+      return input?.value ?? '';
     });
+
+    setInputs(inputs);
   };
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -52,7 +64,9 @@ export const AttendanceCodeModal = () => {
         <Text>출석 코드를 입력해주세요</Text>
         <CodeInputs inputRefs={inputRefs} onChange={handleAutoFocusNextInput} onFocus={handleClearNextAllInputs} />
         {isError && <ErrorMessage>본 세션에 해당하는 출석 코드가 아닙니다. 다시 입력해주세요.</ErrorMessage>}
-        <SubmitButton type="submit">확인</SubmitButton>
+        <SubmitButton type="submit" disabled={isDisabledSubmit}>
+          확인
+        </SubmitButton>
       </Form>
     </Modal>
   );
