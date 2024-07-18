@@ -1,3 +1,4 @@
+import { useAtomValue } from 'jotai';
 import styled from 'styled-components';
 
 import { Badge } from '@/components/Badge';
@@ -9,6 +10,7 @@ import { USER_NAV_ITEMS } from '@/constants/bottomNav';
 import { TITLE } from '@/constants/home';
 import { Absence } from '@/features/home/Absence';
 import { Attendance } from '@/features/home/Attendance';
+import { AttendanceCodeModal } from '@/features/home/AttendanceCodeModal';
 import { Notification } from '@/features/home/Notification';
 import { RuleLink } from '@/features/home/RuleLink';
 import { useCheckIn } from '@/hooks/apis/attendance/useCheckIn';
@@ -16,6 +18,7 @@ import { useGetAttendance } from '@/hooks/apis/attendance/useGetAttendance';
 import { useGetCheckIn } from '@/hooks/apis/attendance/useGetCheckIn';
 import { useGetSession } from '@/hooks/apis/sessions/useGetSession';
 import { useGetInfo } from '@/hooks/apis/user/useGetInfo';
+import { modalAtom } from '@/store/modal';
 import { getDateText } from '@/utils/date';
 
 const Home = () => {
@@ -24,6 +27,8 @@ const Home = () => {
   const { data: session, isLoading } = useGetSession();
 
   const { mutate } = useCheckIn();
+
+  const isVisibleCodeModal = useAtomValue(modalAtom);
 
   const { month, day } = getDateText(String(new Date()));
   const isVisibleFab = sessionAttendance?.needFloatingButton;
@@ -74,6 +79,8 @@ const Home = () => {
       {isVisibleFab && (
         <FAB text="출석하기 🙌" sessionAttendanceStatus={getSessionAttendanceStatus()} onClick={handleClickCheckIn} />
       )}
+
+      {isVisibleCodeModal && <AttendanceCodeModal />}
       <BottomNav items={USER_NAV_ITEMS} />
     </>
   );
