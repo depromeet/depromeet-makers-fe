@@ -10,6 +10,7 @@ interface GetSessionRequest {
 
 interface GetSessionResponse {
   week: number;
+  startTime: string;
 }
 
 const getSessionList = async (): Promise<GetSessionResponse> => {
