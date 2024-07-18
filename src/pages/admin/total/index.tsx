@@ -7,17 +7,25 @@ import { CURRENT_GENERATION } from '@/constants/attendance';
 import { InfoBox } from '@/features/total/InfoBox';
 import { TeamAttendance } from '@/features/total/TeamAttendance';
 import { useGetAttendanceStats } from '@/hooks/apis/attendance/useGetAttendanceStats';
+import { useCurrentWeek } from '@/hooks/useCurrentWeek';
 import { getDateText } from '@/utils/date';
 
 const TotalAttendance = () => {
   // TODO: 아래 옵셔널 체이닝 관련 값들 변경해야함
-  const { data, refetch } = useGetAttendanceStats({ week: 1, generation: CURRENT_GENERATION });
+  const { week, isSessionStarted } = useCurrentWeek();
+  const { data, refetch, isLoading } = useGetAttendanceStats({
+    week: isSessionStarted ? week : week - 1,
+    generation: CURRENT_GENERATION,
+  });
 
   const { month, day } = getDateText(data?.sessionDate || '');
 
   const handleRefresh = () => {
     refetch();
   };
+
+  // TODO: 로딩 컴포넌트 추가
+  if (isLoading) return <></>;
 
   return (
     <Container>
