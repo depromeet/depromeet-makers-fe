@@ -37,7 +37,6 @@ const Home = () => {
 
   // NOTE: 유저 정보 가져오기
   const { data } = useGetInfo();
-  console.log('data: ', data);
 
   const handleClickCheckIn = () => {
     mutate();
