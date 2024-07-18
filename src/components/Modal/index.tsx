@@ -40,6 +40,7 @@ const Overlay = styled.div`
   justify-content: center;
 
   background-color: rgba(0, 0, 0, 0.8);
+  z-index: ${({ theme }) => theme.zIndex.modal};
 `;
 
 const Header = styled.div`
