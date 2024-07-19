@@ -1,7 +1,11 @@
 import type { UseMutationOptions } from '@tanstack/react-query';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useSetAtom } from 'jotai';
 
 import { api } from '@/apis';
+import { useSnackBar } from '@/components/SnackBar/useSnackBar';
+import { SNACKBAR_MESSAGE } from '@/constants/errorMessage';
+import { modalAtom } from '@/store/modal';
 
 interface CodeCheckInRequest {
   code: string;
@@ -33,11 +37,17 @@ export const useCodeCheckIn = (
   options?: UseMutationOptions<CodeCheckInResponse, CodeCheckInError, CodeCheckInRequest>,
 ) => {
   const queryClient = useQueryClient();
+  const { showSnackBar } = useSnackBar();
+  const setIsModalOpen = useSetAtom(modalAtom);
 
   return useMutation({
     mutationFn: (code: CodeCheckInRequest) => api.post<CodeCheckInResponse>(`/v1/check-in/code`, code),
     ...options,
     onSuccess: (data, ...rest) => {
+      setIsModalOpen(false);
+
+      showSnackBar({ message: SNACKBAR_MESSAGE['200'] ?? data.message });
+
       options?.onSuccess?.(data, ...rest);
 
       return queryClient.invalidateQueries({ queryKey: ['attendances-me'] });
