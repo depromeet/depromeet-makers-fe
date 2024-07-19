@@ -80,7 +80,7 @@ const Home = () => {
         <FAB text="출석하기 🙌" sessionAttendanceStatus={getSessionAttendanceStatus()} onClick={handleClickCheckIn} />
       )}
 
-      <AttendanceCodeModal isOpen={isVisibleCodeModal} onClose={() => setIsVisibleCodeModal(false)} />
+      <AttendanceCodeModal isOpen={isVisibleCodeModal} setOpen={setIsVisibleCodeModal} />
       <BottomNav items={USER_NAV_ITEMS} />
     </>
   );

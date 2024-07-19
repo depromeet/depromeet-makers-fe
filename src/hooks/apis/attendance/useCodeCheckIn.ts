@@ -44,8 +44,6 @@ export const useCodeCheckIn = (
     mutationFn: (code: CodeCheckInRequest) => api.post<CodeCheckInResponse>(`/v1/check-in/code`, code),
     ...options,
     onSuccess: (data, ...rest) => {
-      setIsModalOpen(false);
-
       showSnackBar({ message: SNACKBAR_MESSAGE['200'] ?? data.message });
 
       options?.onSuccess?.(data, ...rest);

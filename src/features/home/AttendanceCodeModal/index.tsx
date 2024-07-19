@@ -10,10 +10,10 @@ import { CodeInputs } from './CodeInputs';
 
 interface AttendanceCodeModalProps {
   isOpen: boolean;
-  onClose: () => void;
+  setOpen: (isOpen: boolean) => void;
 }
 
-export const AttendanceCodeModal = ({ isOpen, onClose }: AttendanceCodeModalProps) => {
+export const AttendanceCodeModal = ({ isOpen, setOpen }: AttendanceCodeModalProps) => {
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
   const [inputs, setInputs] = useState<string[]>(['', '', '', '']);
@@ -23,6 +23,8 @@ export const AttendanceCodeModal = ({ isOpen, onClose }: AttendanceCodeModalProp
     onError: (data) => {
       const errorMessage = getErrorMessage(data?.data?.tryCount);
       setErrorMessage(errorMessage[data.code] ?? data.message);
+
+      setOpen(true);
     },
   });
 
@@ -70,7 +72,7 @@ export const AttendanceCodeModal = ({ isOpen, onClose }: AttendanceCodeModalProp
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose}>
+    <Modal isOpen={isOpen} onClose={() => setOpen(false)}>
       <Form onSubmit={handleSubmit}>
         <Text>출석 코드를 입력해주세요</Text>
         <CodeInputs inputRefs={inputRefs} onChange={handleAutoFocusNextInput} onFocus={handleClearNextAllInputs} />
