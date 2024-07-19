@@ -8,7 +8,12 @@ import { getErrorMessage, useCodeCheckIn } from '@/hooks/apis/attendance/useCode
 
 import { CodeInputs } from './CodeInputs';
 
-export const AttendanceCodeModal = () => {
+interface AttendanceCodeModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+export const AttendanceCodeModal = ({ isOpen, onClose }: AttendanceCodeModalProps) => {
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
   const [inputs, setInputs] = useState<string[]>(['', '', '', '']);
@@ -65,7 +70,7 @@ export const AttendanceCodeModal = () => {
   };
 
   return (
-    <Modal isOpen onClose={() => {}}>
+    <Modal isOpen={isOpen} onClose={onClose}>
       <Form onSubmit={handleSubmit}>
         <Text>출석 코드를 입력해주세요</Text>
         <CodeInputs inputRefs={inputRefs} onChange={handleAutoFocusNextInput} onFocus={handleClearNextAllInputs} />

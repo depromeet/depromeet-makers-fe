@@ -1,4 +1,4 @@
-import { useAtomValue } from 'jotai';
+import { useAtom } from 'jotai';
 import styled from 'styled-components';
 
 import { Badge } from '@/components/Badge';
@@ -28,7 +28,7 @@ const Home = () => {
 
   const { mutate } = useCheckIn();
 
-  const isVisibleCodeModal = useAtomValue(modalAtom);
+  const [isVisibleCodeModal, setIsVisibleCodeModal] = useAtom(modalAtom);
 
   const { month, day } = getDateText(String(new Date()));
   const isVisibleFab = sessionAttendance?.needFloatingButton;
@@ -80,7 +80,7 @@ const Home = () => {
         <FAB text="출석하기 🙌" sessionAttendanceStatus={getSessionAttendanceStatus()} onClick={handleClickCheckIn} />
       )}
 
-      {isVisibleCodeModal && <AttendanceCodeModal />}
+      <AttendanceCodeModal isOpen={isVisibleCodeModal} onClose={() => setIsVisibleCodeModal(false)} />
       <BottomNav items={USER_NAV_ITEMS} />
     </>
   );
