@@ -15,5 +15,7 @@ export const useCurrentWeek = () => {
     week: week ?? (session?.week || 1),
     setWeek,
     isSessionStarted,
+    isOffline: session?.sessionType === 'OFFLINE',
+    code: session?.code,
   };
 };
