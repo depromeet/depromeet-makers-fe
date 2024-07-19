@@ -4,9 +4,10 @@ import styled from 'styled-components';
 
 import { BottomNav } from '@/components/BottomNav';
 import IconButton from '@/components/Button/IconButton';
+import Icon from '@/components/Icon';
 import Layout from '@/components/Layout';
-import { ATTENDANCE_STATUS } from '@/constants/attendance';
 import { ADMIN_NAV_ITEMS } from '@/constants/bottomNav';
+import { AttendanceCodeModal } from '@/features/admin/attendance/AttendanceCodeModal';
 import TeamSelect from '@/features/admin/attendance/TeamSelect';
 import UserItem from '@/features/admin/attendance/UserItem';
 import WeekSelect from '@/features/admin/attendance/WeekSelect';
@@ -16,9 +17,10 @@ import { useCurrentWeek } from '@/hooks/useCurrentWeek';
 function AdminAttendancePage() {
   const { ref, isViewMiniHeader } = useScrollAction();
 
-  const { week, setWeek } = useCurrentWeek();
+  const { week, setWeek, isOffline, code } = useCurrentWeek();
 
   const [team, setTeam] = useState(1);
+  const [isOpen, setIsOpen] = useState(false);
 
   const { data } = useGetGroupAttendance({ generation: 15, week, groupId: String(team) });
 
@@ -45,11 +47,26 @@ function AdminAttendancePage() {
             </TeamSection>
           </>
         )}
+
+        {isOffline && (
+          <CodeContainer>
+            <TextContainer>
+              <CodeText>출석코드</CodeText>
+              <CodeSubText>오프라인 위치 오류로 출석이 불가한 멤버에게 안내해주세요</CodeSubText>
+            </TextContainer>
+            <button onClick={() => setIsOpen(true)}>
+              <Icon name="arrow-right" size={16} />
+            </button>
+          </CodeContainer>
+        )}
+
         <UserSection ref={ref}>
           {data?.map((data) => <UserItem key={`${data.memberId}-${data.week}`} {...data} />)}
         </UserSection>
       </Main>
       <BottomNav items={ADMIN_NAV_ITEMS} />
+
+      <AttendanceCodeModal isOpen={isOpen} onClose={() => setIsOpen(false)} code={code} />
     </Layout>
   );
 }
@@ -130,70 +147,29 @@ const UserSection = styled.section`
   }
 `;
 
-const DUMMY_DATA: {
-  id: number;
-  name: string;
-  position: string;
-  status: ATTENDANCE_STATUS;
-}[] = [
-  {
-    id: 1,
-    name: '김민수',
-    position: '개발자',
-    status: ATTENDANCE_STATUS.출석대기,
-  },
-  {
-    id: 2,
-    name: '홍길동',
-    position: '디자이너',
-    status: ATTENDANCE_STATUS.지각,
-  },
-  {
-    id: 3,
-    name: '이영희',
-    position: '디자이너',
-    status: ATTENDANCE_STATUS.출석,
-  },
-  {
-    id: 4,
-    name: '박철수',
-    position: '디자이너',
-    status: ATTENDANCE_STATUS.결석,
-  },
-  {
-    id: 5,
-    name: '김지영',
-    position: '디자이너',
-    status: ATTENDANCE_STATUS.출석대기,
-  },
-  {
-    id: 6,
-    name: '이승호',
-    position: '디자이너',
-    status: ATTENDANCE_STATUS.출석대기,
-  },
-  {
-    id: 7,
-    name: '박지민',
-    position: '디자이너',
-    status: ATTENDANCE_STATUS.출석대기,
-  },
-  {
-    id: 8,
-    name: '박지민',
-    position: '디자이너',
-    status: ATTENDANCE_STATUS.출석대기,
-  },
-  {
-    id: 9,
-    name: '박지민',
-    position: '디자이너',
-    status: ATTENDANCE_STATUS.출석대기,
-  },
-  {
-    id: 10,
-    name: '박지민',
-    position: '디자이너',
-    status: ATTENDANCE_STATUS.출석대기,
-  },
-];
+const CodeContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 16px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  background-color: ${({ theme }) => theme.color.gray_200};
+`;
+
+const TextContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+`;
+
+const CodeText = styled.p`
+  ${({ theme }) => theme.typo.subtitle2};
+  color: ${({ theme }) => theme.color.gray_700};
+`;
+
+const CodeSubText = styled.p`
+  ${({ theme }) => theme.typo.caption};
+  color: ${({ theme }) => theme.color.gray_500};
+`;

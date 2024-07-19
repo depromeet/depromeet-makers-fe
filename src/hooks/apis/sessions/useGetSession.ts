@@ -11,6 +11,8 @@ interface GetSessionRequest {
 interface GetSessionResponse {
   week: number;
   startTime: string;
+  sessionType: string;
+  code: string;
 }
 
 const getSessionList = async (): Promise<GetSessionResponse> => {
