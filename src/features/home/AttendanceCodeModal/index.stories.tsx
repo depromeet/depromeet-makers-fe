@@ -11,5 +11,5 @@ const meta: Meta<typeof AttendanceCodeModal> = {
 export default meta;
 
 export const Default = () => {
-  return <AttendanceCodeModal />;
+  return <AttendanceCodeModal isOpen setOpen={() => {}} />;
 };

@@ -4,17 +4,31 @@ import styled from 'styled-components';
 
 import Button from '@/components/Button';
 import { Modal } from '@/components/Modal';
+import { getErrorMessage, useCodeCheckIn } from '@/hooks/apis/attendance/useCodeCheckIn';
 
 import { CodeInputs } from './CodeInputs';
 
-export const AttendanceCodeModal = () => {
+interface AttendanceCodeModalProps {
+  isOpen: boolean;
+  setOpen: (isOpen: boolean) => void;
+}
+
+export const AttendanceCodeModal = ({ isOpen, setOpen }: AttendanceCodeModalProps) => {
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
+
   const [inputs, setInputs] = useState<string[]>(['', '', '', '']);
+  const [errorMessage, setErrorMessage] = useState('');
 
-  // TODO: api 추가 후 에러 처리 필요
-  const isError = true;
+  const { mutate: codeCheckIn, isError } = useCodeCheckIn({
+    onError: (data) => {
+      const errorMessage = getErrorMessage(data?.data?.tryCount);
+      setErrorMessage(errorMessage[data.code] ?? data.message);
 
-  const isDisabledSubmit = useMemo(() => inputs.some((input) => input === ''), [inputs]);
+      setOpen(true);
+    },
+  });
+
+  const isDisabledSubmit = useMemo(() => inputs.some((input) => input === '') || !inputs.length, [inputs]);
 
   const handleAutoFocusNextInput = (event: ChangeEvent<HTMLInputElement>, index: number) => {
     const { maxLength, value } = event.target;
@@ -54,16 +68,15 @@ export const AttendanceCodeModal = () => {
 
     const code = inputRefs.current.map((input) => input?.value || '').join('');
 
-    // TODO: api 추가 예정
-    console.log(code);
+    codeCheckIn({ code });
   };
 
   return (
-    <Modal isOpen onClose={() => {}}>
+    <Modal isOpen={isOpen} onClose={() => setOpen(false)}>
       <Form onSubmit={handleSubmit}>
         <Text>출석 코드를 입력해주세요</Text>
         <CodeInputs inputRefs={inputRefs} onChange={handleAutoFocusNextInput} onFocus={handleClearNextAllInputs} />
-        {isError && <ErrorMessage>본 세션에 해당하는 출석 코드가 아닙니다. 다시 입력해주세요.</ErrorMessage>}
+        {isError && <ErrorMessage>{errorMessage}</ErrorMessage>}
         <SubmitButton type="submit" disabled={isDisabledSubmit}>
           확인
         </SubmitButton>
