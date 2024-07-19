@@ -21,7 +21,7 @@ export const AttendanceCodeModal = () => {
     },
   });
 
-  const isDisabledSubmit = useMemo(() => inputs.some((input) => input === ''), [inputs]);
+  const isDisabledSubmit = useMemo(() => inputs.some((input) => input === '') || !inputs.length, [inputs]);
 
   const handleAutoFocusNextInput = (event: ChangeEvent<HTMLInputElement>, index: number) => {
     const { maxLength, value } = event.target;
