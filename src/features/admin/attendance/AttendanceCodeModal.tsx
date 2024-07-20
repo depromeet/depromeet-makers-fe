@@ -1,20 +1,36 @@
+import type { MouseEvent } from 'react';
 import styled from 'styled-components';
 
 import Button from '@/components/Button';
+import IconButton from '@/components/Button/IconButton';
 import { Modal } from '@/components/Modal';
+import { Spinner } from '@/components/Spinner';
+import { useRefreshCode } from '@/hooks/apis/attendance/useRefreshCode';
 
 interface AttendanceCodeModalProps {
   isOpen: boolean;
   onClose: () => void;
   code?: string;
+  sessionId?: string;
 }
 
-export const AttendanceCodeModal = ({ isOpen, onClose, code }: AttendanceCodeModalProps) => {
+export const AttendanceCodeModal = ({ isOpen, onClose, code, sessionId }: AttendanceCodeModalProps) => {
+  const { mutate, isPending } = useRefreshCode();
+
+  const handleRefresh = (event: MouseEvent<HTMLButtonElement>) => {
+    if (!sessionId) return;
+
+    event.stopPropagation();
+
+    mutate(sessionId);
+  };
+
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <Container>
         <Text>출석 코드</Text>
-        <Code>{code}</Code>
+        <IconButton iconName="refresh" onClick={handleRefresh} />
+        <Code>{isPending ? <Spinner /> : code}</Code>
         <ConfirmButton onClick={onClose}>확인</ConfirmButton>
       </Container>
     </Modal>
