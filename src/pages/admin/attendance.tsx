@@ -17,7 +17,7 @@ import { useCurrentWeek } from '@/hooks/useCurrentWeek';
 function AdminAttendancePage() {
   const { ref, isViewMiniHeader } = useScrollAction();
 
-  const { week, setWeek, isOffline, code } = useCurrentWeek();
+  const { week, setWeek, isOffline, code, sessionId } = useCurrentWeek();
 
   const [team, setTeam] = useState(1);
   const [isOpen, setIsOpen] = useState(false);
@@ -66,7 +66,7 @@ function AdminAttendancePage() {
       </Main>
       <BottomNav items={ADMIN_NAV_ITEMS} />
 
-      <AttendanceCodeModal isOpen={isOpen} onClose={() => setIsOpen(false)} code={code} />
+      <AttendanceCodeModal isOpen={isOpen} onClose={() => setIsOpen(false)} code={code} sessionId={sessionId} />
     </Layout>
   );
 }

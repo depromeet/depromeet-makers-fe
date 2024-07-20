@@ -13,6 +13,7 @@ interface GetSessionResponse {
   startTime: string;
   sessionType: string;
   code: string;
+  sessionId: string;
 }
 
 const getSessionList = async (): Promise<GetSessionResponse> => {
