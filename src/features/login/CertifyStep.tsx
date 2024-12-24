@@ -47,9 +47,9 @@ function CertifyStep(props: Props) {
   return (
     <LoginLayout
       onBack={props.onBack}
-      title="비밀번호를 입력해 주세요."
+      title="비밀번호 숫자 6자리를 입력해 주세요."
       buttonProps={{
-        children: '다음',
+        children: '로그인하기',
         onClick: onSubmit,
         disabled: isDisabled,
         type: 'submit',
