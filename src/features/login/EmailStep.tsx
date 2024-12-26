@@ -19,7 +19,7 @@ function EmailStep(props: Props) {
 
   const onSubmit = async () => {
     if (!REGEX.EMAIL.test(email)) {
-      setError('이메일 형식이 올바르지 않습니다.');
+      setError('이메일 형식에 맞추어 입력해 주세요.');
       return;
     }
 
