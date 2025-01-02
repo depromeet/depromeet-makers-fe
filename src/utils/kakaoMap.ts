@@ -28,19 +28,28 @@ export const openKakaoMap = ({ address, latitude, longitude }: SessionPlace) => 
 
   const kakaoMapSearchUrl = `kakaomap://search?q=${address}&p=${latitude},${longitude}`;
 
-  const start = new Date().getTime();
+  try {
+    const start = new Date().getTime();
 
-  location.href = kakaoMapSearchUrl;
+    const newWindow = window.open(kakaoMapSearchUrl);
 
-  const timeout = setTimeout(() => {
-    const end = new Date().getTime();
-
-    if (end - start < 1500) {
+    if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
       location.href = webUrl;
+      return;
     }
-  }, 500);
 
-  window.addEventListener('pagehide', () => {
-    clearTimeout(timeout);
-  });
+    const timeout = setTimeout(() => {
+      const end = new Date().getTime();
+
+      if (end - start < 1500) {
+        location.href = webUrl;
+      }
+    }, 500);
+
+    window.addEventListener('pagehide', () => {
+      clearTimeout(timeout);
+    });
+  } catch (error) {
+    location.href = webUrl;
+  }
 };
