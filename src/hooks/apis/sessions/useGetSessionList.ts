@@ -25,7 +25,7 @@ interface GetSessionListResponse {
   sessions: SessionType[];
 }
 
-const getSessionList = async (): Promise<GetSessionListResponse> => {
+export const getSessionList = async (): Promise<GetSessionListResponse> => {
   const generation = process.env.NEXT_PUBLIC_DEPROMEET_GENERATION;
   const request: GetSessionListRequest = { generation: Number(generation) };
 

@@ -1,19 +1,18 @@
+import type { GetStaticProps } from 'next';
+import { dehydrate, QueryClient } from '@tanstack/react-query';
 import styled from 'styled-components';
 
 import { BottomNav } from '@/components/BottomNav';
 import { Metadata } from '@/components/Metadata';
 import { USER_NAV_ITEMS } from '@/constants/bottomNav';
 import ScheduleItem from '@/features/schedule/ScheduleItem';
-import { useGetSessionList } from '@/hooks/apis/sessions/useGetSessionList';
+import { getSessionList, useGetSessionList } from '@/hooks/apis/sessions/useGetSessionList';
 import { isSameDate } from '@/utils/date';
 
 function SchedulePage() {
   const today = new Date();
 
-  const { data, isLoading } = useGetSessionList();
-
-  // NOTE: 글리치 현상 임시 처리
-  if (isLoading) return null;
+  const { data } = useGetSessionList();
 
   return (
     <>
@@ -45,6 +44,32 @@ function SchedulePage() {
     </>
   );
 }
+
+export const getStaticProps: GetStaticProps = async () => {
+  const queryClient = new QueryClient();
+
+  try {
+    const sessions = await queryClient.prefetchQuery({
+      queryKey: ['sessions'],
+      queryFn: () => getSessionList(),
+    });
+
+    queryClient.setQueryData(['session'], (sessions as unknown) ?? []);
+
+    return {
+      props: {
+        dehydratedState: dehydrate(queryClient),
+        revalidate: 10,
+      },
+    };
+  } catch (error) {
+    return {
+      notFound: true,
+    };
+  } finally {
+    queryClient.clear();
+  }
+};
 
 export default SchedulePage;
 
