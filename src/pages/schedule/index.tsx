@@ -21,7 +21,7 @@ function SchedulePage() {
 
       <PageLayout>
         <Hgroup>
-          <h1>디프만 {data?.generation}기 일정</h1>
+          <h1>디프만 {data?.generation ?? CURRENT_GENERATION}기 일정</h1>
           <Divider />
           <p>토요일 오후 2시~5시 진행</p>
         </Hgroup>
