@@ -13,7 +13,7 @@ import theme from '@/styles/theme';
 
 export default function App({ Component, pageProps, router }: AppProps) {
   return (
-    <QueryClientProvider>
+    <QueryClientProvider pageProps={pageProps}>
       <MonitoringInitializer />
       <ThemeProvider theme={theme}>
         <GlobalStyle />

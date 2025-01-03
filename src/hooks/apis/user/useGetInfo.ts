@@ -31,11 +31,11 @@ export const getUserRoleByToken = async (token: string): Promise<Role> => {
   return generations[0].role;
 };
 
-const getInfo = () => api.get<GetInfoResponse>('/v1/me');
+export const fetchInfo = () => api.get<GetInfoResponse>('/v1/me');
 
 export const useGetInfo = (options?: UseQueryOptions<GetInfoResponse, CustomError>) =>
   useQuery({
     queryKey: ['me'],
-    queryFn: () => getInfo(),
+    queryFn: () => fetchInfo(),
     ...options,
   });
