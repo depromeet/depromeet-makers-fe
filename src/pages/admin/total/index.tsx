@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import styled from 'styled-components';
 
 import { Badge } from '@/components/Badge';
@@ -13,8 +14,15 @@ import { getDateText } from '@/utils/date';
 const TotalAttendance = () => {
   // TODO: 아래 옵셔널 체이닝 관련 값들 변경해야함
   const { week, isSessionStarted } = useCurrentWeek();
+
+  const currentWeek = useMemo(() => {
+    if (isSessionStarted) return week;
+    if (week === 1) return 1;
+    return week - 1;
+  }, [week, isSessionStarted]);
+
   const { data, refetch, isLoading } = useGetAttendanceStats({
-    week: isSessionStarted ? week : week - 1,
+    week: currentWeek,
     generation: CURRENT_GENERATION,
   });
 

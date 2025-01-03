@@ -15,4 +15,5 @@ export const ATTENDANCE_STATUS_KR: Record<ATTENDANCE_STATUS, string> = {
 
 export const ATTENDANCE_STATUS_LIST = Object.values(ATTENDANCE_STATUS) as ATTENDANCE_STATUS[];
 
-export const CURRENT_GENERATION = Number(process.env.NEXT_PUBLIC_DEPROMEET_GENERATION || 0);
+export const CURRENT_GENERATION = 16; // 임시 처리
+// export const CURRENT_GENERATION = Number(process.env.NEXT_PUBLIC_DEPROMEET_GENERATION || 0);
