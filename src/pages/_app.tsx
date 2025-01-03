@@ -1,5 +1,5 @@
 import type { AppProps } from 'next/app';
-import { AnimatePresence, domAnimation, LazyMotion, motion } from 'framer-motion';
+import { domAnimation, LazyMotion } from 'framer-motion';
 import { ThemeProvider } from 'styled-components';
 
 import QueryClientProvider from '@/apis/QueryClientProvider';
@@ -20,22 +20,9 @@ export default function App({ Component, pageProps, router }: AppProps) {
         <LazyMotion features={domAnimation}>
           <SnackBarProvider />
           <PageViewTracker />
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={router.route}
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: 50 }}
-              transition={{
-                duration: 0.15,
-                ease: [0.4, 0, 0.2, 1],
-              }}
-            >
-              <Layout>
-                <Component {...pageProps} className={pretendard.className} />
-              </Layout>
-            </motion.div>
-          </AnimatePresence>
+          <Layout>
+            <Component {...pageProps} className={pretendard.className} />
+          </Layout>
         </LazyMotion>
       </ThemeProvider>
     </QueryClientProvider>
