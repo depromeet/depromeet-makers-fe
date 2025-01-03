@@ -1,4 +1,4 @@
-import type { GetServerSideProps } from 'next';
+import dynamic from 'next/dynamic';
 import { dehydrate, QueryClient } from '@tanstack/react-query';
 import { useAtom } from 'jotai';
 import styled from 'styled-components';
@@ -12,21 +12,25 @@ import { USER_NAV_ITEMS } from '@/constants/bottomNav';
 import { TITLE } from '@/constants/home';
 import { Absence } from '@/features/home/Absence';
 import { Attendance } from '@/features/home/Attendance';
-import { AttendanceCodeModal } from '@/features/home/AttendanceCodeModal';
+
+const AttendanceCodeModal = dynamic(() => import('@/features/home/AttendanceCodeModal'));
+const RuleLink = dynamic(() => import('@/features/home/RuleLink'));
+
+import type { GetStaticProps } from 'next';
+
 import { Notification } from '@/features/home/Notification';
-import { RuleLink } from '@/features/home/RuleLink';
 import { useCheckIn } from '@/hooks/apis/attendance/useCheckIn';
 import { fetchAttendance, useGetAttendance } from '@/hooks/apis/attendance/useGetAttendance';
 import { useGetCheckIn } from '@/hooks/apis/attendance/useGetCheckIn';
 import { fetchSessionList, useGetSession } from '@/hooks/apis/sessions/useGetSession';
-import { fetchInfo, useGetInfo } from '@/hooks/apis/user/useGetInfo';
+import { fetchInfo } from '@/hooks/apis/user/useGetInfo';
 import { modalAtom } from '@/store/modal';
 import { getDateText } from '@/utils/date';
 
 const Home = () => {
   const { data: attendance } = useGetAttendance({ generation: CURRENT_GENERATION });
   const { data: sessionAttendance } = useGetCheckIn();
-  const { data: session, isLoading } = useGetSession();
+  const { data: session } = useGetSession();
 
   const { mutate } = useCheckIn();
 
@@ -42,15 +46,9 @@ const Home = () => {
     return 'ON_TIME';
   };
 
-  // NOTE: 유저 정보 가져오기
-  const { data } = useGetInfo();
-  console.log('data: ', data);
-
   const handleClickCheckIn = () => {
     mutate();
   };
-
-  if (isLoading) return null;
 
   return (
     <>
@@ -88,7 +86,7 @@ const Home = () => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   const queryClient = new QueryClient();
 
   try {
@@ -108,6 +106,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
     return {
       props: {
         dehydratedState: dehydrate(queryClient),
+        revalidate: 10,
       },
     };
   } catch (error) {
