@@ -33,20 +33,18 @@ export const AccordionItem = ({ title, children }: AccordionItemProps) => {
       </AccordionItemHeader>
 
       <AnimatePresence initial={false}>
-        {isOpen && (
-          <LazyMotion features={domAnimation}>
-            <m.section
-              key="accordion-content"
-              animate="enter"
-              exit="exit"
-              initial="exit"
-              style={{ overflowY: 'hidden', willChange }}
-              variants={TRANSITION_VARIANTS.collapse}
-            >
-              <AccordionItemContent>{children}</AccordionItemContent>
-            </m.section>
-          </LazyMotion>
-        )}
+        <LazyMotion features={domAnimation}>
+          <m.section
+            key="accordion-content"
+            animate={isOpen ? 'enter' : 'exit'}
+            exit="exit"
+            initial="exit"
+            style={{ overflowY: 'hidden', willChange }}
+            variants={TRANSITION_VARIANTS.collapse}
+          >
+            <AccordionItemContent>{children}</AccordionItemContent>
+          </m.section>
+        </LazyMotion>
       </AnimatePresence>
     </AccordionItemContainer>
   );
@@ -61,7 +59,6 @@ const AccordionContainer = styled(LayoutGroup)`
 const AccordionItemContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 16px;
 `;
 
 const AccordionItemHeader = styled.button`
@@ -86,5 +83,6 @@ const AccordionItemContent = styled.p`
   ${({ theme }) => theme.typo.p};
 
   line-height: 22px;
+  margin-top: 16px;
   color: ${({ theme }) => theme.color.gray_900};
 `;
