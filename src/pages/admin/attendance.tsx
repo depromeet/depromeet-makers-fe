@@ -78,7 +78,7 @@ export const getStaticProps: GetStaticProps = async () => {
   try {
     const params = { generation: CURRENT_GENERATION, week: 1, groupId: '1' };
 
-    const groupAttendance = await queryClient.prefetchQuery({
+    const groupAttendance = await queryClient.fetchQuery({
       queryKey: ['attendances-group', params],
       queryFn: () => fetchGroupAttendace(params),
     });
