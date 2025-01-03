@@ -13,7 +13,7 @@ interface AttendanceCodeModalProps {
   setOpen: (isOpen: boolean) => void;
 }
 
-export const AttendanceCodeModal = ({ isOpen, setOpen }: AttendanceCodeModalProps) => {
+const AttendanceCodeModal = ({ isOpen, setOpen }: AttendanceCodeModalProps) => {
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
   const [inputs, setInputs] = useState<string[]>(['', '', '', '']);
@@ -84,6 +84,8 @@ export const AttendanceCodeModal = ({ isOpen, setOpen }: AttendanceCodeModalProp
     </Modal>
   );
 };
+
+export default AttendanceCodeModal;
 
 const Form = styled.form`
   display: flex;

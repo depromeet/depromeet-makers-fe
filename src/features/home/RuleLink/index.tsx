@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import Icon from '@/components/Icon';
 
-export const RuleLink = () => {
+const RuleLink = () => {
   return (
     <RuleLinkStyled href="/rule">
       <Icon name="clipboard-check" />
@@ -11,6 +11,8 @@ export const RuleLink = () => {
     </RuleLinkStyled>
   );
 };
+
+export default RuleLink;
 
 const RuleLinkStyled = styled(Link)`
   display: flex;

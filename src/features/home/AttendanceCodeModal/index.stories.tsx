@@ -1,6 +1,6 @@
 import type { Meta } from '@storybook/react';
 
-import { AttendanceCodeModal } from '.';
+import AttendanceCodeModal from '.';
 
 const meta: Meta<typeof AttendanceCodeModal> = {
   title: 'home/AttendanceCodeModal',
