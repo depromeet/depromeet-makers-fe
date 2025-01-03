@@ -76,12 +76,14 @@ export const getStaticProps: GetStaticProps = async () => {
   const queryClient = new QueryClient();
 
   try {
+    const params = { generation: CURRENT_GENERATION, week: 1, groupId: '1' };
+
     const groupAttendance = await queryClient.prefetchQuery({
-      queryKey: ['attendances-group'],
-      queryFn: () => fetchGroupAttendace({ generation: CURRENT_GENERATION, week: 1, groupId: '1' }),
+      queryKey: ['attendances-group', params],
+      queryFn: () => fetchGroupAttendace(params),
     });
 
-    queryClient.setQueryData(['attendances-group'], (groupAttendance as unknown) ?? []);
+    queryClient.setQueryData(['attendances-group', params], (groupAttendance as unknown) ?? []);
 
     return {
       props: {
