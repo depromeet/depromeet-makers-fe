@@ -4,6 +4,7 @@ const nextConfig = {
   compiler: {
     styledComponents: true,
   },
+  staticPageGenerationTimeout: 1000,
 };
 
 export default nextConfig;
