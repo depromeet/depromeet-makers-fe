@@ -1,8 +1,10 @@
 import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 
+import { CURRENT_GENERATION } from './constants/attendance';
 import { COOKIE_KEY } from './constants/cookie';
 import { postAuthRefresh } from './hooks/apis/auth/useAuthRefresh';
+import type { GetInfoResponse } from './hooks/apis/user/useGetInfo';
 
 export async function middleware(request: NextRequest) {
   const response = NextResponse.next();
@@ -12,6 +14,7 @@ export async function middleware(request: NextRequest) {
   const refreshToken = request.cookies.get(COOKIE_KEY.REFRESH_TOKEN);
 
   if (!accessToken && !refreshToken) return redirect;
+
   if (!accessToken && refreshToken) {
     try {
       const responseToken = await postAuthRefresh({ refreshToken: refreshToken.value });
@@ -25,8 +28,38 @@ export async function middleware(request: NextRequest) {
     }
   }
 
+  const isAdmin = await checkIsAdmin(accessToken?.value || '');
+  const isAdminPath = request.nextUrl.pathname.startsWith('/admin');
+
+  if (isAdminPath && !isAdmin) {
+    return NextResponse.redirect(new URL('/', request.url));
+  }
+
+  if (!isAdminPath && isAdmin) {
+    return NextResponse.redirect(new URL('/admin', request.url));
+  }
+
   return response;
 }
+
+const checkIsAdmin = async (accessToken: string) => {
+  try {
+    const res = await fetch(process.env.NEXT_PUBLIC_API_URL + '/v1/me', {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+
+    const data: GetInfoResponse = await res.json();
+
+    const generationData = data.generations.find((gen) => gen.generationId === CURRENT_GENERATION);
+    if (!generationData) return false;
+
+    return generationData.role === 'ORGANIZER';
+  } catch (error) {
+    return false;
+  }
+};
 
 export const config = {
   matcher: ['/((?!api|_next/static|_next/image|favicon.ico|login).*)'],
