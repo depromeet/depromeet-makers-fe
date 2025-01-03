@@ -17,6 +17,13 @@ export const useGetNotification = (options?: UseQueryOptions<NotificationRespons
   return useQuery({
     queryKey: ['notifications'],
     queryFn: getNotification,
+    placeholderData: {
+      id: '',
+      memberId: '',
+      content: '',
+      type: 'NONE',
+      isRead: true,
+    },
     ...options,
   });
 };

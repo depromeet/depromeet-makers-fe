@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import styled from 'styled-components';
 
@@ -48,7 +49,7 @@ const BottomNavStyled = styled.nav`
   border-top: 1px solid ${({ theme }) => theme.color.gray_200};
 `;
 
-const NavItem = styled.a<NavItemProps>`
+const NavItem = styled(Link)<NavItemProps>`
   display: flex;
   flex-direction: column;
   justify-content: center;
