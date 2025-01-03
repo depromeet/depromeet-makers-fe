@@ -13,7 +13,6 @@ import TeamSelect from '@/features/admin/attendance/TeamSelect';
 import UserItem from '@/features/admin/attendance/UserItem';
 import WeekSelect from '@/features/admin/attendance/WeekSelect';
 import { fetchGroupAttendace, useGetGroupAttendance } from '@/hooks/apis/attendance/useGetGroupAttendance';
-import { fetchSessionList } from '@/hooks/apis/sessions/useGetSession';
 import { useCurrentWeek } from '@/hooks/useCurrentWeek';
 
 function AdminAttendancePage() {
@@ -77,13 +76,10 @@ export const getStaticProps: GetStaticProps = async () => {
   const queryClient = new QueryClient();
 
   try {
-    const [groupAttendance] = await Promise.all([
-      queryClient.prefetchQuery({
-        queryKey: ['attendances-group'],
-        queryFn: () => fetchGroupAttendace({ generation: CURRENT_GENERATION, week: 1, groupId: '1' }),
-      }),
-      queryClient.prefetchQuery({ queryKey: ['session'], queryFn: () => fetchSessionList() }),
-    ]);
+    const groupAttendance = await queryClient.prefetchQuery({
+      queryKey: ['attendances-group'],
+      queryFn: () => fetchGroupAttendace({ generation: CURRENT_GENERATION, week: 1, groupId: '1' }),
+    });
 
     queryClient.setQueryData(['attendances-group'], (groupAttendance as unknown) ?? []);
 
