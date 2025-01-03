@@ -1,18 +1,19 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
+import type { GetStaticProps } from 'next';
+import { dehydrate, QueryClient } from '@tanstack/react-query';
 import { m } from 'framer-motion';
 import styled from 'styled-components';
 
-import { BottomNav } from '@/components/BottomNav';
 import IconButton from '@/components/Button/IconButton';
 import Icon from '@/components/Icon';
 import Layout from '@/components/Layout';
 import { CURRENT_GENERATION } from '@/constants/attendance';
-import { ADMIN_NAV_ITEMS } from '@/constants/bottomNav';
 import { AttendanceCodeModal } from '@/features/admin/attendance/AttendanceCodeModal';
 import TeamSelect from '@/features/admin/attendance/TeamSelect';
 import UserItem from '@/features/admin/attendance/UserItem';
 import WeekSelect from '@/features/admin/attendance/WeekSelect';
-import { useGetGroupAttendance } from '@/hooks/apis/attendance/useGetGroupAttendance';
+import { fetchGroupAttendace, useGetGroupAttendance } from '@/hooks/apis/attendance/useGetGroupAttendance';
+import { fetchSessionList } from '@/hooks/apis/sessions/useGetSession';
 import { useCurrentWeek } from '@/hooks/useCurrentWeek';
 
 function AdminAttendancePage() {
@@ -65,12 +66,41 @@ function AdminAttendancePage() {
           {data?.map((data) => <UserItem key={`${data.memberId}-${data.week}`} {...data} />)}
         </UserSection>
       </Main>
-      <BottomNav items={ADMIN_NAV_ITEMS} />
+      {/* <BottomNav items={ADMIN_NAV_ITEMS} /> */}
 
       <AttendanceCodeModal isOpen={isOpen} onClose={() => setIsOpen(false)} code={code} />
     </Layout>
   );
 }
+
+export const getStaticProps: GetStaticProps = async () => {
+  const queryClient = new QueryClient();
+
+  try {
+    const [groupAttendance] = await Promise.all([
+      queryClient.prefetchQuery({
+        queryKey: ['attendances-group'],
+        queryFn: () => fetchGroupAttendace({ generation: CURRENT_GENERATION, week: 1, groupId: '1' }),
+      }),
+      queryClient.prefetchQuery({ queryKey: ['session'], queryFn: () => fetchSessionList() }),
+    ]);
+
+    queryClient.setQueryData(['attendances-group'], (groupAttendance as unknown) ?? []);
+
+    return {
+      props: {
+        dehydratedState: dehydrate(queryClient),
+        revalidate: 10,
+      },
+    };
+  } catch (error) {
+    return {
+      notFound: true,
+    };
+  } finally {
+    queryClient.clear();
+  }
+};
 
 // UserSection 컴포넌트가 일정 높이 이상 스크롤이 되면, 상단에 고정된 간소화된 헤더가 보여지도록 구현
 const MINI_HEADER_TRIGGER = 112;

@@ -25,13 +25,16 @@ export interface AttendanceItemType {
 
 type GetGroupAttendanceResponse = AttendanceItemType[];
 
+export const fetchGroupAttendace = (params: GetGroupAttendanceRequest) =>
+  api.get<GetGroupAttendanceResponse>(`/v1/attendances/groups/${params.groupId}`, { params });
+
 export const useGetGroupAttendance = (
   params: GetGroupAttendanceRequest,
   options?: UseQueryOptions<GetGroupAttendanceResponse, CustomError>,
 ) => {
   return useQuery({
     queryKey: ['attendances-group', params],
-    queryFn: () => api.get<GetGroupAttendanceResponse>(`/v1/attendances/groups/${params.groupId}`, { params }),
+    queryFn: () => fetchGroupAttendace(params),
     ...options,
   });
 };
