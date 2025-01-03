@@ -1,6 +1,6 @@
 import type { Meta } from '@storybook/react';
 
-import { RuleLink } from '.';
+import RuleLink from '.';
 
 const meta: Meta<typeof RuleLink> = {
   title: 'home/RuleLink',
