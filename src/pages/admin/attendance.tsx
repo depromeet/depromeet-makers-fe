@@ -6,6 +6,7 @@ import { BottomNav } from '@/components/BottomNav';
 import IconButton from '@/components/Button/IconButton';
 import Icon from '@/components/Icon';
 import Layout from '@/components/Layout';
+import { CURRENT_GENERATION } from '@/constants/attendance';
 import { ADMIN_NAV_ITEMS } from '@/constants/bottomNav';
 import { AttendanceCodeModal } from '@/features/admin/attendance/AttendanceCodeModal';
 import TeamSelect from '@/features/admin/attendance/TeamSelect';
@@ -22,7 +23,7 @@ function AdminAttendancePage() {
   const [team, setTeam] = useState(1);
   const [isOpen, setIsOpen] = useState(false);
 
-  const { data } = useGetGroupAttendance({ generation: 15, week, groupId: String(team) });
+  const { data } = useGetGroupAttendance({ generation: CURRENT_GENERATION, week, groupId: String(team) });
 
   return (
     <Layout>
