@@ -27,7 +27,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: 100 }}
               transition={{
-                duration: 0.3,
+                duration: 0.15,
                 ease: [0.4, 0, 0.2, 1],
               }}
             >
