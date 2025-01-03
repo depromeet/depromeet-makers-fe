@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 import { BottomNav } from '@/components/BottomNav';
 import { Metadata } from '@/components/Metadata';
+import { CURRENT_GENERATION } from '@/constants/attendance';
 import { USER_NAV_ITEMS } from '@/constants/bottomNav';
 import ScheduleItem from '@/features/schedule/ScheduleItem';
 import { getSessionList, useGetSessionList } from '@/hooks/apis/sessions/useGetSessionList';
@@ -54,7 +55,13 @@ export const getStaticProps: GetStaticProps = async () => {
       queryFn: () => getSessionList(),
     });
 
-    queryClient.setQueryData(['session'], (sessions as unknown) ?? []);
+    queryClient.setQueryData(
+      ['session'],
+      (sessions as unknown) ?? {
+        generation: CURRENT_GENERATION,
+        sessions: [],
+      },
+    );
 
     return {
       props: {
