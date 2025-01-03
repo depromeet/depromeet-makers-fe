@@ -91,7 +91,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
   try {
     const [attendance, sessionList, userInfo] = await Promise.all([
-      queryClient.prefetchQuery({
+      queryClient.fetchQuery({
         queryKey: ['attendances-me'],
         queryFn: () => fetchAttendance({ generation: CURRENT_GENERATION }),
       }),
