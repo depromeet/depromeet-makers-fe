@@ -101,9 +101,9 @@ export const getServerSideProps: GetServerSideProps = async () => {
       queryClient.prefetchQuery({ queryKey: ['me'], queryFn: () => fetchInfo }),
     ]);
 
-    queryClient.setQueryData(['attendances-me'], attendance ?? {});
-    queryClient.setQueryData(['session'], sessionList ?? []);
-    queryClient.setQueryData(['me'], userInfo ?? {});
+    queryClient.setQueryData(['attendances-me'], (attendance as unknown) ?? {});
+    queryClient.setQueryData(['session'], (sessionList as unknown) ?? []);
+    queryClient.setQueryData(['me'], (userInfo as unknown) ?? {});
 
     return {
       props: {
