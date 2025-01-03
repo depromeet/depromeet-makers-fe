@@ -15,7 +15,7 @@ interface GetSessionResponse {
   code: string;
 }
 
-const getSessionList = async (): Promise<GetSessionResponse> => {
+export const fetchSessionList = async (): Promise<GetSessionResponse> => {
   const generation = process.env.NEXT_PUBLIC_DEPROMEET_GENERATION;
   const request: GetSessionRequest = { generation: Number(generation) };
 
@@ -25,6 +25,6 @@ const getSessionList = async (): Promise<GetSessionResponse> => {
 export const useGetSession = (options?: UseQueryOptions<GetSessionResponse, CustomError, GetSessionResponse>) =>
   useQuery({
     queryKey: ['session'],
-    queryFn: () => getSessionList(),
+    queryFn: () => fetchSessionList(),
     ...options,
   });

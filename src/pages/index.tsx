@@ -1,3 +1,5 @@
+import type { GetServerSideProps } from 'next';
+import { dehydrate, QueryClient } from '@tanstack/react-query';
 import { useAtom } from 'jotai';
 import styled from 'styled-components';
 
@@ -14,10 +16,10 @@ import { AttendanceCodeModal } from '@/features/home/AttendanceCodeModal';
 import { Notification } from '@/features/home/Notification';
 import { RuleLink } from '@/features/home/RuleLink';
 import { useCheckIn } from '@/hooks/apis/attendance/useCheckIn';
-import { useGetAttendance } from '@/hooks/apis/attendance/useGetAttendance';
+import { fetchAttendance, useGetAttendance } from '@/hooks/apis/attendance/useGetAttendance';
 import { useGetCheckIn } from '@/hooks/apis/attendance/useGetCheckIn';
-import { useGetSession } from '@/hooks/apis/sessions/useGetSession';
-import { useGetInfo } from '@/hooks/apis/user/useGetInfo';
+import { fetchSessionList, useGetSession } from '@/hooks/apis/sessions/useGetSession';
+import { fetchInfo, useGetInfo } from '@/hooks/apis/user/useGetInfo';
 import { modalAtom } from '@/store/modal';
 import { getDateText } from '@/utils/date';
 
@@ -84,6 +86,37 @@ const Home = () => {
       <BottomNav items={USER_NAV_ITEMS} />
     </>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const queryClient = new QueryClient();
+
+  try {
+    const [attendance, sessionList, userInfo] = await Promise.all([
+      queryClient.prefetchQuery({
+        queryKey: ['attendances-me'],
+        queryFn: () => fetchAttendance({ generation: CURRENT_GENERATION }),
+      }),
+      queryClient.prefetchQuery({ queryKey: ['session'], queryFn: () => fetchSessionList }),
+      queryClient.prefetchQuery({ queryKey: ['me'], queryFn: () => fetchInfo }),
+    ]);
+
+    queryClient.setQueryData(['attendances-me'], attendance ?? {});
+    queryClient.setQueryData(['session'], sessionList ?? []);
+    queryClient.setQueryData(['me'], userInfo ?? {});
+
+    return {
+      props: {
+        dehydratedState: dehydrate(queryClient),
+      },
+    };
+  } catch (error) {
+    return {
+      notFound: true,
+    };
+  } finally {
+    queryClient.clear();
+  }
 };
 
 const Container = styled.main`
