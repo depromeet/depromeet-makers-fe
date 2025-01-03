@@ -16,13 +16,16 @@ interface AttendanceResponse {
   attendances: Attendance[];
 }
 
+export const fetchAttendance = (params: AttendanceParams) =>
+  api.get<AttendanceResponse>(`/v1/attendances/me`, { params });
+
 export const useGetAttendance = (
   params: AttendanceParams,
   options?: UseQueryOptions<AttendanceResponse, CustomError>,
 ) => {
   return useQuery({
     queryKey: ['attendances-me', params.generation],
-    queryFn: () => api.get<AttendanceResponse>(`/v1/attendances/me`, { params }),
+    queryFn: () => fetchAttendance(params),
     ...options,
   });
 };
