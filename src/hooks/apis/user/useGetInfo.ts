@@ -6,7 +6,7 @@ import { api } from '@/apis';
 
 type Role = 'ORGANIZER' | 'MEMBER';
 
-interface GetInfoResponse {
+export interface GetInfoResponse {
   id: string;
   name: string;
   email: string;
