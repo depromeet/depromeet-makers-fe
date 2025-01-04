@@ -11,6 +11,7 @@ node_modules
 
 # next.js
 *.next/
+.next
 /out/
 
 # production
@@ -42,3 +43,4 @@ next-env.d.ts
 *.expo
 android
 ios
+.turbo
