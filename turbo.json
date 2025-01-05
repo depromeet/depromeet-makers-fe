@@ -3,6 +3,7 @@
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
+      "inputs": ["$TURBO_DEFAULT$", ".env*"],
       "outputs": [".next/**", "!.next/cache/**"]
     },
     "check-types": {
@@ -11,6 +12,15 @@
     "dev": {
       "persistent": true,
       "cache": false
+    },
+    "android": {
+      "dependsOn": ["^android"]
+    },
+    "ios": {
+      "dependsOn": ["^ios"]
+    },
+    "ios:build:dev": {
+      "dependsOn": ["^ios:build:dev"]
     }
   }
 }
