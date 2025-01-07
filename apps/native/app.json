@@ -37,6 +37,12 @@
           "resizeMode": "contain",
           "backgroundColor": "#0F172A"
         }
+      ],
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Allow $(PRODUCT_NAME) to use your location."
+        }
       ]
     ],
     "experiments": {
