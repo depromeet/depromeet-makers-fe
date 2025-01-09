@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "depromeet",
+    "name": "디프만",
     "slug": "depromeet",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",
@@ -11,9 +11,10 @@
     "ios": {
       "supportsTablet": true,
       "infoPlist": {
-        "NSLocationWhenInUseUsageDescription": "이 앱은 위치 정보를 사용하여 서비스를 제공합니다."
+        "NSLocationWhenInUseUsageDescription": "이 앱은 위치 정보를 사용하여 서비스를 제공합니다.",
+        "LSApplicationQueriesSchemes": ["kakaomap"]
       },
-      "bundleIdentifier": "kr.co.geonhui.DepromeetMakers"
+      "bundleIdentifier": "kr.co.geonhui.Depromeet"
     },
     "android": {
       "adaptiveIcon": {
@@ -21,7 +22,12 @@
         "backgroundColor": "#0F172A"
       },
       "package": "com.anonymous.depromeet",
-      "permissions": ["ACCESS_FINE_LOCATION", "ACCESS_COARSE_LOCATION"]
+      "permissions": [
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION",
+        "android.permission.ACCESS_COARSE_LOCATION",
+        "android.permission.ACCESS_FINE_LOCATION"
+      ]
     },
     "web": {
       "bundler": "metro",
