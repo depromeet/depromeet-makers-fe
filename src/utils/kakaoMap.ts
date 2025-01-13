@@ -1,3 +1,5 @@
+import * as Sentry from '@sentry/nextjs';
+
 import type { SessionPlace } from '@/types/session';
 
 const isIos = () => {
@@ -51,5 +53,7 @@ export const openKakaoMap = ({ address, latitude, longitude }: SessionPlace) => 
     });
   } catch (error) {
     location.href = webUrl;
+
+    Sentry.captureException(error);
   }
 };
