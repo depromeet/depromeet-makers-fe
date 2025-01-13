@@ -11,6 +11,6 @@ const nextConfig = {
 export default withSentryConfig(nextConfig, {
   org: 'depromeet',
   project: 'depromeet',
-  authToken: process.env.SENTRY_AUTH_TOKEN,
+  authToken: process.env.NEXT_PUBLIC_SENTRY_AUTH_TOKEN,
   silent: false,
 });
