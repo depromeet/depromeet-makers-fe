@@ -95,8 +95,11 @@ export const getStaticProps: GetStaticProps = async () => {
         queryKey: ['attendances-me'],
         queryFn: () => fetchAttendance({ generation: CURRENT_GENERATION }),
       }),
-      queryClient.prefetchQuery({ queryKey: ['session'], queryFn: () => fetchSessionList }),
-      queryClient.prefetchQuery({ queryKey: ['me'], queryFn: () => fetchInfo }),
+      queryClient.prefetchQuery({
+        queryKey: ['session'],
+        queryFn: () => fetchSessionList({ generation: CURRENT_GENERATION }),
+      }),
+      queryClient.prefetchQuery({ queryKey: ['me'], queryFn: () => fetchInfo() }),
     ]);
 
     queryClient.setQueryData(['attendances-me'], (attendance as unknown) ?? {});

@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 
 import type { CustomError } from '@/apis';
 import { api } from '@/apis';
+import { CURRENT_GENERATION } from '@/constants/attendance';
 
 interface GetSessionRequest {
   generation: number;
@@ -15,16 +16,16 @@ interface GetSessionResponse {
   code: string;
 }
 
-export const fetchSessionList = async (): Promise<GetSessionResponse> => {
-  const generation = process.env.NEXT_PUBLIC_DEPROMEET_GENERATION;
-  const request: GetSessionRequest = { generation: Number(generation) };
-
-  return await api.get<GetSessionResponse>('/v1/sessions/info', { params: request });
+export const fetchSessionList = (params: GetSessionRequest) => {
+  return api.get<GetSessionResponse>('/v1/sessions/info', { params });
 };
 
-export const useGetSession = (options?: UseQueryOptions<GetSessionResponse, CustomError, GetSessionResponse>) =>
+export const useGetSession = (
+  params: GetSessionRequest = { generation: CURRENT_GENERATION },
+  options?: UseQueryOptions<GetSessionResponse, CustomError, GetSessionResponse>,
+) =>
   useQuery({
-    queryKey: ['session'],
-    queryFn: () => fetchSessionList(),
+    queryKey: ['session', params.generation],
+    queryFn: () => fetchSessionList(params),
     ...options,
   });
