@@ -1,18 +1,23 @@
 import { useEffect } from 'react';
 import { StyleSheet } from 'react-native';
-import WebView from 'react-native-webview';
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import Constants from 'expo-constants';
 import { useFonts } from 'expo-font';
 import * as Location from 'expo-location';
+import { Slot } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 
 import { useColorScheme } from '@/hooks/useColorScheme';
 
 import 'react-native-reanimated';
 
-// Prevent the splash screen from auto-hiding before asset loading is complete.r
 SplashScreen.preventAutoHideAsync();
+
+const initApp = async () => {
+  await SplashScreen.preventAutoHideAsync();
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+  await SplashScreen.hideAsync();
+};
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
@@ -22,10 +27,8 @@ export default function RootLayout() {
   });
 
   useEffect(() => {
-    if (loaded) {
-      SplashScreen.hideAsync();
-    }
-  }, [loaded]);
+    initApp();
+  }, []);
 
   useEffect(() => {
     (async () => {
@@ -43,15 +46,7 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <WebView
-        style={styles.container}
-        source={{ uri: 'https://makers.depromeet.com/' }}
-        webviewDebuggingEnabled
-        allowsbackforwardnavigationgestures
-        javaScriptEnabled
-        startInLoadingState
-        geolocationEnabled
-      />
+      <Slot />
     </ThemeProvider>
   );
 }
