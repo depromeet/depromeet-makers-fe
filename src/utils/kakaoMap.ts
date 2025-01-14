@@ -33,12 +33,7 @@ export const openKakaoMap = ({ address, latitude, longitude }: SessionPlace) => 
   try {
     const start = new Date().getTime();
 
-    const newWindow = window.open(kakaoMapSearchUrl);
-
-    if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
-      location.href = webUrl;
-      return;
-    }
+    location.href = kakaoMapSearchUrl;
 
     const timeout = setTimeout(() => {
       const end = new Date().getTime();
