@@ -90,7 +90,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const queryClient = new QueryClient();
 
   try {
-    const [attendance, sessionList, userInfo] = await Promise.all([
+    await Promise.all([
       queryClient.prefetchQuery({
         queryKey: ['attendances-me'],
         queryFn: () => fetchAttendance({ generation: CURRENT_GENERATION }),
@@ -101,10 +101,6 @@ export const getStaticProps: GetStaticProps = async () => {
       }),
       queryClient.prefetchQuery({ queryKey: ['me'], queryFn: () => fetchInfo() }),
     ]);
-
-    queryClient.setQueryData(['attendances-me'], (attendance as unknown) ?? {});
-    queryClient.setQueryData(['session'], (sessionList as unknown) ?? []);
-    queryClient.setQueryData(['me'], (userInfo as unknown) ?? {});
 
     return {
       props: {
