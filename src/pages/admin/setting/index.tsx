@@ -54,6 +54,7 @@ const LogoutButton = styled.button`
   cursor: pointer;
   padding: 16px 0px;
   ${({ theme }) => theme.typo.title1};
+  color: ${({ theme }) => theme.color.gray_900};
 `;
 
 export default Setting;
