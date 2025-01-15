@@ -4,10 +4,12 @@ import { dehydrate, QueryClient } from '@tanstack/react-query';
 import { m } from 'framer-motion';
 import styled from 'styled-components';
 
+import { BottomNav } from '@/components/BottomNav';
 import IconButton from '@/components/Button/IconButton';
 import Icon from '@/components/Icon';
 import Layout from '@/components/Layout';
 import { CURRENT_GENERATION } from '@/constants/attendance';
+import { ADMIN_NAV_ITEMS } from '@/constants/bottomNav';
 import { AttendanceCodeModal } from '@/features/admin/attendance/AttendanceCodeModal';
 import TeamSelect from '@/features/admin/attendance/TeamSelect';
 import UserItem from '@/features/admin/attendance/UserItem';
@@ -65,7 +67,7 @@ function AdminAttendancePage() {
           {data?.map((data) => <UserItem key={`${data.memberId}-${data.week}`} {...data} />)}
         </UserSection>
       </Main>
-      {/* <BottomNav items={ADMIN_NAV_ITEMS} /> */}
+      <BottomNav items={ADMIN_NAV_ITEMS} />
 
       <AttendanceCodeModal isOpen={isOpen} onClose={() => setIsOpen(false)} code={code} />
     </Layout>

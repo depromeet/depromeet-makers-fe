@@ -15,5 +15,5 @@ export const USER_NAV_ITEMS: NavItemType = [
 
 export const ADMIN_NAV_ITEMS: NavItemType = [
   { text: '출석현황', icon: 'team', path: '/admin/attendance' },
-  { text: '증빙', icon: 'paper', path: '#' },
+  { text: '설정', icon: 'setting', path: '/admin/setting' },
 ];
