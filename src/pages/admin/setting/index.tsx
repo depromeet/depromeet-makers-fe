@@ -4,15 +4,19 @@ import styled from 'styled-components';
 
 import { BottomNav } from '@/components/BottomNav';
 import { Header } from '@/components/Header';
+import { useSnackBar } from '@/components/SnackBar/useSnackBar';
 import { ADMIN_NAV_ITEMS } from '@/constants/bottomNav';
 import { COOKIE_KEY } from '@/constants/cookie';
 
 const Setting = () => {
   const router = useRouter();
+  const { showSnackBar } = useSnackBar();
 
   const handleLogout = () => {
     Cookies.remove(COOKIE_KEY.ACCESS_TOKEN);
     Cookies.remove(COOKIE_KEY.REFRESH_TOKEN);
+
+    showSnackBar({ message: '로그아웃 되었습니다.' });
 
     router.replace('/');
   };
