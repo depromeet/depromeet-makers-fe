@@ -2,7 +2,7 @@
   "expo": {
     "name": "디프만",
     "slug": "depromeet",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "depromeet",
