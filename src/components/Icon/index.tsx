@@ -10,6 +10,7 @@ import { HomeIcon } from './HomeIcon';
 import { LocationIcon } from './LocationIcon';
 import { PaperIcon } from './PaperIcon';
 import { RefreshIcon } from './RefreshIcon';
+import { SettingIcon } from './SettingIcon';
 import { StateIcon } from './StateIcon';
 import { TeamIcon } from './TeamIcon';
 import { UserIcon } from './UserIcon';
@@ -36,6 +37,7 @@ export const IconComponentMap = {
   team: TeamIcon,
   paper: PaperIcon,
   location: LocationIcon,
+  setting: SettingIcon,
 } as const;
 
 interface Props extends IconComponentProps {
