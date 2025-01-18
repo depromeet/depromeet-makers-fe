@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import * as Sentry from '@sentry/nextjs';
+// import * as Sentry from '@sentry/nextjs';
 
 interface Location {
   loaded: boolean;
@@ -30,7 +30,7 @@ export const useGeolocation = () => {
       error,
     });
 
-    Sentry.captureException(error);
+    // Sentry.captureException(error);
   };
 
   useEffect(() => {

@@ -1,5 +1,5 @@
 import { Component, type PropsWithChildren, type ReactNode } from 'react';
-import * as Sentry from '@sentry/nextjs';
+// import * as Sentry from '@sentry/nextjs';
 
 interface ErrorBoundaryProps {
   fallback?: ReactNode;
@@ -24,7 +24,8 @@ class ErrorBoundary extends Component<PropsWithChildren<ErrorBoundaryProps>, Err
   }
 
   componentDidCatch(error: Error) {
-    Sentry.captureException(error);
+    // Sentry.captureException(error);
+    console.error(error);
   }
 
   render() {
