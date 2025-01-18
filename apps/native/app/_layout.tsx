@@ -1,8 +1,9 @@
 import { useEffect } from 'react';
-import { StyleSheet } from 'react-native';
+import { Alert, StyleSheet } from 'react-native';
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import Constants from 'expo-constants';
 import { useFonts } from 'expo-font';
+import { openSettings } from 'expo-linking';
 import * as Location from 'expo-location';
 import { Slot } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
@@ -33,8 +34,12 @@ export default function RootLayout() {
   useEffect(() => {
     (async () => {
       const { status } = await Location.requestForegroundPermissionsAsync();
+
       if (status !== 'granted') {
-        alert('위치 권한이 필요합니다.');
+        Alert.alert('위치 정보 사용 설정', '내 위치 확인을 위해 설정에서 위치 정보 사용을 허용해주세요.', [
+          { text: '취소', style: 'cancel' },
+          { text: '설정', onPress: () => openSettings() },
+        ]);
         return;
       }
     })();
