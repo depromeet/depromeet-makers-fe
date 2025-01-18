@@ -19,6 +19,19 @@ const initApp = async () => {
   await SplashScreen.hideAsync();
 };
 
+const getLocationPermission = async () => {
+  const { status } = await Location.requestForegroundPermissionsAsync();
+
+  if (status !== 'granted') {
+    Alert.alert('위치 정보 사용 설정', '내 위치 확인을 위해 설정에서 위치 정보 사용을 허용해주세요.', [
+      { text: '취소', style: 'cancel' },
+      { text: '설정', onPress: () => openSettings() },
+    ]);
+
+    return;
+  }
+};
+
 export default function RootLayout() {
   const colorScheme = useColorScheme();
 
@@ -31,17 +44,7 @@ export default function RootLayout() {
   }, []);
 
   useEffect(() => {
-    (async () => {
-      const { status } = await Location.requestForegroundPermissionsAsync();
-
-      if (status !== 'granted') {
-        Alert.alert('위치 정보 사용 설정', '내 위치 확인을 위해 설정에서 위치 정보 사용을 허용해주세요.', [
-          { text: '취소', style: 'cancel' },
-          { text: '설정', onPress: () => openSettings() },
-        ]);
-        return;
-      }
-    })();
+    getLocationPermission();
   }, []);
 
   if (!loaded) {
