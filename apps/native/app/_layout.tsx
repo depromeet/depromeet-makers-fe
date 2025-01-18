@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
-import { Alert, StyleSheet } from 'react-native';
+import { Alert } from 'react-native';
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import Constants from 'expo-constants';
 import { useFonts } from 'expo-font';
 import { openSettings } from 'expo-linking';
 import * as Location from 'expo-location';
@@ -55,10 +54,3 @@ export default function RootLayout() {
     </ThemeProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginTop: Constants.statusBarHeight,
-  },
-});
