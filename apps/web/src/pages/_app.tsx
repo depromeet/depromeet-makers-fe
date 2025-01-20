@@ -1,16 +1,16 @@
 import type { AppProps } from 'next/app';
-import ErrorBoundary from 'next/dist/client/components/error-boundary';
 import { domAnimation, LazyMotion } from 'framer-motion';
 import { ThemeProvider } from 'styled-components';
 
-import QueryClientProvider from '../apis/QueryClientProvider';
-import { pretendard } from '../assets/fonts/font';
-import Layout from '../components/Layout';
-import MonitoringInitializer from '../components/MonitoringInitializer';
-import { SnackBarProvider } from '../components/SnackBar/SnackBarProvider';
-import usePageTrack from '../hooks/event/usePageTrack';
-import GlobalStyle from '../styles/GlobalStyle';
-import theme from '../styles/theme';
+import QueryClientProvider from '@/apis/QueryClientProvider';
+import { pretendard } from '@/assets/fonts/font';
+import ErrorBoundary from '@/components/ErrorBoundary';
+import Layout from '@/components/Layout';
+import MonitoringInitializer from '@/components/MonitoringInitializer';
+import { SnackBarProvider } from '@/components/SnackBar/SnackBarProvider';
+import usePageTrack from '@/hooks/event/usePageTrack';
+import GlobalStyle from '@/styles/GlobalStyle';
+import theme from '@/styles/theme';
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
