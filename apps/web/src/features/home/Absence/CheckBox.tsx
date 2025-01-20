@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import Icon from '../../../components/Icon';
+import Icon from '@/components/Icon';
 
 interface CheckBoxProps {
   checkBoxCount: number;

@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import styled from 'styled-components';
 
-import Icon from '../../../components/Icon';
+import Icon from '@/components/Icon';
 
 const RuleLink = () => {
   return (

@@ -1,7 +1,7 @@
 import { useSetAtom } from 'jotai';
 import styled from 'styled-components';
 
-import { modalAtom } from '../../../store/modal';
+import { modalAtom } from '@/store/modal';
 
 export const RequiredCodeMessage = () => {
   const setIsModalOpen = useSetAtom(modalAtom);

@@ -1,4 +1,4 @@
-import type { SessionPlace } from '../../types/session';
+import type { SessionPlace } from '@/types/session';
 
 export interface ScheduleType {
   date: string;

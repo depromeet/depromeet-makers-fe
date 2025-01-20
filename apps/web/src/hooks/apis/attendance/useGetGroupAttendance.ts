@@ -1,8 +1,8 @@
 import { useQuery, type UseQueryOptions } from '@tanstack/react-query';
 
-import type { CustomError } from '../../../apis';
-import { api } from '../../../apis';
-import type { ATTENDANCE_STATUS } from '../../../constants/attendance';
+import type { CustomError } from '@/apis';
+import { api } from '@/apis';
+import type { ATTENDANCE_STATUS } from '@/constants/attendance';
 
 interface GetGroupAttendanceRequest {
   generation: number;

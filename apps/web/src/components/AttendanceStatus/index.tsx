@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import type { AttendanceStatus } from '../../types/attendance';
+import type { AttendanceStatus } from '@/types/attendance';
 
 import type { IconComponentMap } from '../Icon';
 import Icon from '../Icon';

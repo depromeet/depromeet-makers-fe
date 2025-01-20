@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
 
-import { useGetInfo } from '../../hooks/apis/user/useGetInfo';
+import { useGetInfo } from '@/hooks/apis/user/useGetInfo';
 
 import LoginLayout from './LoginLayout';
 import Img from './welcome-2.png';

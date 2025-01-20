@@ -2,7 +2,7 @@ import { type PropsWithChildren, useState } from 'react';
 import { AnimatePresence, domAnimation, LayoutGroup, LazyMotion, m, useWillChange } from 'framer-motion';
 import styled from 'styled-components';
 
-import { TRANSITION_VARIANTS } from '../../styles/theme/transition';
+import { TRANSITION_VARIANTS } from '@/styles/theme/transition';
 
 import Icon from '../Icon';
 

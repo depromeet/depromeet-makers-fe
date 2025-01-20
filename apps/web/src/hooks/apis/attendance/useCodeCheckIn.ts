@@ -2,10 +2,10 @@ import type { UseMutationOptions } from '@tanstack/react-query';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useSetAtom } from 'jotai';
 
-import { api } from '../../../apis';
-import { useSnackBar } from '../../../components/SnackBar/useSnackBar';
-import { SNACKBAR_MESSAGE } from '../../../constants/errorMessage';
-import { modalAtom } from '../../../store/modal';
+import { api } from '@/apis';
+import { useSnackBar } from '@/components/SnackBar/useSnackBar';
+import { SNACKBAR_MESSAGE } from '@/constants/errorMessage';
+import { modalAtom } from '@/store/modal';
 
 interface CodeCheckInRequest {
   code: string;

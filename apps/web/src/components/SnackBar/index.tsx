@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import type { SnackBarProps } from '../../store/snackBar';
+import type { SnackBarProps } from '@/store/snackBar';
 
 import Icon from '../Icon';
 

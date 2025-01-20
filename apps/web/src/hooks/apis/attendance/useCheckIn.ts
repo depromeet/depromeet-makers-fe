@@ -1,11 +1,11 @@
 import type { UseMutationOptions } from '@tanstack/react-query';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import type { CustomError } from '../../../apis';
-import { api } from '../../../apis';
-import { useSnackBar } from '../../../components/SnackBar/useSnackBar';
-import { SNACKBAR_MESSAGE } from '../../../constants/errorMessage';
-import { useGeolocation } from '../../useGeolocation';
+import type { CustomError } from '@/apis';
+import { api } from '@/apis';
+import { useSnackBar } from '@/components/SnackBar/useSnackBar';
+import { SNACKBAR_MESSAGE } from '@/constants/errorMessage';
+import { useGeolocation } from '@/useGeolocation';
 
 interface CheckInResponse {
   code: string;

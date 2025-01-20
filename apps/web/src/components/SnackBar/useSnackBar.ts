@@ -1,9 +1,9 @@
 import { useCallback } from 'react';
 import { useAtom } from 'jotai';
 
-import type { SnackBarProps } from '../../store/snackBar';
-import { snackBarsAtom } from '../../store/snackBar';
-import { generateId } from '../../utils/generateId';
+import type { SnackBarProps } from '@/store/snackBar';
+import { snackBarsAtom } from '@/store/snackBar';
+import { generateId } from '@/utils/generateId';
 
 const DEFAULT_DURATION = 3000;
 

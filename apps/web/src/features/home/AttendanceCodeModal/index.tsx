@@ -2,9 +2,9 @@ import type { ChangeEvent, FormEvent } from 'react';
 import { useMemo, useRef, useState } from 'react';
 import styled from 'styled-components';
 
-import Button from '../../../components/Button';
-import { Modal } from '../../../components/Modal';
-import { getErrorMessage, useCodeCheckIn } from '../../../hooks/apis/attendance/useCodeCheckIn';
+import Button from '@/components/Button';
+import { Modal } from '@/components/Modal';
+import { getErrorMessage, useCodeCheckIn } from '@/hooks/apis/attendance/useCodeCheckIn';
 
 import { CodeInputs } from './CodeInputs';
 

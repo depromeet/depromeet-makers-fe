@@ -2,7 +2,7 @@ import type { PropsWithChildren } from 'react';
 import React from 'react';
 import styled from 'styled-components';
 
-import { useRouterLoading } from '../../hooks/useRouterLoading';
+import { useRouterLoading } from '@/hooks/useRouterLoading';
 
 import { Spinner } from '../Spinner';
 

@@ -2,7 +2,7 @@ import { type ComponentProps, type MouseEventHandler, useEffect } from 'react';
 import { m, type Variants } from 'framer-motion';
 import styled from 'styled-components';
 
-import { useScrollLock } from '../../hooks/useScrollLock';
+import { useScrollLock } from '@/hooks/useScrollLock';
 
 import Icon from '../Icon';
 import AnimatePortal from '../Portal/AnimatePortal';

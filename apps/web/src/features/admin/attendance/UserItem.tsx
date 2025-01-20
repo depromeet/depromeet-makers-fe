@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import type { ATTENDANCE_STATUS } from '../../../constants/attendance';
-import type { AttendanceItemType } from '../../../hooks/apis/attendance/useGetGroupAttendance';
-import { useModifyAttendance } from '../../../hooks/apis/attendance/useModifyAttendance';
+import type { ATTENDANCE_STATUS } from '@/constants/attendance';
+import type { AttendanceItemType } from '@/hooks/apis/attendance/useGetGroupAttendance';
+import { useModifyAttendance } from '@/hooks/apis/attendance/useModifyAttendance';
 
 import StatusSelect from './StatusSelect';
 

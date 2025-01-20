@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 
-import { usePostLogin } from '../../hooks/apis/auth/usePostLogin';
-import { getUserRoleByToken } from '../../hooks/apis/user/useGetInfo';
+import { usePostLogin } from '@/hooks/apis/auth/usePostLogin';
+import { getUserRoleByToken } from '@/hooks/apis/user/useGetInfo';
 
 import LoginLayout from './LoginLayout';
 import PasswordInput from './PasswordInput';

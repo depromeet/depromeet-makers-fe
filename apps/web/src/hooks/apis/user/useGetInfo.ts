@@ -1,8 +1,8 @@
 import type { UseQueryOptions } from '@tanstack/react-query';
 import { useQuery } from '@tanstack/react-query';
 
-import type { CustomError } from '../../../apis';
-import { api } from '../../../apis';
+import type { CustomError } from '@/apis';
+import { api } from '@/apis';
 
 type Role = 'ORGANIZER' | 'MEMBER';
 

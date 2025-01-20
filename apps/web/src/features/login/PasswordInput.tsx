@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import styled from 'styled-components';
 
 interface Props {
@@ -9,6 +10,14 @@ interface Props {
 }
 
 function PasswordInput(props: Props) {
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const handleBlur = () => {
+    if (!inputRef.current) return;
+
+    inputRef.current.focus();
+  };
+
   return (
     <DotContainer>
       <Input
@@ -16,6 +25,7 @@ function PasswordInput(props: Props) {
         type="number"
         maxLength={props.passwordLength}
         onChange={(e) => e.target.value.length <= props.passwordLength && props.onChange(e.target.value)}
+        onBlur={handleBlur}
       />
       {Array.from({ length: props.passwordLength }, (_, index) => (
         <Dot key={index} isChecked={index < props.inputLength} />

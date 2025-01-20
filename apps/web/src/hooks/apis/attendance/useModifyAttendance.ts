@@ -3,9 +3,9 @@
 import type { UseMutationOptions } from '@tanstack/react-query';
 import { useMutation } from '@tanstack/react-query';
 
-import type { CustomError } from '../../../apis';
-import { api } from '../../../apis';
-import type { ATTENDANCE_STATUS } from '../../../constants/attendance';
+import type { CustomError } from '@/apis';
+import { api } from '@/apis';
+import type { ATTENDANCE_STATUS } from '@/constants/attendance';
 
 // /v1/attendances/{attendanceId}
 

@@ -2,8 +2,8 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import styled from 'styled-components';
 
-import type { NavItemType } from '../../constants/bottomNav';
-import theme from '../../styles/theme';
+import type { NavItemType } from '@/constants/bottomNav';
+import theme from '@/styles/theme';
 
 import Icon from '../Icon';
 

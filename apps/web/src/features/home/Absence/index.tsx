@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { Badge } from '../../../components/Badge';
+import { Badge } from '@/components/Badge';
 
 import { CheckBox } from './CheckBox';
 

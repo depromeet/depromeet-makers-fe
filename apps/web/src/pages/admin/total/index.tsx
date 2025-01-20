@@ -1,15 +1,15 @@
 import { useMemo } from 'react';
 import styled from 'styled-components';
 
-import { Badge } from '../../../components/Badge';
-import { Header } from '../../../components/Header';
-import Icon from '../../../components/Icon';
-import { CURRENT_GENERATION } from '../../../constants/attendance';
-import { InfoBox } from '../../../features/total/InfoBox';
-import { TeamAttendance } from '../../../features/total/TeamAttendance';
-import { useGetAttendanceStats } from '../../../hooks/apis/attendance/useGetAttendanceStats';
-import { useCurrentWeek } from '../../../hooks/useCurrentWeek';
-import { getDateText } from '../../../utils/date';
+import { Badge } from '@/components/Badge';
+import { Header } from '@/components/Header';
+import Icon from '@/components/Icon';
+import { CURRENT_GENERATION } from '@/constants/attendance';
+import { InfoBox } from '@/features/total/InfoBox';
+import { TeamAttendance } from '@/features/total/TeamAttendance';
+import { useGetAttendanceStats } from '@/hooks/apis/attendance/useGetAttendanceStats';
+import { useCurrentWeek } from '@/hooks/useCurrentWeek';
+import { getDateText } from '@/utils/date';
 
 const TotalAttendance = () => {
   // TODO: 아래 옵셔널 체이닝 관련 값들 변경해야함

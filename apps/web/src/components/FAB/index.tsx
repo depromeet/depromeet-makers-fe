@@ -1,7 +1,7 @@
 import type { ButtonHTMLAttributes } from 'react';
 import styled from 'styled-components';
 
-import type { SessionAttendanceStatus } from '../../types/attendance';
+import type { SessionAttendanceStatus } from '@/types/attendance';
 
 type FABProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   text: string;

@@ -1,15 +1,15 @@
 import { useState } from 'react';
 import type { GetServerSideProps } from 'next';
 
-import { Metadata } from '../../components/Metadata';
-import { COOKIE_KEY } from '../../constants/cookie';
-import CertifyStep from '../../features/login/CertifyStep';
-import EmailStep from '../../features/login/EmailStep';
-import JoinCompleteStep from '../../features/login/JoinCompleteStep';
-import JoinStep from '../../features/login/JoinStep';
-import WelcomeStep from '../../features/login/WelcomeStep';
-import { useFunnel } from '../../hooks/useFunnel';
-import { cookieStringToObject } from '../../utils/cookie';
+import { Metadata } from '@/components/Metadata';
+import { COOKIE_KEY } from '@/constants/cookie';
+import CertifyStep from '@/features/login/CertifyStep';
+import EmailStep from '@/features/login/EmailStep';
+import JoinCompleteStep from '@/features/login/JoinCompleteStep';
+import JoinStep from '@/features/login/JoinStep';
+import WelcomeStep from '@/features/login/WelcomeStep';
+import { useFunnel } from '@/hooks/useFunnel';
+import { cookieStringToObject } from '@/utils/cookie';
 
 const STEP = {
   WELCOME: 'welcome',

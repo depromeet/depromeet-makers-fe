@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { Accordion, AccordionItem } from '../../../components/Accordion';
-import { Badge } from '../../../components/Badge';
-import type { SessionType } from '../../../hooks/apis/sessions/useGetSessionList';
-import { getDateText } from '../../../utils/date';
+import { Accordion, AccordionItem } from '@/components/Accordion';
+import { Badge } from '@/components/Badge';
+import type { SessionType } from '@/hooks/apis/sessions/useGetSessionList';
+import { getDateText } from '@/utils/date';
 
 import { LocationButton } from './LocationButton';
 

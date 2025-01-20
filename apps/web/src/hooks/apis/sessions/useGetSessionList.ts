@@ -1,9 +1,9 @@
 import type { UseQueryOptions } from '@tanstack/react-query';
 import { useQuery } from '@tanstack/react-query';
 
-import type { CustomError } from '../../../apis';
-import { api } from '../../../apis';
-import type { SessionPlace } from '../../../types/session';
+import type { CustomError } from '@/apis';
+import { api } from '@/apis';
+import type { SessionPlace } from '@/types/session';
 
 export interface SessionType {
   sessionId: string;

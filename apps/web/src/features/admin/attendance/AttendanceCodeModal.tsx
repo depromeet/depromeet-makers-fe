@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-import Button from '../../../components/Button';
-import { Modal } from '../../../components/Modal';
+import Button from '@/components/Button';
+import { Modal } from '@/components/Modal';
 
 interface AttendanceCodeModalProps {
   isOpen: boolean;

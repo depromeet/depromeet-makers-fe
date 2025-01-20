@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-import { Header } from '../../components/Header';
-import { Metadata } from '../../components/Metadata';
-import theme from '../../styles/theme';
+import { Header } from '@/components/Header';
+import { Metadata } from '@/components/Metadata';
+import theme from '@/styles/theme';
 
 // TODO: 추후 변경 필요
 

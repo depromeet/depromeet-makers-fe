@@ -2,9 +2,9 @@ import type { UseMutationOptions } from '@tanstack/react-query';
 import { useMutation } from '@tanstack/react-query';
 import Cookies from 'js-cookie';
 
-import type { CustomError } from '../../../apis';
-import { api } from '../../../apis';
-import { COOKIE_KEY } from '../../../constants/cookie';
+import type { CustomError } from '@/apis';
+import { api } from '@/apis';
+import { COOKIE_KEY } from '@/constants/cookie';
 
 interface PostLoginRequest {
   email: string;

@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-import Icon from '../../../components/Icon';
-import type { SessionType } from '../../../hooks/apis/sessions/useGetSessionList';
-import { openKakaoMap } from '../../../utils/kakaoMap';
+import Icon from '@/components/Icon';
+import type { SessionType } from '@/hooks/apis/sessions/useGetSessionList';
+import { openKakaoMap } from '@/utils/kakaoMap';
 
 type LocationButtonProps = Pick<SessionType, 'place'>;
 

@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { BottomNav } from '../../components/BottomNav';
-import Prepare from '../../components/Prepare';
-import { USER_NAV_ITEMS } from '../../constants/bottomNav';
+import { BottomNav } from '@/components/BottomNav';
+import Prepare from '@/components/Prepare';
+import { USER_NAV_ITEMS } from '@/constants/bottomNav';
 
 function Mypage() {
   return (

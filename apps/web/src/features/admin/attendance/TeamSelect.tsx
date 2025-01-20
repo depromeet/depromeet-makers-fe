@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Chip from '../../../components/Chip';
+import Chip from '@/components/Chip';
 
 const TEAM_COUNT = 6;
 const TEAM_LIST = Array.from({ length: TEAM_COUNT }).map((_, index) => index + 1);

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-import { AttendanceStatus, AttendanceStatusChecked } from '../../../components/AttendanceStatus';
-import { type Attendance as AttendanceType } from '../../../types/attendance';
+import { AttendanceStatus, AttendanceStatusChecked } from '@/components/AttendanceStatus';
+import { type Attendance as AttendanceType } from '@/types/attendance';
 
 interface AttendanceProps {
   attendances: AttendanceType[];

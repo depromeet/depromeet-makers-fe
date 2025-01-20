@@ -2,13 +2,13 @@ import type { GetStaticProps } from 'next';
 import { dehydrate, QueryClient } from '@tanstack/react-query';
 import styled from 'styled-components';
 
-import { BottomNav } from '../../components/BottomNav';
-import { Metadata } from '../../components/Metadata';
-import { CURRENT_GENERATION } from '../../constants/attendance';
-import { USER_NAV_ITEMS } from '../../constants/bottomNav';
-import ScheduleItem from '../../features/schedule/ScheduleItem';
-import { getSessionList, useGetSessionList } from '../../hooks/apis/sessions/useGetSessionList';
-import { isSameDate } from '../../utils/date';
+import { BottomNav } from '@/components/BottomNav';
+import { Metadata } from '@/components/Metadata';
+import { CURRENT_GENERATION } from '@/constants/attendance';
+import { USER_NAV_ITEMS } from '@/constants/bottomNav';
+import ScheduleItem from '@/features/schedule/ScheduleItem';
+import { getSessionList, useGetSessionList } from '@/hooks/apis/sessions/useGetSessionList';
+import { isSameDate } from '@/utils/date';
 
 function SchedulePage() {
   const today = new Date();
