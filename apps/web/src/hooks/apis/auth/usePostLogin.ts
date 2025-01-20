@@ -5,6 +5,7 @@ import Cookies from 'js-cookie';
 import type { CustomError } from '@/apis';
 import { api } from '@/apis';
 import { COOKIE_KEY } from '@/constants/cookie';
+import type { UserRole } from '@/types/user';
 
 interface PostLoginRequest {
   email: string;
@@ -14,6 +15,7 @@ interface PostLoginRequest {
 interface PostLoginResponse {
   accessToken: string;
   refreshToken: string;
+  currentRole: UserRole;
 }
 
 const postLogin = async (request: PostLoginRequest): Promise<PostLoginResponse> => {

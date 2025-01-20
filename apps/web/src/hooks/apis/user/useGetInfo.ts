@@ -3,8 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 
 import type { CustomError } from '@/apis';
 import { api } from '@/apis';
-
-type Role = 'ORGANIZER' | 'MEMBER';
+import type { UserRole } from '@/types/user';
 
 export interface GetInfoResponse {
   id: string;
@@ -12,7 +11,7 @@ export interface GetInfoResponse {
   email: string;
   generations: {
     generationId: number;
-    role: Role;
+    role: UserRole;
     position: string;
   }[];
 }
@@ -25,7 +24,7 @@ export const getInfoByToken = async (token: string): Promise<GetInfoResponse> =>
   });
 };
 
-export const getUserRoleByToken = async (token: string): Promise<Role> => {
+export const getUserRoleByToken = async (token: string): Promise<UserRole> => {
   const { generations } = await getInfoByToken(token);
 
   return generations[0].role;
