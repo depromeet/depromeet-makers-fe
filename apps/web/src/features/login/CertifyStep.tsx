@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 
 import { usePostLogin } from '@/hooks/apis/auth/usePostLogin';
-import { getUserRoleByToken } from '@/hooks/apis/user/useGetInfo';
 
 import LoginLayout from './LoginLayout';
 import PasswordInput from './PasswordInput';
@@ -22,12 +21,20 @@ function CertifyStep(props: Props) {
   const isDisabled = value.length !== PASSWORD_LENGTH || Boolean(error);
 
   const { mutate } = usePostLogin({
-    onSuccess: async ({ accessToken }) => {
-      const role = await getUserRoleByToken(accessToken);
-      if (role === 'ORGANIZER') {
+    onSuccess: ({ currentRole }) => {
+      if (currentRole === 'GRADUATE') {
+        setError('졸업생은 로그인할 수 없습니다.');
+        return;
+      }
+
+      if (currentRole === 'ORGANIZER') {
         router.replace('/admin/attendance');
-      } else {
+        return;
+      }
+
+      if (currentRole === 'MEMBER') {
         router.replace('/');
+        return;
       }
     },
     onError: (error) => {
