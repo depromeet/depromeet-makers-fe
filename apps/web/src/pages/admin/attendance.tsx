@@ -4,16 +4,18 @@ import { dehydrate, QueryClient } from '@tanstack/react-query';
 import { m } from 'framer-motion';
 import styled from 'styled-components';
 
-import IconButton from '../../components/Button/IconButton';
-import Icon from '../../components/Icon';
-import Layout from '../../components/Layout';
-import { CURRENT_GENERATION } from '../../constants/attendance';
-import { AttendanceCodeModal } from '../../features/admin/attendance/AttendanceCodeModal';
-import TeamSelect from '../../features/admin/attendance/TeamSelect';
-import UserItem from '../../features/admin/attendance/UserItem';
-import WeekSelect from '../../features/admin/attendance/WeekSelect';
-import { useGetGroupAttendance } from '../../hooks/apis/attendance/useGetGroupAttendance';
-import { useCurrentWeek } from '../../hooks/useCurrentWeek';
+import { BottomNav } from '@/components/BottomNav';
+import IconButton from '@/components/Button/IconButton';
+import Icon from '@/components/Icon';
+import Layout from '@/components/Layout';
+import { CURRENT_GENERATION } from '@/constants/attendance';
+import { ADMIN_NAV_ITEMS } from '@/constants/bottomNav';
+import { AttendanceCodeModal } from '@/features/admin/attendance/AttendanceCodeModal';
+import TeamSelect from '@/features/admin/attendance/TeamSelect';
+import UserItem from '@/features/admin/attendance/UserItem';
+import WeekSelect from '@/features/admin/attendance/WeekSelect';
+import { fetchGroupAttendance, useGetGroupAttendance } from '@/hooks/apis/attendance/useGetGroupAttendance';
+import { useCurrentWeek } from '@/hooks/useCurrentWeek';
 
 function AdminAttendancePage() {
   const { ref, isViewMiniHeader } = useScrollAction();
