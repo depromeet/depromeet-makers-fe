@@ -5,7 +5,7 @@ import type { CustomError } from '@/apis';
 import { api } from '@/apis';
 import { useSnackBar } from '@/components/SnackBar/useSnackBar';
 import { SNACKBAR_MESSAGE } from '@/constants/errorMessage';
-import { useGeolocation } from '@/useGeolocation';
+import { useGeolocation } from '@/hooks/useGeolocation';
 
 interface CheckInResponse {
   code: string;
