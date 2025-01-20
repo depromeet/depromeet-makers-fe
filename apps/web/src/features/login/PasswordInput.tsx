@@ -1,3 +1,4 @@
+import type { ChangeEvent } from 'react';
 import { useRef } from 'react';
 import styled from 'styled-components';
 
@@ -18,13 +19,27 @@ function PasswordInput(props: Props) {
     inputRef.current.focus();
   };
 
+  const handleChangePassword = (event: ChangeEvent<HTMLInputElement>) => {
+    const input = event.target.value;
+    const { passwordLength, onChange } = props;
+
+    const validInput = input.slice(0, passwordLength);
+
+    if (inputRef.current) {
+      inputRef.current.value = validInput;
+    }
+
+    onChange(validInput);
+  };
+
   return (
     <DotContainer>
       <Input
+        ref={inputRef}
         autoFocus
         type="number"
         maxLength={props.passwordLength}
-        onChange={(e) => e.target.value.length <= props.passwordLength && props.onChange(e.target.value)}
+        onChange={handleChangePassword}
         onBlur={handleBlur}
       />
       {Array.from({ length: props.passwordLength }, (_, index) => (
