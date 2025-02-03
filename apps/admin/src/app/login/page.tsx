@@ -1,19 +1,34 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import Cookies from 'js-cookie';
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
+import { COOKIE_KEY } from '@/constants/cookie';
+import { postLogin } from '@/hooks/apis/auth/postLogin';
 
 export default function Login() {
+  const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const isButtonDisabled = email === '' || password === '';
 
-  const handleLogin = () => {
-    console.log(email, password);
+  const handleLogin = async () => {
+    try {
+      const res = await postLogin({ email, passCord: password });
+      console.log(res);
+      if (res.currentRole === 'ORGANIZER') {
+        Cookies.set(COOKIE_KEY.ACCESS_TOKEN, res.accessToken, { expires: 1 });
+        Cookies.set(COOKIE_KEY.REFRESH_TOKEN, res.refreshToken, { expires: 7 });
+        router.replace('/');
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
