@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex h-screen">
@@ -8,7 +10,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           </div>
 
           <div className="space-y-4">
-            <div className="font-medium hover:bg-gray-200 p-2 rounded-md cursor-pointer">출결 관리</div>
+            <Link href="/attendance" className="font-medium hover:bg-gray-200 p-2 rounded-md cursor-pointer">
+              출결 관리
+            </Link>
             <div className="font-medium hover:bg-gray-200 p-2 rounded-md cursor-pointer">증빙 관리</div>
           </div>
         </div>
