@@ -10,15 +10,17 @@ export async function middleware(request: NextRequest) {
 
   const accessToken = request.cookies.get(COOKIE_KEY.ACCESS_TOKEN);
   const refreshToken = request.cookies.get(COOKIE_KEY.REFRESH_TOKEN);
+  const currentRole = request.cookies.get(COOKIE_KEY.CURRENT_ROLE);
 
-  if (!accessToken && !refreshToken) return redirect;
+  if (!accessToken || !refreshToken || !currentRole) return redirect;
 
-  if (!accessToken && refreshToken) {
+  if (!accessToken && refreshToken && currentRole) {
     try {
       const responseToken = await postAuthRefresh({ refreshToken: refreshToken.value });
 
       response.cookies.set(COOKIE_KEY.ACCESS_TOKEN, responseToken.accessToken);
       response.cookies.set(COOKIE_KEY.REFRESH_TOKEN, responseToken.refreshToken);
+      response.cookies.set(COOKIE_KEY.CURRENT_ROLE, currentRole.value);
 
       return response;
     } catch (error) {

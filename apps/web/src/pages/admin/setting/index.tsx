@@ -15,6 +15,7 @@ const Setting = () => {
   const handleLogout = () => {
     Cookies.remove(COOKIE_KEY.ACCESS_TOKEN);
     Cookies.remove(COOKIE_KEY.REFRESH_TOKEN);
+    Cookies.remove(COOKIE_KEY.CURRENT_ROLE);
 
     showSnackBar({ message: '로그아웃 되었습니다.' });
 

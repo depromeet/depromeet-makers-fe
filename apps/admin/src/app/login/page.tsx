@@ -20,11 +20,14 @@ export default function Login() {
   const handleLogin = async () => {
     try {
       const res = await postLogin({ email, passCord: password });
-      console.log(res);
+
       if (res.currentRole === 'ORGANIZER') {
         Cookies.set(COOKIE_KEY.ACCESS_TOKEN, res.accessToken, { expires: 1 });
         Cookies.set(COOKIE_KEY.REFRESH_TOKEN, res.refreshToken, { expires: 7 });
+        Cookies.set(COOKIE_KEY.CURRENT_ROLE, res.currentRole, { expires: 7 });
         router.replace('/');
+      } else {
+        alert('권한이 없습니다.');
       }
     } catch (error) {
       console.log(error);
