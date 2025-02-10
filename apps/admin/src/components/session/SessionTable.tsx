@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { type Session, useGetSessionList } from '@depromeet-makers/api';
-import { type ColumnDef,  createColumnHelper, type Row } from '@tanstack/react-table';
+import { type ColumnDef, createColumnHelper, type Row } from '@tanstack/react-table';
 
 import { DataTable } from '@/components/ui/data-table';
 import { SESSION_TYPE_TEXT } from '@/constants/session';
@@ -46,5 +46,12 @@ export const SessionTable = () => {
 
   const handleClickRow = (row: Row<Session>) => () => router.push(`/session/${row.original.sessionId}`);
 
-  return <DataTable columns={columns} data={data?.sessions ?? []} placeholder='세션 정보가 없어요' onRowClick={handleClickRow} />;
+  return (
+    <DataTable
+      columns={columns}
+      data={data?.sessions ?? []}
+      placeholder="세션 정보가 없어요"
+      onRowClick={handleClickRow}
+    />
+  );
 };
