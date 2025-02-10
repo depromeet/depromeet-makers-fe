@@ -2,8 +2,8 @@ import { CURRENT_GENERATION } from '@depromeet-makers/constant';
 import type { UseQueryOptions } from '@tanstack/react-query';
 import { useQuery } from '@tanstack/react-query';
 
-import type { CustomError } from '@/base';
-import { api } from '@/base';
+import type { CustomError } from '../base';
+import { api } from '../base';
 
 interface GetSessionRequest {
   generation: number;

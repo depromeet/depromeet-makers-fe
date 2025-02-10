@@ -1,8 +1,8 @@
 import { useMutation, type UseMutationOptions } from '@tanstack/react-query';
 import type { AxiosResponse } from 'axios';
 
-import type { CustomError } from '@/base';
-import { api } from '@/base';
+import type { CustomError } from '../base';
+import { api } from '../base';
 
 interface SetDefaultPassCordRequest {
   email: string;

@@ -3,9 +3,10 @@ import type { UseMutationOptions } from '@tanstack/react-query';
 import { useMutation } from '@tanstack/react-query';
 import Cookies from 'js-cookie';
 
-import type { CustomError } from '@/base';
-import { api } from '@/base';
 import type { UserRole } from '@/types/user';
+
+import type { CustomError } from '../base';
+import { api } from '../base';
 
 interface PostLoginRequest {
   email: string;

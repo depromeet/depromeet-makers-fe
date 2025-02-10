@@ -1,7 +1,8 @@
 {
   "name": "@depromeet-makers/api",
   "version": "0.0.0",
-  "main": "src/index.js",
+  "type": "module",
+  "main": "./src/index.ts",
   "dependencies": {
     "@tanstack/react-query": "^5.32.0",
     "axios": "^1.6.8"
