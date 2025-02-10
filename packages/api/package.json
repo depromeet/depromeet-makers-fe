@@ -1,0 +1,13 @@
+{
+  "name": "@depromeet-makers/api",
+  "version": "0.0.0",
+  "main": "src/index.js",
+  "dependencies": {
+    "@tanstack/react-query": "^5.32.0",
+    "axios": "^1.6.8"
+  },
+  "devDependencies": {
+    "@depromeet-makers/constant": "workspace:*",
+    "typescript": "^5"
+  }
+}
