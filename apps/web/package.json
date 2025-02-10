@@ -1,11 +1,11 @@
 {
-  "name": "depromeet-makers-web",
+  "name": "@depromeet-makers/web",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "prepare": "husky install",
     "preinstall": "husky install",
-    "dev": "next dev --port=3300",
+    "dev": "next dev --port=3000",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",

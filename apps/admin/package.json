@@ -1,9 +1,9 @@
 {
-  "name": "admin",
+  "name": "@depromeet-makers/admin",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --port=3500",
+    "dev": "next dev --port=3300",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
