@@ -44,7 +44,7 @@ export const AppSidebar = () => {
 
                 return (
                   <SidebarMenuItem key={menu.title}>
-                    <SidebarMenuButton asChild isActive={isActive}>
+                    <SidebarMenuButton asChild size="lg" isActive={isActive}>
                       <a href={menu.url}>
                         <span>{menu.title}</span>
                       </a>
