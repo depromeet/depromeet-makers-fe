@@ -18,6 +18,8 @@ const RuleLink = dynamic(() => import('../features/home/RuleLink'));
 
 import type { GetStaticProps } from 'next';
 
+import { LocationPermission } from '@/features/home/LocationPermission';
+
 import { Notification } from '../features/home/Notification';
 import { useCheckIn } from '../hooks/apis/attendance/useCheckIn';
 import { fetchAttendance, useGetAttendance } from '../hooks/apis/attendance/useGetAttendance';
@@ -68,6 +70,7 @@ const Home = () => {
         <Notification />
 
         <AttendanceContainer>
+          <LocationPermission />
           <Attendance attendances={attendance?.attendances || []} />
           <Absence
             offlineAbsenceCount={attendance?.offlineAbsenceScore}
