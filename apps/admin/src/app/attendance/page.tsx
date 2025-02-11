@@ -3,7 +3,8 @@
 import { getGroupAttendanceOptions } from '@depromeet-makers/api';
 import { useQueries } from '@tanstack/react-query';
 
-import { CURRENT_GENERATION } from '@/constants/attendance';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { CURRENT_GENERATION, WEEK_LIST } from '@/constants/attendance';
 import { useCurrentWeek } from '@/hooks/useCurrentWeek';
 
 import Table from './Table';
@@ -16,10 +17,13 @@ export default function AttendancePage() {
 
   const queries = useQueries({
     queries: [
+      process.env.NODE_ENV === 'development'
+        ? getGroupAttendanceOptions({ generation: GENERATION, week, groupId: '7' })
+        : null,
       ...Array.from({ length: GROUP_COUNT }, (_, index) =>
-        getGroupAttendanceOptions({ generation: GENERATION, week: 1, groupId: (index + 1).toString() }),
+        getGroupAttendanceOptions({ generation: GENERATION, week, groupId: (index + 1).toString() }),
       ),
-    ],
+    ].filter((query) => query !== null),
   });
 
   const allAttendances = queries
@@ -31,5 +35,32 @@ export default function AttendancePage() {
 
   if (!allAttendances) return null;
 
-  return <Table data={allAttendances} />;
+  return (
+    <div className="flex flex-col gap-4 py-8 w-full pr-4">
+      <WeekSelect value={week} onChange={setWeek} />
+      <Table data={allAttendances} />
+    </div>
+  );
+}
+
+interface Props {
+  value: number;
+  onChange: (value: number) => void;
+}
+
+function WeekSelect(props: Props) {
+  return (
+    <Select value={props.value.toString()} onValueChange={(value) => props.onChange(Number(value))}>
+      <SelectTrigger className="w-[120px]">
+        <SelectValue placeholder={`${props.value}주차`} />
+      </SelectTrigger>
+      <SelectContent>
+        {WEEK_LIST.map((week) => (
+          <SelectItem key={week} value={week.toString()}>
+            {week}주차
+          </SelectItem>
+        ))}
+      </SelectContent>
+    </Select>
+  );
 }
