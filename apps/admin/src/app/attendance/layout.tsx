@@ -1,5 +1,17 @@
-import Layout from '@/components/Layout';
+import type { PropsWithChildren } from 'react';
 
-export default function AttendanceLayout({ children }: { children: React.ReactNode }) {
-  return <Layout>{children}</Layout>;
-}
+import { AppSidebar } from '@/components/layout/AppSidebar';
+import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
+
+const SessionLayout = ({ children }: PropsWithChildren) => {
+  return (
+    <SidebarProvider>
+      <AppSidebar />
+
+      <SidebarTrigger />
+      {children}
+    </SidebarProvider>
+  );
+};
+
+export default SessionLayout;
