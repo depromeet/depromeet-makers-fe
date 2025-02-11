@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import type { AttendanceItemType } from '@depromeet-makers/api';
+import { type AttendanceItemType, useModifyAttendance } from '@depromeet-makers/api';
 import type { ColumnDef, SortingState } from '@tanstack/react-table';
 import {
   flexRender,
@@ -11,6 +11,7 @@ import {
   getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table';
+import { toast } from 'sonner';
 
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
@@ -28,8 +29,18 @@ const AttendanceStatusSelect = ({
 }) => {
   const [status, setStatus] = React.useState<ATTENDANCE_STATUS>(attendanceStatus);
 
+  const { mutate } = useModifyAttendance({
+    onSuccess: (data) => {
+      toast.success(`출석 상태가 "${ATTENDANCE_STATUS_KR[data.attendanceStatus]}"으로 변경되었습니다.`);
+      setStatus(data.attendanceStatus);
+    },
+    onError: () => {
+      toast.error('출석 상태 변경에 실패했습니다.');
+    },
+  });
+
   const onChange = (value: ATTENDANCE_STATUS) => {
-    setStatus(value);
+    mutate({ attendanceId, attendanceStatus: value });
   };
 
   return (
@@ -75,16 +86,13 @@ const columns: ColumnDef<AttendanceItemType>[] = [
     header: '포지션',
   },
   {
-    accessorKey: 'sessionType',
-    header: '세션 타입',
-  },
-  {
     accessorKey: 'attendanceStatus',
     header: '출석 상태',
     cell: ({ row }) => (
       <AttendanceStatusSelect
         attendanceId={row.original.attendanceId}
         attendanceStatus={row.original.attendanceStatus}
+        key={`${row.original.attendanceId}-${row.original.attendanceStatus}`}
       />
     ),
   },
@@ -141,7 +149,7 @@ export default function AttendanceTable({ data }: { data: AttendanceItemType[] }
           <TableBody>
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
-                <TableRow key={row.id} data-state={row.getIsSelected() && 'selected'} ㅊ>
+                <TableRow key={row.id} data-state={row.getIsSelected() && 'selected'}>
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</TableCell>
                   ))}
