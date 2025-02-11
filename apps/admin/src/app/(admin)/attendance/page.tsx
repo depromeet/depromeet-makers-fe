@@ -42,7 +42,7 @@ export default function AttendancePage() {
   if (!allAttendances) return null;
 
   return (
-    <div className="flex flex-col gap-4 py-8 w-full pr-4">
+    <div className="flex flex-col gap-4 w-full">
       <WeekSelect value={week} onChange={setWeek} />
       <Table data={allAttendances} />
     </div>
