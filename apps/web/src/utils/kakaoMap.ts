@@ -1,20 +1,6 @@
 import type { SessionPlace } from '../types/session';
 
-const isIos = () => {
-  const userAgent = navigator.userAgent;
-
-  return Boolean(userAgent.match(/iPhone|iPad|iPod/i));
-};
-
-const isAndroid = () => {
-  const userAgent = navigator.userAgent;
-
-  return Boolean(userAgent.match(/Android/i));
-};
-
-export const isDesktop = () => {
-  return Boolean(!isAndroid() && !isIos());
-};
+import { isDesktop, isIos } from './userAgent';
 
 export const openKakaoMap = ({ address, latitude, longitude }: SessionPlace) => {
   const webUrl = `https://map.kakao.com/link/to/${address},${latitude},${longitude}`;
