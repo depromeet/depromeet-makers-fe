@@ -31,8 +31,6 @@ export default function AttendancePage() {
     .filter((data) => data !== undefined)
     .flat();
 
-  console.log('allAttendances: ', allAttendances);
-
   if (!allAttendances) return null;
 
   return (

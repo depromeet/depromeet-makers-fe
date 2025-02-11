@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import type { AttendanceItemType } from '@depromeet-makers/api';
-import type { ColumnDef, ColumnFiltersState, SortingState, VisibilityState } from '@tanstack/react-table';
+import type { ColumnDef, SortingState } from '@tanstack/react-table';
 import {
   flexRender,
   getCoreRowModel,
@@ -15,7 +15,38 @@ import {
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { type ATTENDANCE_STATUS, ATTENDANCE_STATUS_KR, ATTENDANCE_STATUS_LIST } from '@/constants/attendance';
+
+const AttendanceStatusSelect = ({
+  attendanceId,
+  attendanceStatus,
+}: {
+  attendanceId: string;
+  attendanceStatus: ATTENDANCE_STATUS;
+}) => {
+  const [status, setStatus] = React.useState<ATTENDANCE_STATUS>(attendanceStatus);
+
+  const onChange = (value: ATTENDANCE_STATUS) => {
+    setStatus(value);
+  };
+
+  return (
+    <Select value={status} onValueChange={onChange}>
+      <SelectTrigger>
+        <SelectValue placeholder="출석 상태" />
+      </SelectTrigger>
+      <SelectContent>
+        {ATTENDANCE_STATUS_LIST.map((status) => (
+          <SelectItem key={status} value={status}>
+            {ATTENDANCE_STATUS_KR[status]}
+          </SelectItem>
+        ))}
+      </SelectContent>
+    </Select>
+  );
+};
 
 const columns: ColumnDef<AttendanceItemType>[] = [
   {
@@ -50,6 +81,12 @@ const columns: ColumnDef<AttendanceItemType>[] = [
   {
     accessorKey: 'attendanceStatus',
     header: '출석 상태',
+    cell: ({ row }) => (
+      <AttendanceStatusSelect
+        attendanceId={row.original.attendanceId}
+        attendanceStatus={row.original.attendanceStatus}
+      />
+    ),
   },
   {
     accessorKey: 'attendanceTime',
@@ -57,27 +94,21 @@ const columns: ColumnDef<AttendanceItemType>[] = [
   },
 ];
 
-export default function DataTableDemo({ data }: { data: AttendanceItemType[] }) {
+export default function AttendanceTable({ data }: { data: AttendanceItemType[] }) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
-  const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
 
   const table = useReactTable({
     data,
     columns,
     onSortingChange: setSorting,
-    onColumnFiltersChange: setColumnFilters,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
-    onColumnVisibilityChange: setColumnVisibility,
     onRowSelectionChange: setRowSelection,
     state: {
       sorting,
-      columnFilters,
-      columnVisibility,
       rowSelection,
     },
   });
@@ -110,7 +141,7 @@ export default function DataTableDemo({ data }: { data: AttendanceItemType[] }) 
           <TableBody>
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
-                <TableRow key={row.id} data-state={row.getIsSelected() && 'selected'}>
+                <TableRow key={row.id} data-state={row.getIsSelected() && 'selected'} ㅊ>
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</TableCell>
                   ))}
@@ -126,7 +157,7 @@ export default function DataTableDemo({ data }: { data: AttendanceItemType[] }) 
           </TableBody>
         </Table>
       </div>
-      <div className="flex items-center justify-end space-x-2 py-4">
+      <div className="flex items-center justify-end space-x-2 py-2">
         <div className="flex-1 text-sm text-muted-foreground">
           {table.getFilteredSelectedRowModel().rows.length} of {table.getFilteredRowModel().rows.length} row(s)
           selected.
