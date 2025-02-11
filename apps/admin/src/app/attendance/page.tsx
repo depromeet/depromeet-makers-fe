@@ -1,5 +1,6 @@
 'use client';
 
+import type { AttendanceItemType } from '@depromeet-makers/api';
 import { getGroupAttendanceOptions } from '@depromeet-makers/api';
 import { useQueries } from '@tanstack/react-query';
 
@@ -18,12 +19,19 @@ export default function AttendancePage() {
   const queries = useQueries({
     queries: [
       process.env.NODE_ENV === 'development'
-        ? getGroupAttendanceOptions({ generation: GENERATION, week, groupId: '7' })
+        ? {
+            ...getGroupAttendanceOptions({ generation: GENERATION, week, groupId: '7' }),
+            select: (data: AttendanceItemType[]) => data?.map((item) => ({ ...item, groupId: '7' })),
+          }
         : null,
-      ...Array.from({ length: GROUP_COUNT }, (_, index) =>
-        getGroupAttendanceOptions({ generation: GENERATION, week, groupId: (index + 1).toString() }),
-      ),
-    ].filter((query) => query !== null),
+      ...Array.from({ length: GROUP_COUNT }, (_, index) => {
+        const groupId = (index + 1).toString();
+        return {
+          ...getGroupAttendanceOptions({ generation: GENERATION, week, groupId }),
+          select: (data: AttendanceItemType[]) => data?.map((item) => ({ ...item, groupId })),
+        };
+      }),
+    ].filter((query): query is NonNullable<typeof query> => query !== null),
   });
 
   const allAttendances = queries
