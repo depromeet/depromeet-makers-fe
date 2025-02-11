@@ -1,8 +1,8 @@
 import type { UseMutationOptions } from '@tanstack/react-query';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import type { CustomError } from '@/base';
-import { api } from '@/base';
+import type { CustomError } from '../base';
+import { api } from '../base';
 
 interface NotifcationRequest {
   notificationId: string;

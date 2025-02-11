@@ -1,9 +1,9 @@
 import type { UseQueryOptions } from '@tanstack/react-query';
 import { useQuery } from '@tanstack/react-query';
 
-import type { CustomError } from '@/base';
-import { api } from '@/base';
-import type { UserRole } from '@/types/user';
+import type { CustomError } from '../base';
+import { api } from '../base';
+import type { UserRole } from '../types/user';
 
 export interface GetInfoResponse {
   id: string;

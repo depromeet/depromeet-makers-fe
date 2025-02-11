@@ -1,20 +1,9 @@
 import type { UseQueryOptions } from '@tanstack/react-query';
 import { useQuery } from '@tanstack/react-query';
 
-import type { CustomError } from '@/base';
-import { api } from '@/base';
-import type { SessionPlace } from '@/types/session';
-
-export interface SessionType {
-  sessionId: string;
-  week: number;
-  title: string;
-  startTime: string;
-  sessionType: string;
-  place?: SessionPlace;
-  generation: number;
-  description?: string;
-}
+import type { CustomError } from '../base';
+import { api } from '../base';
+import type { Session } from '../types/session';
 
 interface GetSessionListRequest {
   generation: number;
@@ -22,7 +11,7 @@ interface GetSessionListRequest {
 
 interface GetSessionListResponse {
   generation: number;
-  sessions: SessionType[];
+  sessions: Session[];
 }
 
 export const getSessionList = async (): Promise<GetSessionListResponse> => {

@@ -9,7 +9,7 @@ export type Session = {
   week: number;
   title: string;
   startTime: string;
-  sessionType: string;
+  sessionType: 'ONLINE' | 'OFFLINE';
   place?: SessionPlace;
   generation: number;
   description?: string;

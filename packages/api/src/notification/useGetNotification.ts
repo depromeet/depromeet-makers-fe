@@ -1,7 +1,7 @@
 import { useQuery, type UseQueryOptions } from '@tanstack/react-query';
 
-import type { CustomError } from '@/base';
-import { api } from '@/base';
+import type { CustomError } from '../base';
+import { api } from '../base';
 
 interface NotificationResponse {
   id: string;

@@ -1,7 +1,7 @@
 import type { UseQueryOptions } from '@tanstack/react-query';
 import { useQuery } from '@tanstack/react-query';
 
-import { api } from '@/base';
+import { api } from '../base';
 
 interface GerHasMemberRequest {
   email: string;
