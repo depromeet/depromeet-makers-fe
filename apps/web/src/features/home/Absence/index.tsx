@@ -1,8 +1,9 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 
-import { Badge } from '@/components/Badge';
+import Icon from '@/components/Icon';
 
-import { CheckBox } from './CheckBox';
+import { AbsenceRuleModal } from './AbsenceRuleModal';
 
 const ABSENCE_LIMIT = {
   OFFLINE: 2,
@@ -14,34 +15,83 @@ interface AbsenceProps {
   totalAbsenceCount?: number;
 }
 
-export const Absence = ({ offlineAbsenceCount = 0, totalAbsenceCount = 0 }: AbsenceProps) => {
+const getLimitStatus = (count: number, limit: number) => {
+  const isFail = count >= limit;
+
+  if (isFail) {
+    return 'error';
+  }
+
+  if (count > 0) {
+    return 'active';
+  }
+
+  return 'inactive';
+};
+
+const getWarningText = (offlineAbsenceCount: number, totalAbsenceCount: number) => {
   const isOverOfflineLimit = offlineAbsenceCount >= ABSENCE_LIMIT.OFFLINE;
   const isOverTotalLimit = totalAbsenceCount >= ABSENCE_LIMIT.TOTAL;
 
-  return (
-    <Container>
-      <Row>
-        <Title>오프라인 결석</Title>
-        <CheckBox checkBoxCount={ABSENCE_LIMIT.OFFLINE} checkedCount={offlineAbsenceCount} />
-        {isOverOfflineLimit && <BadgeStyled variant="error">🚨 수료기준 미충족</BadgeStyled>}
-      </Row>
+  // 수료 불가
+  if (isOverOfflineLimit) return '🚨 오프라인 결석 2회로 수료가 불가합니다.';
+  if (isOverTotalLimit) return '🚨 누적 결석 4회로 수료가 불가합니다.';
 
-      <Row>
-        <Title>누적 결석 수</Title>
-        <CheckBox checkBoxCount={ABSENCE_LIMIT.TOTAL} checkedCount={totalAbsenceCount} />
-        {totalAbsenceCount > ABSENCE_LIMIT.TOTAL && (
-          <OverLimitText>{`+${totalAbsenceCount - ABSENCE_LIMIT.TOTAL}`}</OverLimitText>
-        )}
-        {isOverTotalLimit && <BadgeStyled variant="error">🚨 수료기준 미충족</BadgeStyled>}
-      </Row>
-    </Container>
+  // 수료 불가에 가까움
+  if (offlineAbsenceCount === ABSENCE_LIMIT.OFFLINE - 1 && totalAbsenceCount === ABSENCE_LIMIT.TOTAL - 1)
+    return '🚨 이대로라면 수료가 어려울 수 있어요. 체크해보세요!';
+
+  // 경고
+  if (offlineAbsenceCount > 0) return '🚨 오프라인 결석 2회 시, 수료가 불가합니다.';
+  if (totalAbsenceCount > 0) return '🚨 누적 결석 4회 시, 수료가 불가합니다.';
+
+  return null;
+};
+
+export const Absence = ({ offlineAbsenceCount = 0, totalAbsenceCount = 0 }: AbsenceProps) => {
+  const [isOpenModal, setIsOpenModal] = useState(false);
+
+  const handleOpen = () => setIsOpenModal(true);
+
+  const handleClose = () => setIsOpenModal(false);
+
+  const offlineAbsenceStatus = getLimitStatus(offlineAbsenceCount, ABSENCE_LIMIT.OFFLINE);
+  const totalAbsenceStatus = getLimitStatus(totalAbsenceCount, ABSENCE_LIMIT.TOTAL);
+
+  const warningText = getWarningText(offlineAbsenceCount, totalAbsenceCount);
+
+  return (
+    <>
+      <Container>
+        <Row>
+          <Title>나의 출결 현황</Title>
+          <AttendanceRuleButton onClick={handleOpen}>
+            출석 규정
+            <Icon name="arrow-right" />
+          </AttendanceRuleButton>
+        </Row>
+        {warningText && <WarningText>{warningText}</WarningText>}
+
+        <Row gap={8} marginTop={16}>
+          <AbsenceBox status={offlineAbsenceStatus}>
+            오프라인 결석
+            <CountText status={offlineAbsenceStatus}>{`${offlineAbsenceCount}회/${ABSENCE_LIMIT.OFFLINE}회`}</CountText>
+          </AbsenceBox>
+          <AbsenceBox status={totalAbsenceStatus}>
+            누적 결석
+            <CountText status={totalAbsenceStatus}>{`${totalAbsenceCount}회/${ABSENCE_LIMIT.TOTAL}회`}</CountText>
+          </AbsenceBox>
+        </Row>
+      </Container>
+
+      <AbsenceRuleModal isOpen={isOpenModal} onClose={handleClose} />
+    </>
   );
 };
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 12px;
   width: 100%;
 
   padding: 24px 20px;
@@ -49,9 +99,12 @@ const Container = styled.div`
   background-color: ${({ theme }) => theme.color.white};
 `;
 
-const Row = styled.div`
+const Row = styled.div<{ gap?: number; marginTop?: number }>`
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  gap: ${({ gap }) => gap}px;
+  margin-top: ${({ marginTop }) => marginTop}px;
 `;
 
 const Title = styled.p`
@@ -62,13 +115,43 @@ const Title = styled.p`
   margin-right: 10px;
 `;
 
-const OverLimitText = styled.span`
-  ${({ theme }) => theme.typo.caption};
-  color: ${({ theme }) => theme.color.red_300};
+const AttendanceRuleButton = styled.button`
+  display: flex;
+  align-items: center;
 
-  margin-left: 6px;
+  gap: 4px;
+  ${({ theme }) => theme.typo.caption};
+  color: ${({ theme }) => theme.color.gray_600};
 `;
 
-const BadgeStyled = styled(Badge)`
-  margin-left: 8px;
+const WarningText = styled.p`
+  margin-top: 6px;
+  ${({ theme }) => theme.typo.caption};
+  color: ${({ theme }) => theme.color.red_300};
+`;
+
+const AbsenceBox = styled.div<{ status: 'inactive' | 'active' | 'error' }>`
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  gap: 2px;
+  border-radius: 8px;
+  ${({ theme }) => theme.typo.caption};
+  color: ${({ theme, status }) => (status === 'error' ? theme.color.red_300 : theme.color.gray_400)};
+  background-color: ${({ theme, status }) => (status === 'error' ? theme.color.red_100 : theme.color.gray_100)};
+`;
+
+const CountText = styled.span<{ status: 'inactive' | 'active' | 'error' }>`
+  color: ${({ theme, status }) => {
+    switch (status) {
+      case 'error':
+        return theme.color.red_300;
+      case 'active':
+        return theme.color.gray_700;
+      default:
+        return theme.color.gray_600;
+    }
+  }};
 `;
