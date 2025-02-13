@@ -1,6 +1,9 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 
 import Icon from '@/components/Icon';
+
+import { AbsenceRuleModal } from './AbsenceRuleModal';
 
 const ABSENCE_LIMIT = {
   OFFLINE: 2,
@@ -26,53 +29,63 @@ const getLimitStatus = (count: number, limit: number) => {
   return 'inactive';
 };
 
+const getWarningText = (offlineAbsenceCount: number, totalAbsenceCount: number) => {
+  const isOverOfflineLimit = offlineAbsenceCount >= ABSENCE_LIMIT.OFFLINE;
+  const isOverTotalLimit = totalAbsenceCount >= ABSENCE_LIMIT.TOTAL;
+
+  // 수료 불가
+  if (isOverOfflineLimit) return '🚨 오프라인 결석 2회로 수료가 불가합니다.';
+  if (isOverTotalLimit) return '🚨 누적 결석 4회로 수료가 불가합니다.';
+
+  // 수료 불가에 가까움
+  if (offlineAbsenceCount === ABSENCE_LIMIT.OFFLINE - 1 && totalAbsenceCount === ABSENCE_LIMIT.TOTAL - 1)
+    return '🚨 이대로라면 수료가 어려울 수 있어요. 체크해보세요!';
+
+  // 경고
+  if (offlineAbsenceCount > 0) return '🚨 오프라인 결석 2회 시, 수료가 불가합니다.';
+  if (totalAbsenceCount > 0) return '🚨 누적 결석 4회 시, 수료가 불가합니다.';
+
+  return null;
+};
+
 export const Absence = ({ offlineAbsenceCount = 0, totalAbsenceCount = 0 }: AbsenceProps) => {
-  const getWarningText = () => {
-    const isOverOfflineLimit = offlineAbsenceCount >= ABSENCE_LIMIT.OFFLINE;
-    const isOverTotalLimit = totalAbsenceCount >= ABSENCE_LIMIT.TOTAL;
+  const [isOpenModal, setIsOpenModal] = useState(false);
 
-    // 수료 불가
-    if (isOverOfflineLimit) return '🚨 오프라인 결석 2회로 수료가 불가합니다.';
-    if (isOverTotalLimit) return '🚨 누적 결석 4회로 수료가 불가합니다.';
+  const handleOpen = () => setIsOpenModal(true);
 
-    // 수료 불가에 가까움
-    if (offlineAbsenceCount === ABSENCE_LIMIT.OFFLINE - 1 && totalAbsenceCount === ABSENCE_LIMIT.TOTAL - 1)
-      return '🚨 이대로라면 수료가 어려울 수 있어요. 체크해보세요!';
-
-    // 경고
-    if (offlineAbsenceCount > 0) return '🚨 오프라인 결석 2회 시, 수료가 불가합니다.';
-    if (totalAbsenceCount > 0) return '🚨 누적 결석 4회 시, 수료가 불가합니다.';
-
-    return null;
-  };
+  const handleClose = () => setIsOpenModal(false);
 
   const offlineAbsenceStatus = getLimitStatus(offlineAbsenceCount, ABSENCE_LIMIT.OFFLINE);
   const totalAbsenceStatus = getLimitStatus(totalAbsenceCount, ABSENCE_LIMIT.TOTAL);
 
-  const warningText = getWarningText();
+  const warningText = getWarningText(offlineAbsenceCount, totalAbsenceCount);
 
   return (
-    <Container>
-      <Row>
-        <Title>나의 출결 현황</Title>
-        <AttendanceRuleButton>
-          출석 규정
-          <Icon name="arrow-right" />
-        </AttendanceRuleButton>
-      </Row>
-      {warningText && <WarningText>{warningText}</WarningText>}
+    <>
+      <Container>
+        <Row>
+          <Title>나의 출결 현황</Title>
+          <AttendanceRuleButton onClick={handleOpen}>
+            출석 규정
+            <Icon name="arrow-right" />
+          </AttendanceRuleButton>
+        </Row>
+        {warningText && <WarningText>{warningText}</WarningText>}
 
-      <Row gap={8}>
-        <AbsenceBox status={offlineAbsenceStatus}>
-          오프라인 결석
-          <CountText status={offlineAbsenceStatus}>{`${offlineAbsenceCount}회/${ABSENCE_LIMIT.OFFLINE}회`}</CountText>
-        </AbsenceBox>
-        <AbsenceBox status={totalAbsenceStatus}>
-          누적 결석
-          <CountText status={totalAbsenceStatus}>{`${totalAbsenceCount}회/${ABSENCE_LIMIT.TOTAL}회`}</CountText>
-        </AbsenceBox>
-      </Row>
-    </Container>
+        <Row gap={8}>
+          <AbsenceBox status={offlineAbsenceStatus}>
+            오프라인 결석
+            <CountText status={offlineAbsenceStatus}>{`${offlineAbsenceCount}회/${ABSENCE_LIMIT.OFFLINE}회`}</CountText>
+          </AbsenceBox>
+          <AbsenceBox status={totalAbsenceStatus}>
+            누적 결석
+            <CountText status={totalAbsenceStatus}>{`${totalAbsenceCount}회/${ABSENCE_LIMIT.TOTAL}회`}</CountText>
+          </AbsenceBox>
+        </Row>
+      </Container>
+
+      <AbsenceRuleModal isOpen={isOpenModal} onClose={handleClose} />
+    </>
   );
 };
 
