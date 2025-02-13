@@ -72,7 +72,7 @@ export const Absence = ({ offlineAbsenceCount = 0, totalAbsenceCount = 0 }: Abse
         </Row>
         {warningText && <WarningText>{warningText}</WarningText>}
 
-        <Row gap={8}>
+        <Row gap={8} marginTop={16}>
           <AbsenceBox status={offlineAbsenceStatus}>
             오프라인 결석
             <CountText status={offlineAbsenceStatus}>{`${offlineAbsenceCount}회/${ABSENCE_LIMIT.OFFLINE}회`}</CountText>
@@ -92,7 +92,6 @@ export const Absence = ({ offlineAbsenceCount = 0, totalAbsenceCount = 0 }: Abse
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 12px;
   width: 100%;
 
   padding: 24px 20px;
@@ -100,11 +99,12 @@ const Container = styled.div`
   background-color: ${({ theme }) => theme.color.white};
 `;
 
-const Row = styled.div<{ gap?: number }>`
+const Row = styled.div<{ gap?: number; marginTop?: number }>`
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: ${({ gap }) => gap}px;
+  margin-top: ${({ marginTop }) => marginTop}px;
 `;
 
 const Title = styled.p`
@@ -125,6 +125,7 @@ const AttendanceRuleButton = styled.button`
 `;
 
 const WarningText = styled.p`
+  margin-top: 6px;
   ${({ theme }) => theme.typo.caption};
   color: ${({ theme }) => theme.color.red_300};
 `;
