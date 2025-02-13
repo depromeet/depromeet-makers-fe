@@ -71,7 +71,7 @@ const Home = () => {
           <Attendance attendances={attendance?.attendances || []} />
           <Absence
             offlineAbsenceCount={attendance?.offlineAbsenceScore}
-            totalAbsenceCount={Math.floor(attendance?.totalAbsenceScore || 0)}
+            totalAbsenceCount={attendance?.totalAbsenceScore || 0}
           />
         </AttendanceContainer>
       </Container>
