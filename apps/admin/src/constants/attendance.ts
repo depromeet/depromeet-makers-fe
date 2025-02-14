@@ -17,3 +17,6 @@ export const ATTENDANCE_STATUS_LIST = Object.values(ATTENDANCE_STATUS) as ATTEND
 
 export const CURRENT_GENERATION = 16; // 임시 처리
 // export const CURRENT_GENERATION = Number(process.env.NEXT_PUBLIC_DEPROMEET_GENERATION || 0);
+
+export const WEEK_COUNT = 16;
+export const WEEK_LIST = Array.from({ length: WEEK_COUNT }).map((_, index) => index + 1);
