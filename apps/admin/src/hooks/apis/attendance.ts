@@ -11,22 +11,6 @@ interface AttendanceResponse {
   attendances: Attendance[];
 }
 
-export const fetchAttendance = async (params: AttendanceParams): Promise<AttendanceResponse> => {
-  const searchParams = new URLSearchParams({ generation: params.generation.toString() });
-  const response = await fetch(`/api/attendances/me?${searchParams}`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
-
-  if (!response.ok) {
-    throw new Error('출석 정보를 가져오는데 실패했습니다.');
-  }
-
-  return response.json();
-};
-
 interface GetGroupAttendanceRequest {
   generation: number;
   week: number;

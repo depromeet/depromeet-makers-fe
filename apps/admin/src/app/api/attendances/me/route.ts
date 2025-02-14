@@ -5,6 +5,8 @@ import { COOKIE_KEY } from '@/constants/cookie';
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
