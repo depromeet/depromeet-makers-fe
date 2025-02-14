@@ -20,7 +20,7 @@ export const DataTable = <TData, TValue>({ columns, data, placeholder, onRowClic
   });
 
   return (
-    <div className="rounded-md border">
+    <div className="rounded-md border bg-white">
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
