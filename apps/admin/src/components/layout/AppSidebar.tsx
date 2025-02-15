@@ -15,13 +15,17 @@ import {
 } from '@/components/ui/sidebar';
 
 const MENUS = [
-  {
-    title: '멤버 관리',
-    url: '/member',
-  },
+  // {
+  //   title: '멤버 관리',
+  //   url: '/member',
+  // },
   {
     title: '세션 관리',
     url: '/session',
+  },
+  {
+    title: '출석 관리',
+    url: '/attendance',
   },
 ];
 
