@@ -15,21 +15,18 @@ export const BottomNav = ({ items }: { items: NavItemType }) => {
   const pathname = usePathname();
 
   return (
-    <>
-      <BottomNavStyled>
-        {items.map(({ text, icon, path }) => {
-          const selected = path === pathname;
+    <BottomNavStyled>
+      {items.map(({ text, icon, path }) => {
+        const selected = path === pathname;
 
-          return (
-            <NavItem key={path} href={path} selected={selected}>
-              <Icon name={icon} width={26} height={26} color={selected ? theme.color.gray_900 : theme.color.gray_300} />
-              {text}
-            </NavItem>
-          );
-        })}
-      </BottomNavStyled>
-      <Blank />
-    </>
+        return (
+          <NavItem key={path} href={path} selected={selected}>
+            <Icon name={icon} width={26} height={26} color={selected ? theme.color.gray_900 : theme.color.gray_300} />
+            {text}
+          </NavItem>
+        );
+      })}
+    </BottomNavStyled>
   );
 };
 
@@ -61,7 +58,4 @@ const NavItem = styled(Link)<NavItemProps>`
   fill: ${({ theme, selected }) => (selected ? theme.color.gray_900 : theme.color.gray_300)};
   font-weight: 500;
   ${({ theme }) => theme.typo.caption};
-`;
-const Blank = styled.div`
-  height: 68px;
 `;

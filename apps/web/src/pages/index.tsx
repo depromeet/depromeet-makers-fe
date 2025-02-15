@@ -120,15 +120,11 @@ const Container = styled.main`
   flex-direction: column;
   position: relative;
 
-  height: calc(100dvh - 68px);
+  height: 100%;
   padding: 32px 20px;
   overflow: auto;
 
   background-color: ${({ theme }) => theme.color.gray_100};
-
-  @media ${({ theme }) => theme.media.mobile} {
-    height: calc(100vh + 160px);
-  }
 `;
 
 const InfoContainer = styled.div`
