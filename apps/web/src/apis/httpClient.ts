@@ -8,6 +8,8 @@ import axios, {
 } from 'axios';
 import Cookies from 'js-cookie';
 
+import { UNAUTHORIZED_CODE } from '@/constants/http';
+
 import { COOKIE_KEY } from '../constants/cookie';
 
 class HttpClient {
@@ -64,7 +66,12 @@ class HttpClient {
 
   private onResponseRejected(error: AxiosError) {
     if (!isAxiosError(error)) return Promise.reject(error);
-    // TODO : 강제 로그아웃 처리 필요
+
+    if (error.status === UNAUTHORIZED_CODE) {
+      Cookies.remove(COOKIE_KEY.ACCESS_TOKEN);
+      Cookies.remove(COOKIE_KEY.REFRESH_TOKEN);
+      Cookies.remove(COOKIE_KEY.CURRENT_ROLE);
+    }
 
     return Promise.reject(error.response?.data);
   }
