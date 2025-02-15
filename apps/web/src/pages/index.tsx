@@ -14,7 +14,6 @@ import { Absence } from '../features/home/Absence';
 import { Attendance } from '../features/home/Attendance';
 
 const AttendanceCodeModal = dynamic(() => import('../features/home/AttendanceCodeModal'));
-const RuleLink = dynamic(() => import('../features/home/RuleLink'));
 
 import type { GetStaticProps } from 'next';
 
@@ -60,7 +59,6 @@ const Home = () => {
             <Badge>{`${session?.week || 1}주차`}</Badge>
             <DateText>{`${month} ${day}`}</DateText>
           </DateContainer>
-          <RuleLink />
         </InfoContainer>
 
         <Title>{TITLE[session?.week || 1]}</Title>

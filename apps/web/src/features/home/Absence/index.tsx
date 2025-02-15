@@ -1,9 +1,7 @@
-import { useState } from 'react';
+import Link from 'next/link';
 import styled from 'styled-components';
 
 import Icon from '@/components/Icon';
-
-import { AbsenceRuleModal } from './AbsenceRuleModal';
 
 const ABSENCE_LIMIT = {
   OFFLINE: 2,
@@ -49,12 +47,6 @@ const getWarningText = (offlineAbsenceCount: number, totalAbsenceCount: number) 
 };
 
 export const Absence = ({ offlineAbsenceCount = 0, totalAbsenceCount = 0 }: AbsenceProps) => {
-  const [isOpenModal, setIsOpenModal] = useState(false);
-
-  const handleOpen = () => setIsOpenModal(true);
-
-  const handleClose = () => setIsOpenModal(false);
-
   const offlineAbsenceStatus = getLimitStatus(offlineAbsenceCount, ABSENCE_LIMIT.OFFLINE);
   const totalAbsenceStatus = getLimitStatus(totalAbsenceCount, ABSENCE_LIMIT.TOTAL);
 
@@ -65,7 +57,7 @@ export const Absence = ({ offlineAbsenceCount = 0, totalAbsenceCount = 0 }: Abse
       <Container>
         <Row>
           <Title>나의 출결 현황</Title>
-          <AttendanceRuleButton onClick={handleOpen}>
+          <AttendanceRuleButton href="/rule">
             출석 규정
             <Icon name="arrow-right" />
           </AttendanceRuleButton>
@@ -83,8 +75,6 @@ export const Absence = ({ offlineAbsenceCount = 0, totalAbsenceCount = 0 }: Abse
           </AbsenceBox>
         </Row>
       </Container>
-
-      <AbsenceRuleModal isOpen={isOpenModal} onClose={handleClose} />
     </>
   );
 };
@@ -115,7 +105,7 @@ const Title = styled.p`
   margin-right: 10px;
 `;
 
-const AttendanceRuleButton = styled.button`
+const AttendanceRuleButton = styled(Link)`
   display: flex;
   align-items: center;
 
