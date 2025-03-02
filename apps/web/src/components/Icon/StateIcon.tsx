@@ -14,28 +14,28 @@ export function StateIcon({ color = '#94A3B8', ...props }: IconComponentProps) {
       <path
         d="M2.5 2.5V17.5H17.5"
         stroke="currentColor"
-        strokeWidth="1.66667"
+        stroke-width="1.66667"
         stroke-linecap="round"
         stroke-linejoin="round"
       />
       <path
         d="M5.83325 13.3335H12.4999"
         stroke="currentColor"
-        strokeWidth="1.66667"
+        stroke-width="1.66667"
         stroke-linecap="round"
         stroke-linejoin="round"
       />
       <path
         d="M5.83325 9.1665H15.8333"
         stroke="currentColor"
-        strokeWidth="1.66667"
+        stroke-width="1.66667"
         stroke-linecap="round"
         stroke-linejoin="round"
       />
       <path
         d="M5.83325 5H8.33325"
         stroke="currentColor"
-        strokeWidth="1.66667"
+        stroke-width="1.66667"
         stroke-linecap="round"
         stroke-linejoin="round"
       />

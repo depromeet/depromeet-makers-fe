@@ -30,7 +30,7 @@ export function TeamIcon({ ...props }: IconComponentProps) {
         d="M9 12C11.7614 12 14 9.76142 14 7C14 4.23858 11.7614 2 9 2C6.23858 2 4 4.23858 4 7C4 9.76142 6.23858 12 9 12Z"
         fill="currentColor"
         stroke="white"
-        strokeWidth="2"
+        stroke-width="2"
         stroke-linecap="round"
         stroke-linejoin="round"
       />

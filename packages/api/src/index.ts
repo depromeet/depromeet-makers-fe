@@ -1,4 +1,3 @@
-export * from './attendance';
 export * from './auth';
 export * from './notification';
 export * from './sessions';
