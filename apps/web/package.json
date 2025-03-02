@@ -28,6 +28,7 @@
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^1.3.3",
+    "@depromeet-makers/typescript-config": "workspace:*",
     "@storybook/addon-essentials": "^8.0.9",
     "@storybook/addon-interactions": "^8.0.9",
     "@storybook/addon-links": "^8.0.9",
