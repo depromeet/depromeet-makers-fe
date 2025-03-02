@@ -6,7 +6,7 @@ import path from 'path';
 import { REPO_NAME } from '../constants';
 
 export const createPackageConfig: PlopTypes.PlopGeneratorConfig = {
-  description: '세로운 packages를 생성해요',
+  description: '새로운 packages를 생성해요',
   prompts: [
     {
       type: 'input',
