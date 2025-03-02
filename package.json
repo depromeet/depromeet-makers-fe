@@ -12,9 +12,11 @@
     "dev:admin": "turbo dev --filter=@depromeet-makers/admin",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "clean": "find . -name 'node_modules' -type d -prune -exec rm -rf '{}' +"
+    "clean": "find . -name 'node_modules' -type d -prune -exec rm -rf '{}' +",
+    "create-package": "turbo gen create-package"
   },
   "devDependencies": {
+    "@turbo/gen": "^2.4.4",
     "@types/eslint": "^9.6.0",
     "eslint": "^8.57.0",
     "husky": "^9.0.11",
