@@ -22,6 +22,9 @@
     },
     "ios:build:dev": {
       "dependsOn": ["^ios:build:dev"]
+    },
+    "connect": {
+      "outputs": []
     }
   }
 }
