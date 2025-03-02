@@ -1,0 +1,19 @@
+{
+  "name": "@depromeet-makers/figma-connect",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "connect": "figma connect publish",
+    "lint": "eslint . --max-warnings 0"
+  },
+  "dependencies": {
+    "@figma/code-connect": "1.2.4",
+    "react": "^18.2.0"
+  },
+  "devDependencies": {
+    "@depromeet-makers/typescript-config": "workspace:*",
+    "@types/react": "^18.2.0",
+    "typescript": "^5",
+    "eslint": "^8"
+  }
+}

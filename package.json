@@ -13,7 +13,8 @@
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "clean": "find . -name 'node_modules' -type d -prune -exec rm -rf '{}' +",
-    "create-package": "turbo gen create-package"
+    "create-package": "turbo gen create-package",
+    "connect": "turbo run connect"
   },
   "devDependencies": {
     "@turbo/gen": "^2.4.4",
