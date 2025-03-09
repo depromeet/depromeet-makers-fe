@@ -1,0 +1,9 @@
+{
+  "codeConnect": {
+    "include": ["src/**/*"],
+    "parser": "react",
+    "documentUrlSubstitutions": {
+      "<DESIGN_SYSTEM_BASE>": "https://www.figma.com/design/WchIZd4Ml6K1rndrWyMAD2/%EB%94%94%ED%94%84%EB%A7%8C-%EB%A9%94%EC%9D%B4%EC%BB%A4%EC%8A%A4"
+    }
+  }
+}
