@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { Alert } from 'react-native';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { initializeKakaoSDK } from '@react-native-kakao/core';
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
@@ -8,6 +9,7 @@ import * as Location from 'expo-location';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 
+import AuthProvider from '@/context/AuthProvider';
 import { useColorScheme } from '@/hooks/useColorScheme';
 
 import 'react-native-reanimated';
@@ -50,18 +52,22 @@ export default function RootLayout() {
 
   useEffect(() => {
     initializeKakaoSDK('TODO: app key 추가');
-  });
+  }, []);
 
   if (!loaded) {
     return null;
   }
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="login" options={{ headerShown: false }} />
-      </Stack>
-    </ThemeProvider>
+    <GestureHandlerRootView>
+      <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+        <AuthProvider>
+          <Stack screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            <Stack.Screen name="login" options={{ headerShown: false }} />
+          </Stack>
+        </AuthProvider>
+      </ThemeProvider>
+    </GestureHandlerRootView>
   );
 }
