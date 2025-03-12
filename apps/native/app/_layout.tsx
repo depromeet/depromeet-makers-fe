@@ -1,10 +1,11 @@
 import { useEffect } from 'react';
 import { Alert } from 'react-native';
+import { initializeKakaoSDK } from '@react-native-kakao/core';
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import { openSettings } from 'expo-linking';
 import * as Location from 'expo-location';
-import { Slot } from 'expo-router';
+import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 
 import { useColorScheme } from '@/hooks/useColorScheme';
@@ -47,13 +48,20 @@ export default function RootLayout() {
     getLocationPermission();
   }, []);
 
+  useEffect(() => {
+    initializeKakaoSDK('TODO: app key 추가');
+  });
+
   if (!loaded) {
     return null;
   }
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Slot />
+      <Stack>
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="login" options={{ headerShown: false }} />
+      </Stack>
     </ThemeProvider>
   );
 }
