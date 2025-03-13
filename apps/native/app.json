@@ -14,7 +14,10 @@
         "NSLocationWhenInUseUsageDescription": "이 앱은 위치 정보를 사용하여 서비스를 제공합니다.",
         "LSApplicationQueriesSchemes": ["kakaomap"]
       },
-      "bundleIdentifier": "kr.co.geonhui.Depromeet"
+      "bundleIdentifier": "kr.co.geonhui.Depromeet",
+      "config": {
+        "usesNonExemptEncryption": false
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -49,6 +52,33 @@
         "expo-location",
         {
           "locationAlwaysAndWhenInUsePermission": "Allow $(PRODUCT_NAME) to use your location."
+        }
+      ],
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "extraMavenRepos": ["https://devrepo.kakao.com/nexus/content/groups/public/"]
+          }
+        }
+      ],
+      [
+        "@react-native-kakao/core",
+        {
+          "nativeAppKey": "{{native app key}}",
+          "android": {
+            "authCodeHandlerActivity": true
+          },
+          "ios": {
+            "handleKakaoOpenUrl": true
+          }
+        }
+      ],
+      [
+        "expo-secure-store",
+        {
+          "configureAndroidBackup": true,
+          "faceIDPermission": "$(PRODUCT_NAME)이 Face ID에 접근할 수 있도록 허용합니다."
         }
       ]
     ],
