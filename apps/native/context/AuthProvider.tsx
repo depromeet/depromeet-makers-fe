@@ -48,7 +48,7 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
     };
 
     loadToken();
-  }, [router]);
+  }, []);
 
   return <AuthContext.Provider value={{ userToken, signIn, signOut }}>{children}</AuthContext.Provider>;
 };
