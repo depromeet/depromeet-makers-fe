@@ -22,12 +22,12 @@ const checkOverflow = (textContainer: HTMLDivElement | null) => {
 };
 
 export default function LongText({ children, className = '', contentClassName = '' }: LongTextProps) {
-  const ref = useRef<HTMLDivElement>(null);
+  const tooltipRef = useRef<HTMLDivElement>(null);
 
   const [isOverflown, setIsOverflown] = useState(false);
 
   useEffect(() => {
-    if (checkOverflow(ref.current)) {
+    if (checkOverflow(tooltipRef.current)) {
       setIsOverflown(true);
       return;
     }
@@ -37,7 +37,7 @@ export default function LongText({ children, className = '', contentClassName = 
 
   if (!isOverflown)
     return (
-      <div ref={ref} className={cn('truncate', className)}>
+      <div ref={tooltipRef} className={cn('truncate', className)}>
         {children}
       </div>
     );
@@ -48,7 +48,7 @@ export default function LongText({ children, className = '', contentClassName = 
         <TooltipProvider delayDuration={0}>
           <Tooltip>
             <TooltipTrigger asChild>
-              <div ref={ref} className={cn('truncate', className)}>
+              <div ref={tooltipRef} className={cn('truncate', className)}>
                 {children}
               </div>
             </TooltipTrigger>
@@ -61,7 +61,7 @@ export default function LongText({ children, className = '', contentClassName = 
       <div className="sm:hidden">
         <Popover>
           <PopoverTrigger asChild>
-            <div ref={ref} className={cn('truncate', className)}>
+            <div ref={tooltipRef} className={cn('truncate', className)}>
               {children}
             </div>
           </PopoverTrigger>
