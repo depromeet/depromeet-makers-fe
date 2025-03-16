@@ -3,7 +3,7 @@
 import { usePathname } from 'next/navigation';
 
 import {
-  Sidebar as BaseSidebar,
+  Sidebar,
   SidebarContent,
   SidebarFooter,
   SidebarGroup,
@@ -15,10 +15,10 @@ import {
 } from '@/components/ui/sidebar';
 
 const MENUS = [
-  // {
-  //   title: '멤버 관리',
-  //   url: '/member',
-  // },
+  {
+    title: '멤버 관리',
+    url: '/user',
+  },
   {
     title: '세션 관리',
     url: '/session',
@@ -37,7 +37,7 @@ export const AppSidebar = () => {
   };
 
   return (
-    <BaseSidebar>
+    <Sidebar variant="floating">
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel>메이커스 어드민</SidebarGroupLabel>
@@ -70,6 +70,6 @@ export const AppSidebar = () => {
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarFooter>
-    </BaseSidebar>
+    </Sidebar>
   );
 };
