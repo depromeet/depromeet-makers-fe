@@ -26,7 +26,7 @@ export const UsersDeleteDialog = ({ open, onOpenChange, currentRow }: UsersDelet
     onOpenChange(false);
 
     toast({
-      title: '해닫 유저가 삭제됩니다:',
+      title: '해당 유저가 삭제됩니다:',
       description: (
         <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
           <code className="text-white">{JSON.stringify(currentRow, null, 2)}</code>
