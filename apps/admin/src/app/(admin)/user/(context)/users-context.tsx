@@ -5,7 +5,7 @@ import useDialogState from '@/hooks/use-dialog-state';
 
 import type { User } from '../(data)/schema';
 
-type UsersDialogType = 'invite' | 'add' | 'edit' | 'delete';
+export type UsersDialogType = 'invite' | 'add' | 'edit' | 'delete';
 
 interface UsersContextType {
   open: UsersDialogType | null;
