@@ -2,10 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --header-height: calc(var(--spacing) * 12 + 1px);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -54,11 +56,11 @@ body {
     --sidebar-foreground: 240 5.3% 26.1%;
     --sidebar-primary: 240 5.9% 10%;
     --sidebar-primary-foreground: 0 0% 98%;
-    /* --sidebar-accent: 240 4.8% 95.9%; */
-    --sidebar-accent: 214 32% 91%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    /* --sidebar-accent: 214 32% 91%; */
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* --sidebar-ring: 217.2 91.2% 59.8%; */
   }
   .dark {
     --background: 0 0% 3.9%;
@@ -92,7 +94,7 @@ body {
     --sidebar-accent: 240 3.7% 15.9%;
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* --sidebar-ring: 217.2 91.2% 59.8%; */
   }
 }
 
