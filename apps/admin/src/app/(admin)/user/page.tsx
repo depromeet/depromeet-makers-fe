@@ -30,15 +30,6 @@ const MEMBER_MOCK_DATA = [
     updatedAt: new Date(),
   },
   {
-    id: '3',
-    username: 'user 3',
-    email: '',
-    status: 'invited',
-    role: 'member',
-    createdAt: new Date(),
-    updatedAt: new Date(),
-  },
-  {
     id: '4',
     username: 'user 4',
     email: '',
