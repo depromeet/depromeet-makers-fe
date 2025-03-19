@@ -1,6 +1,9 @@
 'use client';
 
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useGetInfo } from '@depromeet-makers/api';
+import { IconInnerShadowTop } from '@tabler/icons-react';
 
 import {
   Sidebar,
@@ -9,10 +12,13 @@ import {
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
+  SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
 } from '@/components/ui/sidebar';
+
+import { NavUser } from './nav/NavUser';
 
 const MENUS = [
   {
@@ -31,16 +37,30 @@ const MENUS = [
 
 export const AppSidebar = () => {
   const pathname = usePathname();
+  const { data: user } = useGetInfo();
 
   const handleLogout = () => {
     // TODO: 로그아웃 처리
   };
 
   return (
-    <Sidebar variant="floating">
+    <Sidebar variant="inset">
+      <SidebarHeader>
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <SidebarMenuButton asChild className="data-[slot=sidebar-menu-button]:!p-1.5">
+              <Link href="/">
+                <IconInnerShadowTop className="!size-5" />
+                <span className="text-base font-semibold">메이커스 Admin</span>
+              </Link>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
+      </SidebarHeader>
+
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>메이커스 어드민</SidebarGroupLabel>
+          <SidebarGroupLabel>메이커스 관리</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {MENUS.map((menu) => {
@@ -62,13 +82,7 @@ export const AppSidebar = () => {
       </SidebarContent>
 
       <SidebarFooter>
-        <SidebarMenu>
-          <SidebarMenuItem>
-            <SidebarMenuButton onClick={handleLogout}>
-              <span>로그아웃</span>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-        </SidebarMenu>
+        <NavUser user={user ?? { name: '', email: ''}} />
       </SidebarFooter>
     </Sidebar>
   );
