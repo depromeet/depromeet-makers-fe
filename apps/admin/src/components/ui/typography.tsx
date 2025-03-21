@@ -25,7 +25,7 @@ export const H4 = ({ className, children }: ComponentProps<'h4'>) => {
 };
 
 export const H5 = ({ className, children }: ComponentProps<'h5'>) => {
-  return <h4 className={cn('scroll-m-20 text-lg font-semibold tracking-tight', className)}>{children}</h4>;
+  return <h5 className={cn('scroll-m-20 text-lg font-semibold tracking-tight', className)}>{children}</h5>;
 };
 
 export const P = ({ className, children }: ComponentProps<'p'>) => {
