@@ -24,6 +24,10 @@ export const H4 = ({ className, children }: ComponentProps<'h4'>) => {
   return <h4 className={cn('scroll-m-20 text-xl font-semibold tracking-tight', className)}>{children}</h4>;
 };
 
+export const H5 = ({ className, children }: ComponentProps<'h5'>) => {
+  return <h5 className={cn('scroll-m-20 text-lg font-semibold tracking-tight', className)}>{children}</h5>;
+};
+
 export const P = ({ className, children }: ComponentProps<'p'>) => {
   return <p className={cn('leading-7 [&:not(:first-child)]:mt-6', className)}>{children}</p>;
 };
