@@ -1,7 +1,6 @@
 'use client';
 
 import { useFormContext } from 'react-hook-form';
-import { z } from 'zod';
 
 import { SelectDropdown } from '@/components/select-dropdown';
 import { Button } from '@/components/ui/button';
@@ -11,25 +10,12 @@ import { Textarea } from '@/components/ui/textarea';
 import { toast } from '@/hooks/use-toast';
 
 import { SESSION_TYPES } from '../(constant)/session';
+import { type SessionForm as SessionFormType } from '../(data)/session';
 
 import { DateTimePicker } from './date-time-picker';
 
-const sessionScheme = z.object({
-  title: z.string().min(1, { message: '제목을 입력해주세요.' }),
-  description: z.string().min(1, { message: '설명을 입력해주세요.' }),
-  sessionType: z.enum(['OFFLINE', 'ONLINE']).default('OFFLINE'),
-  week: z.string().min(1, { message: '주차를 입력해주세요.' }),
-  startTime: z.date({
-    required_error: '시작 시간을 선택해주세요.',
-  }),
-  endTime: z.string().optional(),
-  place: z.string().optional(),
-});
-
-type SessionForm = z.infer<typeof sessionScheme>;
-
 export const SessionForm = () => {
-  const form = useFormContext<SessionForm>();
+  const form = useFormContext<SessionFormType>();
 
   const handleDateSelect = (selectedDate?: Date) => {
     if (!selectedDate) return;
@@ -52,7 +38,7 @@ export const SessionForm = () => {
     form.setValue('startTime', newDate);
   };
 
-  const onSubmit = (values: SessionForm) => {
+  const onSubmit = (values: SessionFormType) => {
     form.reset();
 
     toast({
