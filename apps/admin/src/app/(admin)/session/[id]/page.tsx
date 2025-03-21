@@ -14,7 +14,7 @@ const SessionDetailPage = ({ params }: { params: { id: string } }) => {
 
   // TODO: 세션 상세 정보 api 개발 후 변경 예정
   const session = useMemo(() => {
-    return sessionList?.sessions.find((session) => session.sessionId === sessionId) ?? {};
+    return sessionList?.sessions.find((session) => session.sessionId === sessionId) ?? null;
   }, [sessionList, sessionId]);
 
   // TODO: suspense 적용
