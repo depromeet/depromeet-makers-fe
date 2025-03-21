@@ -1,5 +1,32 @@
+'use client';
+
+import { FormProvider, useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+
+import { SessionForm } from '../(component)/session-form';
+import { SessionPreview } from '../(component)/session-preview';
+import { type SessionForm as SessionFormType, sessionScheme } from '../(data)/session';
+
 const SessionNewPage = () => {
-  return <>세션 추가하기</>;
+  const form = useForm<SessionFormType>({
+    resolver: zodResolver(sessionScheme),
+    defaultValues: {
+      title: '',
+      description: '',
+      sessionType: 'OFFLINE',
+      startTime: new Date(),
+      place: '',
+    },
+  });
+
+  return (
+    <FormProvider {...form}>
+      <div className="grid lg:grid-cols-2 grid-cols-1  gap-8 bg-gray-100 max-h-full">
+        <SessionForm />
+        <SessionPreview />
+      </div>
+    </FormProvider>
+  );
 };
 
 export default SessionNewPage;
