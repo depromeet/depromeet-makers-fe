@@ -8,7 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { CURRENT_GENERATION, WEEK_LIST } from '@/constants/attendance';
 import { useCurrentWeek } from '@/hooks/useCurrentWeek';
 
-import Table from './Table';
+import AttendanceTable from './(component)/attendace-table';
 
 const GROUP_COUNT = 6;
 const GENERATION = CURRENT_GENERATION;
@@ -44,7 +44,7 @@ export default function AttendancePage() {
   return (
     <div className="flex flex-col gap-4 w-full">
       <WeekSelect value={week} onChange={setWeek} />
-      <Table data={allAttendances} />
+      <AttendanceTable data={allAttendances} />
     </div>
   );
 }
