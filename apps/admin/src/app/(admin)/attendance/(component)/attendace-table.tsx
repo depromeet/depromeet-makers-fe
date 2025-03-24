@@ -19,12 +19,16 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { columns } from './attendance-column';
 import { AttendanceTableFilter } from './attendance-table-filter';
 
-export default function AttendanceTable({ data }: { data: (AttendanceItemType & { groupId: string })[] }) {
+interface AttendanceTableProps {
+  attendances: (AttendanceItemType & { groupId: string })[];
+}
+
+export const AttendanceTable = ({ attendances }: AttendanceTableProps) => {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [rowSelection, setRowSelection] = useState({});
 
   const table = useReactTable({
-    data,
+    data: attendances,
     columns: columns,
     onSortingChange: setSorting,
     getCoreRowModel: getCoreRowModel(),
@@ -65,6 +69,7 @@ export default function AttendanceTable({ data }: { data: (AttendanceItemType & 
               </TableRow>
             ))}
           </TableHeader>
+
           <TableBody>
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
@@ -84,6 +89,7 @@ export default function AttendanceTable({ data }: { data: (AttendanceItemType & 
           </TableBody>
         </Table>
       </div>
+
       <div className="flex items-center justify-end space-x-2 py-2">
         <div className="flex-1 text-sm text-muted-foreground">
           {table.getFilteredSelectedRowModel().rows.length} of {table.getFilteredRowModel().rows.length} row(s)
@@ -105,4 +111,4 @@ export default function AttendanceTable({ data }: { data: (AttendanceItemType & 
       </div>
     </div>
   );
-}
+};
