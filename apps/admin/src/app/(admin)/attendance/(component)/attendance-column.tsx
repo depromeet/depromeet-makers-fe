@@ -39,8 +39,6 @@ const AttendanceStatusSelect = ({ attendanceId, attendanceStatus }: AttendanceSt
       <SelectTrigger>
         <SelectValue placeholder="출석 상태">
           <Badge className={cn('px-2', ATTENDANCE_STATUS_COLOR[status])}>{ATTENDANCE_STATUS_KR[status]}</Badge>
-          {ATTENDANCE_STATUS_COLOR[status]}
-          {status}
         </SelectValue>
       </SelectTrigger>
       <SelectContent>
