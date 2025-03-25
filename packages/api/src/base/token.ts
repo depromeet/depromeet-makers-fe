@@ -14,11 +14,8 @@ const isClientSide = typeof window !== 'undefined';
  */
 export const setToken = async (token: string) => {
   const cookieStore = await cookies();
-  const serverToken = cookieStore.get(COOKIE_KEY.ACCESS_TOKEN)?.value;
 
-  if (serverToken) {
-    cookieStore.set(COOKIE_KEY.ACCESS_TOKEN, serverToken);
-  }
+  cookieStore.set(COOKIE_KEY.ACCESS_TOKEN, token);
 
   if (isClientSide) {
     Cookies.set(COOKIE_KEY.ACCESS_TOKEN, token);
