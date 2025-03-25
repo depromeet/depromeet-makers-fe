@@ -1,8 +1,13 @@
+import { Suspense } from 'react';
 import Link from 'next/link';
+import { getSuspenseSessionListOption } from '@depromeet-makers/api';
 
 import { SessionTable } from '@/components/session/SessionTable';
 import { Button } from '@/components/ui/button';
 import { H4 } from '@/components/ui/typography';
+import { PrefetchBoundary } from '@/context/PrefetchBoundary';
+
+import { SessionTableSkeleton } from './(component)/session-table-skeleton';
 
 const SessionPage = () => {
   return (
@@ -14,7 +19,11 @@ const SessionPage = () => {
         </Link>
       </div>
 
-      <SessionTable />
+      <Suspense fallback={<SessionTableSkeleton />}>
+        <PrefetchBoundary prefetchOptions={getSuspenseSessionListOption()}>
+          <SessionTable />
+        </PrefetchBoundary>
+      </Suspense>
     </div>
   );
 };
