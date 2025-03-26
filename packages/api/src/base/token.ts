@@ -9,19 +9,31 @@ const isClientSide = typeof window !== 'undefined';
 /**
  * 인증 토큰을 쿠키와 클라이언트 환경에 저장합니다.
  *
- * @param token 저장할 인증 토큰
+ * @param accessToken 저장할 인증 토큰
  * @returns 저장된 토큰
  */
-export const setToken = async (token: string) => {
+export const setAccessToken = async (accessToken: string) => {
   const cookieStore = await cookies();
 
-  cookieStore.set(COOKIE_KEY.ACCESS_TOKEN, token);
+  cookieStore.set(COOKIE_KEY.ACCESS_TOKEN, accessToken);
 
   if (isClientSide) {
-    Cookies.set(COOKIE_KEY.ACCESS_TOKEN, token);
+    Cookies.set(COOKIE_KEY.ACCESS_TOKEN, accessToken);
   }
 
-  return token;
+  return accessToken;
+};
+
+export const setRefreshToken = async (refreshToken: string) => {
+  const cookieStore = await cookies();
+
+  cookieStore.set(COOKIE_KEY.REFRESH_TOKEN, refreshToken);
+
+  if (isClientSide) {
+    Cookies.set(COOKIE_KEY.REFRESH_TOKEN, refreshToken);
+  }
+
+  return refreshToken;
 };
 
 /**
@@ -40,7 +52,7 @@ export const getToken = async () => {
     const clientToken = Cookies.get(COOKIE_KEY.ACCESS_TOKEN);
 
     if (clientToken) {
-      setToken(clientToken);
+      setAccessToken(clientToken);
       return clientToken;
     }
   }
