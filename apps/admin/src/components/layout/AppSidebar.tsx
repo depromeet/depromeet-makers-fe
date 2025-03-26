@@ -82,7 +82,7 @@ export const AppSidebar = () => {
       </SidebarContent>
 
       <SidebarFooter>
-        <NavUser user={user ?? { name: '', email: ''}} />
+        <NavUser user={user ?? { name: '', email: '' }} />
       </SidebarFooter>
     </Sidebar>
   );
