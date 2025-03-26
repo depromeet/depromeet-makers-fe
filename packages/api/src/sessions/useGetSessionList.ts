@@ -9,10 +9,7 @@ interface GetSessionListRequest {
   generation: number;
 }
 
-interface GetSessionListResponse {
-  generation: number;
-  sessions: Session[];
-}
+interface GetSessionListResponse extends Array<Session> {}
 
 export const getSessionList = async (): Promise<GetSessionListResponse> => {
   const generation = process.env.NEXT_PUBLIC_DEPROMEET_GENERATION;
@@ -21,11 +18,11 @@ export const getSessionList = async (): Promise<GetSessionListResponse> => {
   return await api.get<GetSessionListResponse>('/v1/sessions', { params: request });
 };
 
-export const getSuspenseSessionList = async (): Promise<GetSessionListResponse> => {
+export const getSuspenseSessionList = () => {
   const generation = process.env.NEXT_PUBLIC_DEPROMEET_GENERATION;
   const request: GetSessionListRequest = { generation: Number(generation) };
 
-  return await api.get<GetSessionListResponse>('/v1/sessions', { params: request });
+  return api.get<GetSessionListResponse>('/v1/sessions', { params: request });
 };
 
 export const getSuspenseSessionListOption = () => ({

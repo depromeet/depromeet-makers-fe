@@ -14,7 +14,7 @@ export const columns = [
   columnHelper.accessor('week', {
     header: '주차',
   }),
-  columnHelper.accessor('sessionType', {
+  columnHelper.accessor('type', {
     header: '세션 종류',
     cell: ({ getValue }) => {
       const sessionType = getValue();
@@ -46,12 +46,5 @@ export const SessionTable = () => {
 
   const handleClickRow = (row: Row<Session>) => () => router.push(`/session/${row.original.sessionId}`);
 
-  return (
-    <DataTable
-      columns={columns}
-      data={data?.sessions ?? []}
-      placeholder="세션 정보가 없어요"
-      onRowClick={handleClickRow}
-    />
-  );
+  return <DataTable columns={columns} data={data ?? []} placeholder="세션 정보가 없어요" onRowClick={handleClickRow} />;
 };
