@@ -3,9 +3,13 @@
   "version": "0.0.0",
   "type": "module",
   "main": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
   "dependencies": {
     "@tanstack/react-query": "^5.32.0",
-    "axios": "^1.6.8"
+    "axios": "^1.6.8",
+    "next": "14.2.3"
   },
   "devDependencies": {
     "@depromeet-makers/constant": "workspace:*",

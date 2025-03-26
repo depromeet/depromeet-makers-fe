@@ -440,6 +440,9 @@ importers:
       axios:
         specifier: ^1.6.8
         version: 1.7.2
+      next:
+        specifier: 14.2.3
+        version: 14.2.3(@babel/core@7.26.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
     devDependencies:
       '@depromeet-makers/constant':
         specifier: workspace:*

@@ -1,4 +1,3 @@
-import { COOKIE_KEY } from '@depromeet-makers/constant';
 import axios, {
   type AxiosError,
   type AxiosInstance,
@@ -7,7 +6,8 @@ import axios, {
   type InternalAxiosRequestConfig,
   isAxiosError,
 } from 'axios';
-import Cookies from 'js-cookie';
+
+import { getToken } from './token';
 
 class HttpClient {
   private client: AxiosInstance;
@@ -43,8 +43,8 @@ class HttpClient {
     this.client.interceptors.response.use(this.onResponseFulfilled, this.onResponseRejected);
   }
 
-  private onRequestFulfilled(config: InternalAxiosRequestConfig) {
-    const token = Cookies.get(COOKIE_KEY.ACCESS_TOKEN);
+  private async onRequestFulfilled(config: InternalAxiosRequestConfig) {
+    const token = await getToken();
 
     if (token) {
       config.headers['Authorization'] = `Bearer ${token}`;
