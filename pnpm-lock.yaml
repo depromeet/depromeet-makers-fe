@@ -447,6 +447,9 @@ importers:
       '@depromeet-makers/constant':
         specifier: workspace:*
         version: link:../constant
+      '@depromeet-makers/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript-config
       typescript:
         specifier: ^5
         version: 5.7.2

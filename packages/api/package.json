@@ -13,6 +13,7 @@
   },
   "devDependencies": {
     "@depromeet-makers/constant": "workspace:*",
+    "@depromeet-makers/typescript-config": "workspace:*",
     "typescript": "^5"
   }
 }
