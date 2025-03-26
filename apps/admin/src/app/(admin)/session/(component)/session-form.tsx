@@ -1,6 +1,8 @@
 'use client';
 
 import { useFormContext } from 'react-hook-form';
+import { useRouter } from 'next/navigation';
+import type { useCreateSession } from '@depromeet-makers/api';
 
 import { SelectDropdown } from '@/components/select-dropdown';
 import { Button } from '@/components/ui/button';
@@ -14,7 +16,12 @@ import { type SessionForm as SessionFormType } from '../(data)/session';
 
 import { DateTimePicker } from './date-time-picker';
 
-export const SessionForm = () => {
+interface SessionFormProps {
+  onSubmit: ReturnType<typeof useCreateSession>['mutate'];
+}
+
+export const SessionForm = ({ onSubmit }: SessionFormProps) => {
+  const router = useRouter();
   const form = useFormContext<SessionFormType>();
 
   const handleDateSelect = (selectedDate?: Date) => {
@@ -38,24 +45,33 @@ export const SessionForm = () => {
     form.setValue('startTime', newDate);
   };
 
-  const onSubmit = (values: SessionFormType) => {
+  const handleSubmit = (formValues: SessionFormType) => {
     form.reset();
 
-    toast({
-      title: '세션이 생성되었어요:',
-      description: (
-        <pre className="mt-2 w-full rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(values, null, 2)}</code>
-        </pre>
-      ),
-    });
+    onSubmit(
+      { ...formValues, startTime: String(formValues.startTime), endTime: String(formValues.endTime) },
+      {
+        onSuccess: () => {
+          toast({
+            title: '세션이 생성되었어요:',
+            description: (
+              <pre className="mt-2 w-full rounded-md bg-slate-950 p-4">
+                <code className="text-white">{JSON.stringify(formValues, null, 2)}</code>
+              </pre>
+            ),
+          });
+
+          router.push('/session');
+        },
+      },
+    );
   };
 
   return (
     <Form {...form}>
       <form
         id="session-form"
-        onSubmit={form.handleSubmit(onSubmit)}
+        onSubmit={form.handleSubmit(handleSubmit)}
         className="space-y-8 p-6 bg-white rounded-lg border border-gray-200 overflow-y-auto"
       >
         <FormField
@@ -65,7 +81,12 @@ export const SessionForm = () => {
             <FormItem>
               <FormLabel>주차</FormLabel>
               <FormControl>
-                <Input type="number" placeholder="1~16 사이의 숫자로 입력해주세요." {...field} />
+                <Input
+                  {...field}
+                  type="number"
+                  placeholder="1~16 사이의 숫자로 입력해주세요."
+                  onChange={(event) => field.onChange(+event.target.value)}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -74,7 +95,7 @@ export const SessionForm = () => {
 
         <FormField
           control={form.control}
-          name="sessionType"
+          name="type"
           render={({ field }) => (
             <FormItem>
               <FormLabel>종류</FormLabel>
@@ -127,6 +148,19 @@ export const SessionForm = () => {
             <FormItem className="flex flex-col">
               <FormLabel>시작 시간</FormLabel>
               <FormDescription>기본 세션 시작 시간은 14시로 설정돼요.</FormDescription>
+              <DateTimePicker field={field} onChangeTime={handleTimeChange} onSelectDate={handleDateSelect} />
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="endTime"
+          render={({ field }) => (
+            <FormItem className="flex flex-col">
+              <FormLabel>종료 시간</FormLabel>
+              <FormDescription>기본 세션 종료 시간은 시작 시간 + 2시간으로 설정돼요.</FormDescription>
               <DateTimePicker field={field} onChangeTime={handleTimeChange} onSelectDate={handleDateSelect} />
               <FormMessage />
             </FormItem>

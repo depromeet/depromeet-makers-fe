@@ -1,7 +1,9 @@
 'use client';
 
 import { FormProvider, useForm } from 'react-hook-form';
+import { useCreateSession } from '@depromeet-makers/api';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { addHours, setHours } from 'date-fns';
 
 import { SessionForm } from '../(component)/session-form';
 import { SessionPreview } from '../(component)/session-preview';
@@ -13,16 +15,19 @@ const SessionNewPage = () => {
     defaultValues: {
       title: '',
       description: '',
-      sessionType: 'OFFLINE',
-      startTime: new Date(),
-      place: '',
+      type: 'OFFLINE',
+      startTime: setHours(new Date().setMinutes(0), 14),
+      endTime: addHours(setHours(new Date().setMinutes(0), 14), 2),
+      place: null,
     },
   });
+
+  const { mutate: createSession } = useCreateSession();
 
   return (
     <FormProvider {...form}>
       <div className="grid lg:grid-cols-2 grid-cols-1  gap-8 bg-gray-100 max-h-full">
-        <SessionForm />
+        <SessionForm onSubmit={createSession} />
         <SessionPreview />
       </div>
     </FormProvider>
