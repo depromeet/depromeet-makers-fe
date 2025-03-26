@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { Button } from 'react-day-picker';
 import { useRouter } from 'next/router';
 import Cookies from 'js-cookie';
 
+import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { COOKIE_KEY } from '@/constants/cookie';
