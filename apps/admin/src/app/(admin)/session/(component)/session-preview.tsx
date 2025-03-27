@@ -4,6 +4,7 @@ import { getDay, getMonth } from 'date-fns';
 
 import { Badge } from '@/components/ui/badge';
 import { H5 } from '@/components/ui/typography';
+import { CURRENT_GENERATION } from '@/constants/attendance';
 
 import type { SessionForm } from '../(data)/session';
 
@@ -16,7 +17,7 @@ export const SessionPreview = () => {
     <div className="w-[375px] h-[670px] p-6 mx-auto my-auto bg-white rounded-xl shadow-xl invisible lg:visible">
       <IconLeft />
 
-      <H5 className="my-[24px]">{`디프만 {00}기 일정`}</H5>
+      <H5 className="my-[24px]">{`디프만 ${CURRENT_GENERATION}기 일정`}</H5>
 
       <SessionItem {...session} />
     </div>
@@ -24,8 +25,8 @@ export const SessionPreview = () => {
 };
 
 // TODO: 추후 공통 ui 패키지로 분리하기
-const SessionItem = ({ week, sessionType, startTime, title, description, place }: SessionForm) => {
-  const isOffline = sessionType === 'OFFLINE';
+const SessionItem = ({ week, type, startTime, title, description, place }: SessionForm) => {
+  const isOffline = type === 'OFFLINE';
   const month = getMonth(startTime);
   const day = getDay(startTime);
 
