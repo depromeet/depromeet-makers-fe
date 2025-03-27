@@ -6,7 +6,7 @@ const ROW_COUNT = 10;
 
 export const SessionTableSkeleton = () => {
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 rounded-md border">
       <Table>
         <TableHeader>
           <TableRow>
