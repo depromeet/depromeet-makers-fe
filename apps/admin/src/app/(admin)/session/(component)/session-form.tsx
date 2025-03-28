@@ -49,7 +49,11 @@ export const SessionForm = ({ onSubmit }: SessionFormProps) => {
     form.reset();
 
     onSubmit(
-      { ...formValues, startTime: String(formValues.startTime), endTime: String(formValues.endTime) },
+      {
+        ...formValues,
+        startTime: formValues.startTime.toISOString(),
+        endTime: formValues.endTime.toISOString(),
+      },
       {
         onSuccess: () => {
           toast({
