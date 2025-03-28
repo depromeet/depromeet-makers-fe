@@ -8,6 +8,8 @@ import { DataTable } from '@/components/ui/data-table';
 import { SESSION_TYPE_TEXT } from '@/constants/session';
 import { formatDateTime } from '@/lib/date';
 
+import { SessionDeleteButton } from './session-delete-button';
+
 const columnHelper = createColumnHelper<Session>();
 
 export const columns = [
@@ -37,6 +39,10 @@ export const columns = [
   columnHelper.accessor('place', {
     header: '세션 장소',
     cell: ({ getValue }) => getValue()?.address ?? '-',
+  }),
+  columnHelper.display({
+    id: 'actions',
+    cell: ({ row }) => <SessionDeleteButton session={row.original} />,
   }),
 ] as ColumnDef<Session, unknown>[];
 
