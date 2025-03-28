@@ -2,10 +2,10 @@ import { Suspense } from 'react';
 import Link from 'next/link';
 import { getSuspenseSessionListOption, PrefetchBoundary } from '@depromeet-makers/api';
 
-import { SessionTable } from '@/components/session/SessionTable';
 import { Button } from '@/components/ui/button';
 import { H4 } from '@/components/ui/typography';
 
+import { SessionTable } from './(component)/session-table';
 import { SessionTableSkeleton } from './(component)/session-table-skeleton';
 
 const SessionPage = () => {
