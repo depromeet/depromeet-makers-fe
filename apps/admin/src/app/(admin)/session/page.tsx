@@ -1,9 +1,10 @@
 import { Suspense } from 'react';
 import Link from 'next/link';
 import { getSuspenseSessionListOption, PrefetchBoundary } from '@depromeet-makers/api';
+import { IconPlus } from '@tabler/icons-react';
 
 import { Button } from '@/components/ui/button';
-import { H4 } from '@/components/ui/typography';
+import { H3 } from '@/components/ui/typography';
 
 import { SessionTable } from './(component)/session-table';
 import { SessionTableSkeleton } from './(component)/session-table-skeleton';
@@ -11,10 +12,13 @@ import { SessionTableSkeleton } from './(component)/session-table-skeleton';
 const SessionPage = () => {
   return (
     <div className="container mx-auto">
-      <div className="flex justify-between p-3">
-        <H4>세션 관리</H4>
+      <div className="flex items-center p-4 gap-6">
+        <H3>세션 목록</H3>
         <Link href="/session/new">
-          <Button>새로운 세션 추가</Button>
+          <Button size="sm" variant="secondary">
+            <IconPlus />
+            세션 추가하기
+          </Button>
         </Link>
       </div>
 
