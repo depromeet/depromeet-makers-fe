@@ -12,9 +12,11 @@ import { Textarea } from '@/components/ui/textarea';
 import { toast } from '@/hooks/use-toast';
 
 import { SESSION_TYPES } from '../(constant)/session';
+import KaKaoMapProvider from '../(context)/kakao-map-context';
 import { type SessionForm as SessionFormType } from '../(data)/session';
 
 import { DateTimePicker } from './date-time-picker';
+import { KaKaoMapForm } from './kakao-map-form';
 
 interface SessionFormProps {
   onSubmit: ReturnType<typeof useCreateSession>['mutate'];
@@ -23,6 +25,8 @@ interface SessionFormProps {
 export const SessionForm = ({ onSubmit }: SessionFormProps) => {
   const router = useRouter();
   const form = useFormContext<SessionFormType>();
+
+  const isOffline = form.watch('type') === 'OFFLINE';
 
   const handleDateSelect = (selectedDate?: Date) => {
     if (!selectedDate) return;
@@ -171,20 +175,23 @@ export const SessionForm = ({ onSubmit }: SessionFormProps) => {
           )}
         />
 
-        {/* TODO: 카카오맵에서 장소 고르기 추가 */}
         <FormField
           control={form.control}
           name="place"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>장소</FormLabel>
-              <FormDescription>오프라인 세션인 경우 세션 장소를 입력해주세요.</FormDescription>
-              <FormControl>
-                <Input type="text" placeholder="오프라인일 경우 세션 장소를 입력해주세요" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
+          render={({ field }) =>
+            isOffline ? (
+              <FormItem>
+                <FormLabel>장소</FormLabel>
+                <FormDescription>오프라인 세션인 경우 세션 장소를 입력해주세요.</FormDescription>
+                <KaKaoMapProvider>
+                  <KaKaoMapForm {...field} />
+                </KaKaoMapProvider>
+                <FormMessage />
+              </FormItem>
+            ) : (
+              <></>
+            )
+          }
         />
 
         <Button type="submit" form="session-form" className="w-full" disabled={!form.formState.isValid}>
