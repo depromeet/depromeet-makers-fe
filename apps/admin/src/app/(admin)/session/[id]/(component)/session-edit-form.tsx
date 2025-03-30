@@ -3,6 +3,7 @@ import { type Session, useEditSession } from '@depromeet-makers/api';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { SessionForm } from '../../(component)/session-form';
+import { SessionPreview } from '../../(component)/session-preview';
 import type { SessionForm as SessionFormType } from '../../(data)/session';
 import { sessionScheme } from '../../(data)/session';
 
@@ -20,7 +21,10 @@ export const SessionEditForm = ({ session }: SessionEditFormProps) => {
 
   return (
     <FormProvider {...form}>
-      <SessionForm onSubmit={editSession} />
+      <div className="grid lg:grid-cols-2 grid-cols-1 gap-8 bg-gray-100 max-h-full lg:h-[750px] rounded-lg">
+        <SessionPreview />
+        <SessionForm onSubmit={editSession} />
+      </div>
     </FormProvider>
   );
 };

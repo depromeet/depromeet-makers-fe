@@ -12,13 +12,17 @@ const FORM_FIELDS = [
 
 export const SessionFormSkeleton = () => {
   return (
-    <form className="space-y-8 p-6 bg-white rounded-lg border border-gray-200 overflow-y-auto">
-      {FORM_FIELDS.map(({ label }) => (
-        <div key={label} className="space-y-2">
-          <span className="text-sm">{label}</span>
-          <Skeleton className="flex h-10 w-full rounded-md px-3 py-2" />
-        </div>
-      ))}
-    </form>
+    <div className="grid grid-cols-2 gap-8 max-h-full lg:h-[750px] rounded-lg">
+      <Skeleton className="h-full rounded-lg" />
+
+      <form className="space-y-8 p-6 bg-white rounded-lg border border-gray-200 overflow-y-auto">
+        {FORM_FIELDS.map(({ label }) => (
+          <div key={label} className="space-y-2">
+            <span className="text-sm">{label}</span>
+            <Skeleton className="flex h-10 w-full rounded-md px-3 py-2" />
+          </div>
+        ))}
+      </form>
+    </div>
   );
 };
