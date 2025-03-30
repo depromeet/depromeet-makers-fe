@@ -8,6 +8,7 @@ import { H3 } from '@/components/ui/typography';
 
 import { SessionTable } from './(component)/session-table';
 import { SessionTableSkeleton } from './(component)/session-table-skeleton';
+import { SessionCodeButton } from './new/(component)/session-code-button';
 
 const SessionPage = () => {
   return (
@@ -20,6 +21,11 @@ const SessionPage = () => {
             세션 추가하기
           </Button>
         </Link>
+        <Suspense fallback={null}>
+          <PrefetchBoundary prefetchOptions={getSuspenseSessionListOption()}>
+            <SessionCodeButton />
+          </PrefetchBoundary>
+        </Suspense>
       </div>
 
       <Suspense fallback={<SessionTableSkeleton />}>
