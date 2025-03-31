@@ -68,7 +68,7 @@ export default function AttendancePage() {
   const { week, setWeek, isOffline, code } = useCurrentWeek();
 
   return (
-    <div className="flex flex-col gap-4 w-full">
+    <div className="container mx-auto flex flex-col gap-4 w-full">
       <WeekSelect value={week} onChange={setWeek} />
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-8">
