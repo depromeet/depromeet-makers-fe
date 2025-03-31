@@ -13,11 +13,18 @@ export const ATTENDANCE_STATUS_KR: Record<ATTENDANCE_STATUS, string> = {
   [ATTENDANCE_STATUS.결석]: '결석',
 };
 
+export const ATTENDANCE_STATUS_TEXT_COLOR: Record<ATTENDANCE_STATUS, string> = {
+  [ATTENDANCE_STATUS.출석대기]: 'text-gray-300',
+  [ATTENDANCE_STATUS.출석]: 'text-green-300',
+  [ATTENDANCE_STATUS.지각]: 'text-yellow-300',
+  [ATTENDANCE_STATUS.결석]: 'text-red-300',
+};
+
 export const ATTENDANCE_STATUS_COLOR: Record<ATTENDANCE_STATUS, string> = {
-  [ATTENDANCE_STATUS.출석대기]: 'bg-gray-100 text-gray-300',
-  [ATTENDANCE_STATUS.출석]: 'bg-green-100 text-green-300',
-  [ATTENDANCE_STATUS.지각]: 'bg-yellow-100 text-yellow-300',
-  [ATTENDANCE_STATUS.결석]: 'bg-red-100 text-red-300',
+  [ATTENDANCE_STATUS.출석대기]: `bg-gray-100 ${ATTENDANCE_STATUS_TEXT_COLOR[ATTENDANCE_STATUS.출석대기]}`,
+  [ATTENDANCE_STATUS.출석]: `bg-green-100 ${ATTENDANCE_STATUS_TEXT_COLOR[ATTENDANCE_STATUS.출석]}`,
+  [ATTENDANCE_STATUS.지각]: `bg-yellow-100 ${ATTENDANCE_STATUS_TEXT_COLOR[ATTENDANCE_STATUS.지각]}`,
+  [ATTENDANCE_STATUS.결석]: `bg-red-100 ${ATTENDANCE_STATUS_TEXT_COLOR[ATTENDANCE_STATUS.결석]}`,
 };
 
 export const ATTENDANCE_STATUS_LIST = Object.values(ATTENDANCE_STATUS) as ATTENDANCE_STATUS[];
