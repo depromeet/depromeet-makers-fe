@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useGetInfo } from '@depromeet-makers/api';
-import { IconInnerShadowTop } from '@tabler/icons-react';
+import { Command } from 'lucide-react';
 
 import {
   Sidebar,
@@ -20,11 +20,14 @@ import {
 
 import { NavUser } from './nav/NavUser';
 
-const MENUS = [
+const MAKERS_MENUS = [
   {
     title: '멤버 관리',
     url: '/user',
   },
+];
+
+const DEPROMEET_MENUS = [
   {
     title: '세션 관리',
     url: '/session',
@@ -50,8 +53,11 @@ export const AppSidebar = () => {
           <SidebarMenuItem>
             <SidebarMenuButton asChild className="data-[slot=sidebar-menu-button]:!p-1.5">
               <Link href="/">
-                <IconInnerShadowTop className="!size-5" />
-                <span className="text-base font-semibold">메이커스 Admin</span>
+                <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
+                  <Command className="size-4" />
+                </div>
+
+                <span className="text-base font-semibold">메이커스 어드민</span>
               </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
@@ -63,19 +69,32 @@ export const AppSidebar = () => {
           <SidebarGroupLabel>메이커스 관리</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {MENUS.map((menu) => {
-                const isActive = pathname === menu.url;
+              {MAKERS_MENUS.map((menu) => (
+                <SidebarMenuItem key={menu.title}>
+                  <SidebarMenuButton asChild size="lg" isActive={pathname === menu.url}>
+                    <Link href={menu.url}>
+                      <span>{menu.title}</span>
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
 
-                return (
-                  <SidebarMenuItem key={menu.title}>
-                    <SidebarMenuButton asChild size="lg" isActive={isActive}>
-                      <a href={menu.url}>
-                        <span>{menu.title}</span>
-                      </a>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                );
-              })}
+        <SidebarGroup>
+          <SidebarGroupLabel>디프만 관리</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {DEPROMEET_MENUS.map((menu) => (
+                <SidebarMenuItem key={menu.title}>
+                  <SidebarMenuButton asChild size="lg" isActive={pathname === menu.url}>
+                    <Link href={menu.url}>
+                      <span>{menu.title}</span>
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>

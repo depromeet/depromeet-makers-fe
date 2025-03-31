@@ -1,7 +1,6 @@
 'use client';
 
-import { H4 } from '@/components/ui/typography';
-import { cn } from '@/lib/utils';
+import { H3 } from '@/components/ui/typography';
 
 import { columns } from './(components)/users-columns';
 import { UsersDialogs } from './(components)/users-dialogs';
@@ -43,9 +42,9 @@ const MEMBER_MOCK_DATA = [
 const MemberPage = () => {
   return (
     <UsersProvider>
-      <main className={cn('peer-[.header-fixed]/header:mt-16', 'px-4 py-6')}>
-        <div className="mb-2 flex flex-wrap items-center justify-between space-y-2">
-          <H4>멤버 목록</H4>
+      <main className="peer-[.header-fixed]/header:mt-16 px-4 py-6">
+        <div className="mb-2 flex flex-wrap items-center gap-6 space-y-2">
+          <H3>멤버 목록</H3>
           <UsersPrimaryButtons />
         </div>
 
