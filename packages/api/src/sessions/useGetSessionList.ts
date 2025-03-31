@@ -9,7 +9,11 @@ interface GetSessionListRequest {
   generation: number;
 }
 
-interface GetSessionListResponse extends Array<Session> {}
+interface SessionResponse extends Session {
+  code: string;
+}
+
+interface GetSessionListResponse extends Array<SessionResponse> {}
 
 export const getSessionList = async (): Promise<GetSessionListResponse> => {
   const generation = process.env.NEXT_PUBLIC_DEPROMEET_GENERATION;

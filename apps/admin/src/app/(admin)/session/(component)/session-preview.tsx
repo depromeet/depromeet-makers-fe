@@ -13,7 +13,7 @@ export const SessionPreview = () => {
   const session = watch();
 
   return (
-    <div className="w-[375px] h-[670px] p-6 mx-auto bg-white rounded-xl shadow-xl invisible lg:visible fixed lg:right-[10%] top-[calc(20vh)]">
+    <div className="w-[375px] h-[670px] p-6 mx-auto my-auto bg-white rounded-xl shadow-xl">
       <IconLeft />
 
       <H5 className="my-[24px]">{`디프만 ${CURRENT_GENERATION}기 일정`}</H5>
