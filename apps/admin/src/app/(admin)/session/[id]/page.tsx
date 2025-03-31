@@ -12,7 +12,7 @@ const SessionDetailPage = ({ params }: { params: { id: string } }) => {
   const sessionId = params.id;
 
   return (
-    <div className="container mx-auto">
+    <main className="container mx-auto">
       <div className="flex justify-between p-4 gap-6">
         <H3>세션 수정하기</H3>
         <Button type="submit" form="session-form">
@@ -25,7 +25,7 @@ const SessionDetailPage = ({ params }: { params: { id: string } }) => {
           <SessionEditPage sessionId={sessionId} />
         </PrefetchBoundary>
       </Suspense>
-    </div>
+    </main>
   );
 };
 
