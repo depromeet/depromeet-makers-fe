@@ -51,7 +51,7 @@ const MemberAttendance = ({ member }: MemberAttendanceProps) => {
 
       <Select value={member.attendanceStatus} onValueChange={handleChangeAttendance}>
         <SelectTrigger
-          className={`w-[120px] border-0 text-sm font-semibold ${ATTENDANCE_STATUS_TEXT_COLOR[member.attendanceStatus]}`}
+          className={`w-fit p-2 gap-1 border-0 text-sm font-semibold ${ATTENDANCE_STATUS_TEXT_COLOR[member.attendanceStatus]} [&>svg]:text-muted-foreground`}
         >
           <SelectValue placeholder={ATTENDANCE_STATUS_KR[member.attendanceStatus]} />
         </SelectTrigger>

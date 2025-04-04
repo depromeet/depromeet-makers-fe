@@ -16,17 +16,17 @@ export const CALL_TYPE_TEXT = new Map<UserStatus, string>([
 
 export const userTypes = [
   {
-    label: 'Superadmin',
+    label: '관리자',
     value: 'superadmin',
     icon: IconShield,
   },
   {
-    label: 'Admin',
+    label: '어드민',
     value: 'admin',
     icon: IconUserShield,
   },
   {
-    label: 'Member',
+    label: '멤버',
     value: 'member',
     icon: IconUsersGroup,
   },
