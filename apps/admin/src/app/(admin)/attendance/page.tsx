@@ -89,7 +89,7 @@ interface Props {
 function WeekSelect(props: Props) {
   return (
     <Select value={props.value.toString()} onValueChange={(value) => props.onChange(Number(value))}>
-      <SelectTrigger className="w-[120px] border-0 text-xl font-semibold">
+      <SelectTrigger className="w-[120px] border-0 text-2xl font-semibold">
         <SelectValue placeholder={`${props.value}주차`} />
       </SelectTrigger>
       <SelectContent>
